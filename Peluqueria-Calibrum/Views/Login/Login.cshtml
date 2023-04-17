@@ -1,11 +1,41 @@
 ﻿@{
-    ViewData["Title"] = "Login Page";
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-   <div >
-       Login
-   </div>
-</div>
 
-}
+<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center form_container">
+                    <form action="@Url.Action("Login","Acceso")" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" name="Usuario" class="form-control input_user" value="" placeholder="Usuario">
+                        </div>
+                        <div class="input-group mb-2">
+                            <input type="password" name="Clave" class="form-control input_pass" value="" placeholder="Contraseña">
+                        </div>
+
+                        @if (ViewData["Mensaje"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewData["Mensaje"]
+                            </div>
+                        }
+
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Iniciar Sesion</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
