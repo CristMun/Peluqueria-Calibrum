@@ -1,9 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Empleado";
 }
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+</head>
+
+<body>
 
 <div class="text-center">
+    <h1>LISTA DE EMPLEADOS!</h1>
    <div >
-      Empleados
+        <a asp-area="" asp-controller="Empleado" asp-action="AgendarEmpleado">Nuevo Empleado</a>
    </div>
 </div>
+
+    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+</body>

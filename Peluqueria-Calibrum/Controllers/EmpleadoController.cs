@@ -10,6 +10,11 @@ namespace Peluqueria_Calibrum.Controllers
             return View();
 
         }
+        public IActionResult AgendarEmpleado()
+        {
+            return View();
+
+        }
 
         [HttpGet]
         public Empleado Get()
