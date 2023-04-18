@@ -1,9 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Citas";
-}
+﻿<head>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+</head>
+<body>
+    <div>
+        <h1>Cita</h1>
+        <form action="">
+            <p>
+                Nombre Completo: <input type="text" name="nombre_cliente" placeholder="Alan Brito" class="form-control">
+            </p>
+            <p>
+                Telefono: <input type="tel" name="telefono" placeholder="987654321" class="form-control">
+            </p>
 
-<div class="text-center">
-   <div>
-       Citas
-   </div>
-</div>
+            <div>Servicios:</div>
+
+            <input type="checkbox" id="corte" value="Corte de Pelo" v-model="servicios">
+            <label for="corte">Corte de pelo</label>
+
+            <input type="checkbox" id="lavado" value="Lavado" v-model="servicios">
+            <label for="lavado">Lavado</label>
+
+            <input type="checkbox" id="tenido" value="Teñido" v-model="servicios">
+            <label for="tenido">Teñido</label>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+</body>
