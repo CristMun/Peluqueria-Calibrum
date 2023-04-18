@@ -2,8 +2,78 @@
     ViewData["Title"] = "Inventario";
 }
 
-<div class="text-center">
-   <div >
-       Inventario
-   </div>
-</div>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+    </head>
+    <body>
+        <div class="text-center">
+            <div>
+                <h1>Listado Inventario</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4" style="padding-bottom:10px">
+                <label for="nombre">Nombre</label><br />
+                <input type="text" name="search" />
+            </div>
+            <div class ="col-sm-4">
+                <label for="nombre">Descripcion</label><br />
+                <input type="text" name="search" />
+            </div>
+            <div class="col-sm-4">
+                <input type="submit" value="Buscar" class="btn btn-dark" />
+                <button type="button" class="btn btn-outline-dark">Nuevo Articulo</button>
+            </div>
+         </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Acciones</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            Modificar    
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                    <td>
+                    <img src="https://d1tjllbjmslitt.cloudfront.net/spree/products/17169/large/4090528.jpg?1641480226" alt="Tinta" style="width:150px;height:100px;">
+                    </td>
+                    <td>Tintura Castaña</td>
+                    <td>Caja Tintura</td>
+                    <td>3</td>
+                </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-warning">
+                        Modificar
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </td>
+                <td>
+                    <img src="https://d1tjllbjmslitt.cloudfront.net/spree/products/17169/large/4090528.jpg?1641480226" alt="Tinta" style="width:150px;height:100px;">
+                </td>
+                <td>Tintura Castaña</td>
+                <td>Caja Tintura</td>
+                <td>3</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+
+    </body>
+</html>
