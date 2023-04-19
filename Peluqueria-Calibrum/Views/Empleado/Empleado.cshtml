@@ -1,18 +1,150 @@
-﻿@{
+﻿@model Peluqueria_Calibrum.Models.Empleado
+
+@{
     ViewData["Title"] = "Empleado";
 }
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-</head>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+    </head>
+    <body>
+        <div class="text-center">
+            <div>
+                <h1>Lista Empleado</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4" style="padding-bottom:10px">
+                <label for="nombre">Nombre o Apellido</label><br />
+                <input type="text" name="search" />
+            </div>
+            <div class="col-sm-4">
+                <label for="nombre">Servicio</label><br />
+                <input type="text" name="search" />
+            </div>
+            <div>
+                <select id="cargo" name="cargo">
+                    <option selected>Cargo</option>
+                    <option value="peluquero">Peluquero</option>
+                    <option value="barbero">Barbero</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" data-target="#miEmpleado">Agregar Empleado</button>
+            </div>
+        </div>
 
-<body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Acciones</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Usuario</th>
+                    <th>Servicios</th>
+                    <th>Horarios</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            Modificar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                    <td>Nicolas Cruz</td>
+                    <td>ncruz@calipso.cl</td>
+                    <td>Corte de Pelo <br /> Teñida de Pelo <br /> Alisado</td>
+                    <td>Lun-Vier: 10:00 - 18:00</td>
+                    <td>Peluquero</td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            Modificar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                    <td>Nicolas Cruz</td>
+                    <td>ncruz@calipso.cl</td>
+                    <td>Corte de Pelo <br /> Teñida de Pelo <br /> Alisado</td>
+                    <td>Lun-Vier: 10:00 - 18:00</td>
+                    <td>Peluquero</td>
+                </tr>
+            </tbody>
+        </table>
 
-<div class="text-center">
-    <h1>LISTA DE EMPLEADOS!</h1>
-   <div >
-        <a asp-area="" asp-controller="Empleado" asp-action="AgendarEmpleado">Nuevo Empleado</a>
-   </div>
-</div>
+        <div class="modal fade" id="miEmpleado" role="dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h2 class="modal-title text-primary text-center">Agregar Nuevo Empleado</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
+                                <div class="row p-3 border-0">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input asp-for="Nombre" class="form-control" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido</label>
+                                    <input asp-for="Apellido" class="form-control" />
+                                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                                </div>
+                                <div >   
+                                    <input type="checkbox" name="cargo1"/>
+                                    <label>Peluquero</label>
+                                    <input type="checkbox" name="cargo2" />
+                                    <label>Barbero</label>
+                                    <input type="checkbox" name="cargo3" />
+                                    <label>Administrador</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Horario</label>
+                                    <input type="datetime-local" asp-for="Horario" class="form-control"/>
+                                    <span asp-validation-for="Horario" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <select id="servicio" name="servicio">
+                                        <option selected>Servicio</option>
+                                        <option value="corte_infantil">Corte Infantil</option>
+                                        <option value="decoloracion">Decoloracion</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <h5 class="text-center">Inicio de Sesion</h5>
+                                    <label>Usuario</label>
+                                    <input asp-for="Usuario" class="form-control" type="email" />
+                                    <span asp-validation-for="Usuario" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input asp-for="Contrasena" class="form-control" type="password" />
+                                    <span asp-validation-for="Contrasena" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer; text-center">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Crear Empleado</button><br />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
-</body>
+
+        
+        <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+    </body>
+</html>

@@ -56,22 +56,22 @@
                     <td>Caja Tintura</td>
                     <td>3</td>
                 </tr>
-            <tr>
-                <td>
-                    <button type="button" class="btn btn-warning">
-                        Modificar
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        Eliminar
-                    </button>
-                </td>
-                <td>
-                    <img src="https://d1tjllbjmslitt.cloudfront.net/spree/products/17169/large/4090528.jpg?1641480226" alt="Tinta" style="width:150px;height:100px;">
-                </td>
-                <td>Tintura Castaña</td>
-                <td>Caja Tintura</td>
-                <td>3</td>
-            </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            Modificar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                    <td>
+                        <img src="https://d1tjllbjmslitt.cloudfront.net/spree/products/17169/large/4090528.jpg?1641480226" alt="Tinta" style="width:150px;height:100px;">
+                    </td>
+                    <td>Tintura Castaña</td>
+                    <td>Caja Tintura</td>
+                    <td>3</td>
+                </tr>
             </tbody>
         </table>
 
@@ -95,21 +95,21 @@
                                 <div class="form-group">
                                     <label>Nombre Articulo</label>
                                     <input asp-for="Nombre_art" class="form-control" />
-                                    <span asp-validation-for="Nombre_art" class="tetx-danger"></span>
+                                    <span asp-validation-for="Nombre_art" class="text-danger"></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label>Descripcion</label>
                                     <textarea asp-for="Descripcion" class="form-control"></textarea>
-                                    <span asp-validation-for="Descripcion" class="tetx-danger"></span>
+                                    <span asp-validation-for="Descripcion" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Cantidad</label>
                                     <input asp-for="Cantidad" class="form-control" />
-                                    <span asp-validation-for="Descripcion" class="tetx-danger"></span>
+                                    <span asp-validation-for="Descripcion" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer; text-center">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button><br />
                             <button type="submit" class="btn btn-success">Volver</button>
                         </div>

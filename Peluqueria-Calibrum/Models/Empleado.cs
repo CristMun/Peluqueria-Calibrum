@@ -1,14 +1,29 @@
-﻿namespace Peluqueria_Calibrum.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Peluqueria_Calibrum.Models
 {
     public class Empleado
     {
+        [Key]
         public int Id_Empleado { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Usuario { get; set; }
-        public string Contrasena { get; set; }
-        public string Horario { get; set; }
-        public string Cargo { get; set; }
+
+        [Required]
+        public string? Nombre { get; set; }
+
+        [Required]
+        public string? Apellido { get; set; }
+
+        [Required]
+        public string? Usuario { get; set; }
+
+        [Required]
+        public string? Contrasena { get; set; }
+
+        [Required]
+        public string? Horario { get; set; }
+
+        [Required]
+        public string? Cargo { get; set; }
 
     }
 }
