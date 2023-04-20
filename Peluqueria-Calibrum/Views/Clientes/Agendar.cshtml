@@ -1,0 +1,36 @@
+﻿<head>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+</head>
+<body>
+    <div>
+        <div class="row">
+
+            <select id="cargo" name="cargo">
+                <option value="servicio">Corte de Pelo</option>
+                <option value="servicio">Alisado</option>
+                <option value="servicio">Corte de Barba</option>
+                <option value="servicio">Teñido</option>
+            </select>
+
+            <select id="cargo" name="cargo">
+                <option value="peluquero">Peluquero 1</option>
+                <option value="peluquero">Peluquero 2</option>
+                <option value="peluquero">Peluquero 3</option>
+            </select>
+
+            <div class="col-sm-4" style="padding-bottom:10px">
+                <label for="nombre_cliente">Nombre Cliente</label><br />
+                <input type="text" name="search" />
+            </div>
+            <div class="col-sm-4">
+                <label for="telefono">Contacto</label><br />
+                <input type="text" name="search" placeholder="987654321"/>
+            </div>
+            <div class="col-sm-4">
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+</body>
