@@ -24,7 +24,7 @@
             </div>
             <div>
                 <select id="cargo" name="cargo">
-                    <option selected>Cargo</option>
+                    <option value="">Cargo</option>
                     <option value="peluquero">Peluquero</option>
                     <option value="barbero">Barbero</option>
                 </select>
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="form-group">
                                     <select id="servicio" name="servicio">
-                                        <option selected>Servicio</option>
+                                        <option value="">Servicio</option>
                                         <option value="corte_infantil">Corte Infantil</option>
                                         <option value="decoloracion">Decoloracion</option>
                                     </select>
@@ -125,12 +125,12 @@
                                 <div class="form-group">
                                     <h5 class="text-center">Inicio de Sesion</h5>
                                     <label>Usuario</label>
-                                    <input asp-for="Usuario" class="form-control" type="email" />
+                                    <input asp-for="Usuario" class="form-control" type="email" placeholder="ej@calipso.cl"/>
                                     <span asp-validation-for="Usuario" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Contraseña</label>
-                                    <input asp-for="Contrasena" class="form-control" type="password" />
+                                    <input asp-for="Contrasena" class="form-control" type="password" value="ejpassword"/>
                                     <span asp-validation-for="Contrasena" class="text-danger"></span>
                                 </div>
                             </div>

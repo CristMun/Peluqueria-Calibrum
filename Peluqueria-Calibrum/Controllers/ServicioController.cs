@@ -8,9 +8,5 @@ namespace Peluqueria_Calibrum.Controllers
         {
             return View();
         }
-        public IActionResult AgendarServicio()
-        {
-            return View();
-        }
     }
 }
