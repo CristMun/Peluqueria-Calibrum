@@ -1,11 +1,162 @@
-﻿<head>
+﻿@model Peluqueria_Calibrum.Models.Citas
+
+@{
+    ViewData["Title"] = "Citas";
+}
+
+
+
+<html>
+<head>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
 </head>
 <body>
     <div class="text-center">
-        <h1>LISTA DE LAS CITAS!</h1>
-        <a asp-area="" asp-controller="Citas" asp-action="AgendarCitas">Nueva Cita</a>
+        <div>
+            <h1>Lista Citas</h1>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label for="servicio">Servicio</label><br />
+            <input type="text" name="search" />
+        </div>
+        <div class="col-sm-4">
+            <label for="servicio">Peluquero</label><br />
+            <input type="text" name="search" />
+        </div>
+        <div class="col-sm-4">
+            <input type="submit" value="Buscar" class="btn btn-dark" />
+            <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" data-target="#miCita">Agendar Cita</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Acciones</th>
+                <th>Horas</th>
+                <th>Servicios</th>
+                <th>Peluquero</th>
+                <th>Datos Cliente</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-warning">
+                        Modificar
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </td>
+                <td>13:00</td>
+                <td>Peluquero_1</td>
+                <td>Cliente_1 <br />99.999.999-9 <br />9 8877 6655</td>
+                <td>$$$$</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-warning">
+                        Modificar
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </td>
+                <td>16:00</td>
+                <td>Peluquero_1</td>
+                <td>Cliente_2 <br />99.999.999-9 <br />9 8877 6655</td>
+                <td>$$$$</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="miCita" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h2 class="modal-title text-primary text-center">Reserva de Hora</h2>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
+                            <div class="row p-3 border-0">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha</label>
+                                <input class="form-control" type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label>Hora</label>
+                                <input asp-for="Hora_cita" class="form-control" type="time"/>
+                                <span asp-validation-for="Hora_cita" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <select id="servicio" name="servicio">
+                                    <option value="">Servicio</option>
+                                    <option value="corte_cabello">Corte de Cabello</option>
+                                    <option value="alisado">Alisado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id="peluqero" name="peluquero">
+                                    <option value="">Peluquero</option>
+                                    <option value="peluquero_1">Peluquero 1</option>
+                                    <option value="peluquero_1">Peluquero 2</option>
+                                    <option value="peluquero_1">Peluquero 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="text-center">Datos Cliente</h5>
+                                <label>Nombre Cliente</label>
+                                <input asp-for="Nombre_cliente" class="form-control" />
+                                <span asp-validation-for="Nombre_cliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Contacto</label>
+                                <input asp-for="Telefono" class="form-control" />
+                                <span asp-validation-for="Telefono" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicios</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Corte de Cabello</td>
+                                            <td>$5.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alisado</td>
+                                            <td>$5.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer; text-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Agendar</button><br />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
 </body>
+</html>
