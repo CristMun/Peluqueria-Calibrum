@@ -4,34 +4,16 @@ using System.Diagnostics;
 
 namespace Peluqueria_Calibrum.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MyController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+        private string _connection = @"Server=sql777.main-hosting.eu;Database=u364986239_calibrum;Uid=u364986239_admin_calibrum;Password=2d839@sT";
+        
+        [Route("Inicio")]
         public IActionResult Index()
         {
             return View();
         }
+        /*Aqui llamar a los clientes dependiendo del trabajador*/
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

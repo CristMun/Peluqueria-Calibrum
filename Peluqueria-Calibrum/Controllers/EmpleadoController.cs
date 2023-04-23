@@ -1,43 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+using Peluqueria_Calibrum.Models;
+
 
 namespace Peluqueria_Calibrum.Controllers
 {
-
-    public class EmpleadoController : Controller
+    [Route("ListaEmpleado")]
+    [ApiController]
+    public class EmpleadoController : MyController
     {
+        private string _connection = @"Server=sql777.main-hosting.eu;Database=u364986239_calibrum;Uid=u364986239_admin_calibrum;Password=2d839@sT";
         public IActionResult Empleado()
         {
             return View();
-
         }
 
+        /*Metodo para llamar datos en la base de datos*/
         [HttpGet]
-        public Empleado Get()
+        public IActionResult Get() 
         {
-            // ESTO ES POR MIENTRAS!
-           Empleado oEmpleado= new Empleado() {
-               Id_Empleado = 1,
-               Nombre = "Cristobal", 
-               Apellido = "Munoz",
-               Usuario = "cris_mun",
-               Contrasena = "123456",
-               Horario = "Lunes a Viernes, de 09:00 - 18:00",
-               Cargo = "Administrativo"
-           };
-            return oEmpleado;
+            IEnumerable<Models.EmpleadoModel> lst = null;
+            using (var db = new MySqlConnection(_connection))
+            {
+                var sql = "SELECT * FROM Empleado";
+                lst = db.Query<Models.EmpleadoModel>(sql);
+            }
+            return Ok(lst);
         }
     }
-
-    public class Empleado
-    {
-        public int Id_Empleado { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Usuario { get; set; }
-        public string Contrasena { get; set; }
-        public string Horario { get; set; }
-        public string Cargo { get; set; }
-
-    }
-
 }

@@ -1,6 +1,6 @@
 ﻿namespace Peluqueria_Calibrum.Models
 {
-    public class Citas
+    public class CitaModel
     {
         public int Id_cita { get; set; }
         public string? Hora_cita { get; set; }

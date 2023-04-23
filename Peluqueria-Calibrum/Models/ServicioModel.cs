@@ -2,7 +2,7 @@
 
 namespace Peluqueria_Calibrum.Models
 {
-    public class Servicio
+    public class ServicioModel
     {
         [Key]
         public int Id_servicio { get; set; }
