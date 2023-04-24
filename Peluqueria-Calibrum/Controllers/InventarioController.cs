@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Peluqueria_Calibrum.Models;
 
 namespace Peluqueria_Calibrum.Controllers
 {
@@ -11,19 +12,20 @@ namespace Peluqueria_Calibrum.Controllers
         [Route("Inventario")]
         public IActionResult Inventario()
         {
+            GetInventario();
             return View();
         }
         /*Metodo para llamar datos en la base de datos*/
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetInventario()
         {
-            IEnumerable<Models.InventarioModel> lst = null;
+            IEnumerable<InventarioModel> lst = null;
             using (var db = new MySqlConnection(_connection))
             {
                 var sql = "SELECT * FROM Inventario";
-                lst = db.Query<Models.InventarioModel>(sql);
+                lst = db.Query<InventarioModel>(sql);
             }
-            return Ok(lst);
+            return View(lst);
         }
     }
 }

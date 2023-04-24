@@ -9,7 +9,6 @@ namespace Peluqueria_Calibrum.Controllers
     {
         private string _connection = @"Server=sql777.main-hosting.eu;Database=u364986239_calibrum;Uid=u364986239_admin_calibrum;Password=2d839@sT";
         [Route("AgendarCita/[controller]")]
-
         public IActionResult Agendar()
         {
             return View();

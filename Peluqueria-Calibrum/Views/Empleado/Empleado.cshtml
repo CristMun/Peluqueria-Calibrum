@@ -1,8 +1,10 @@
-﻿@model Peluqueria_Calibrum.Models.EmpleadoModel
-
+﻿@using Peluqueria_Calibrum.Models
+@model IEnumerable<EmpleadoModel>
 @{
     ViewData["Title"] = "Empleado";
 }
+
+
 <html>
     <head>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
@@ -46,6 +48,8 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (var item in Model)
+            {
                 <tr>
                     <td>
                         <button type="button" class="btn btn-warning">
@@ -55,30 +59,19 @@
                             Eliminar
                         </button>
                     </td>
-                    <td>Nicolas Cruz</td>
-                    <td>ncruz@calipso.cl</td>
-                    <td>Corte de Pelo <br /> Teñida de Pelo <br /> Alisado</td>
-                    <td>Lun-Vier: 10:00 - 18:00</td>
-                    <td>Peluquero</td>
+                    <td>@item.Nombre @item.Apellido</td>
+                    <td>@item.Usuario</td>
+                    <td></td>
+                    <td>@item.Horario</td>
+                    <td>@item.Cargo</td>
                 </tr>
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-warning">
-                            Modificar
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
-                        </button>
-                    </td>
-                    <td>Nicolas Cruz</td>
-                    <td>ncruz@calipso.cl</td>
-                    <td>Corte de Pelo <br /> Teñida de Pelo <br /> Alisado</td>
-                    <td>Lun-Vier: 10:00 - 18:00</td>
-                    <td>Peluquero</td>
-                </tr>
+            }
+                    
+                
+               
             </tbody>
         </table>
-
+<!--
         <div class="modal fade" id="miEmpleado" role="dialog">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
@@ -142,9 +135,10 @@
                 </div>
             </div>
         </div>
-
+    -->
 
         
         <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
     </body>
 </html>
+

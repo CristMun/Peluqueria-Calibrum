@@ -4,19 +4,10 @@ namespace Peluqueria_Calibrum.Models
 {
     public class InventarioModel
     {
-        [Key]
-        public int Id_inventario { get; set; }
-
-        public string? Imagen_art { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string? Nombre_art { get; set; }
-
-        [Required]
-        public string? Descripcion_art { get; set; }
-
-        [Required]
+        public int Id { get; set; }
+        public string Imagen { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public int Cantidad { get; set; }
 
     }
