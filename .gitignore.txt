@@ -1,0 +1,4 @@
+.vs
+.vs\Peluqueria-Calibrum\FileContentIndex\
+Peluqueria-Calibrum\bin\Debug\net6.0\
+Peluqueria-Calibrum\obj\
