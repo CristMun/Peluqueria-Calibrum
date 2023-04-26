@@ -12,27 +12,35 @@
     <body>
         <div class="text-center">
             <div>
-                <h1>Lista Empleado</h1>
+                <h1>Lista de Empleados</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4" style="padding-bottom:10px">
-                <label for="nombre">Nombre o Apellido</label><br />
-                <input type="text" name="search" />
+            <div class="col-sm-6" style="padding-bottom:10px">
+                <div class="row">
+                    <div class="col-sm-4" >
+                        <label for="nombre">Nombre o Apellido</label><br />
+                        <input type="text" name="search" />
+                    </div>
+                    <div class="col-sm-4" style="padding-left:25px">
+                        <label for="nombre">Servicio</label><br />
+                        <input type="text" name="search" />
+                    </div>
+                    <div class="col-sm-4" style="padding-top:34px;padding-left:35px">
+                        <select id="cargo" name="cargo">
+                            <option value="">Cargo</option>
+                            <option value="peluquero">Peluquero</option>
+                            <option value="barbero">Barbero</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+  
+                        <input type="submit" value="Buscar" class="btn btn-dark" />
+                    </div>
+                </div>              
             </div>
-            <div class="col-sm-4">
-                <label for="nombre">Servicio</label><br />
-                <input type="text" name="search" />
-            </div>
-            <div>
-                <select id="cargo" name="cargo">
-                    <option value="">Cargo</option>
-                    <option value="peluquero">Peluquero</option>
-                    <option value="barbero">Barbero</option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" data-target="#miEmpleado">Agregar Empleado</button>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal">Agregar Empleado</button>
             </div>
         </div>
 
