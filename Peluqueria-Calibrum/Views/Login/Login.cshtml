@@ -3,43 +3,48 @@
 }
 
 
-
 <!DOCTYPE html>
 <html>
-    
-
-<body style="padding-bottom:50%">
-    <div class="card" style="width:auto" >
-        <div class="card-img-top" style="text-align:center">
-            <h1><img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" height="110px" width="110px" /></h1>
-        </div>
-        <div class="card-body">
-            <div class="d-flex justify-content-center h-100">
-                <div class="user_card">
-                    <div class=" d-flex justify-content-center form_container">
-                        <form action="@Url.Action("Login","Acceso")" method="post">
-                            <div class="input-group mb-3">
-                                <input type="text" name="Usuario" class="form-control input_user" value="" placeholder="Usuario">
-                            </div>
-                            <div class="input-group mb-2">
-                                <input type="password" name="Clave" class="form-control input_pass" value="" placeholder="Contraseña">
-                            </div>
-
-                            @if (ViewData["Mensaje"] != null)
-                            {
-                                <div class="alert alert-danger" role="alert">
-                                    @ViewData["Mensaje"]
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="card" style="width:auto">
+            <div class="card-img-top" style="text-align:center">
+                <h1><img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" height="110px" width="110px" /></h1>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="user_card">
+                        <div class=" d-flex justify-content-center form_container">
+                            <form action="@Url.Action("Login","Acceso")" method="post">
+                                <div class="input-group mb-3">
+                                    <input type="text" name="Usuario" class="form-control input_user" value="" placeholder="Usuario">
                                 </div>
-                            }
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                                <button type="submit" name="button" class="btn btn-outline-dark login_btn">Iniciar Sesion</button>
-                            </div>
-                        </form>
+                                <div class="input-group mb-2">
+                                    <input type="password" name="Clave" class="form-control input_pass" value="" placeholder="Contraseña">
+                                </div>
+
+                                @if (ViewData["Mensaje"] != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewData["Mensaje"]
+                                    </div>
+                                }
+                                <div class="d-flex justify-content-center mt-3 login_container">
+                                    <button type="submit" name="button" class="btn btn-outline-dark login_btn">Iniciar Sesion</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
     
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
