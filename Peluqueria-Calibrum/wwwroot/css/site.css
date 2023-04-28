@@ -142,5 +142,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 35%;
+}
+.tablas-wrapper {
+    padding-top: 20px;
+    display: auto;
 }
