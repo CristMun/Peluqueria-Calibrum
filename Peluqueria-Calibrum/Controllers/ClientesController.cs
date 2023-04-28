@@ -9,24 +9,28 @@ namespace Peluqueria_Calibrum.Controllers
     {
         private string _connection = @"Server=sql777.main-hosting.eu;Database=u364986239_calibrum;Uid=u364986239_admin_calibrum;Password=2d839@sT";
         [Route("AgendarCita/[controller]")]
-        public IActionResult Agendar()
-        {
-            return View();
-        }
-        
-        public IActionResult Peluqueros()
-        {
-        /*Cuando se conecte a la base de datos, esta vista ya no ser
-        necesaria*/
-            return View();
-        }
+       
 
         [Route("About")]
         public IActionResult About()
         {
             return View();
         }
-
+        [Route("Home")]
+        public IActionResult Home()
+        {
+            return View();
+        }
+        [Route("Agendar")]
+        public IActionResult Agendar()
+        {
+            return View();
+        }
+        [Route("Peluqueros")]
+        public IActionResult Peluqueros()
+        {
+            return View();
+        }
         /*Metodo para llamar datos en la base de datos*/
         [HttpGet]
         public IActionResult Get()
