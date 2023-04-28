@@ -8,8 +8,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="~/css/animaciones.css">
+
     </head>
     <body>
+        <i class="fas fa-heart"></i>
+
+        <div class="card" style="width:auto">
+
+       
         <div class="text-center">
             <div>
                 <h1>Lista de Empleados</h1>
@@ -61,10 +68,10 @@
                 <tr>
                     <td>
                         <button type="button" class="btn btn-warning">
-                            Modificar
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button type="button" class="btn btn-danger">
-                            Eliminar
+                            <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                     <td>@item.Nombre @item.Apellido</td>
@@ -147,6 +154,7 @@
 
         
         <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+    </div>
     </body>
 </html>
 

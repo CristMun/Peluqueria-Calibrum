@@ -8,40 +8,48 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/animaciones.css">
+
     </head>
     <body>
+    <!--<div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>-->
+
         <div class="text-center">
             <div>
                 <h1>Listado Inventario</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row align-content-center">
             <div class="col-sm-6" style="padding-bottom:10px">
-                <div class="row">
+                <div class="row justify-content-start">
                     <div class="col-sm-4">
-                        <label for="nombre">Nombre</label><br />
-                        <input type="text" name="search" />
+                        <label class="form-label">Nombre</label>
+                        <input type="search" name="search"/>
                     </div>
-                    <div class="col-sm-4" style="padding-left:25px">
-                        <label for="nombre">Descripcion</label><br />
-                        <input type="text" name="search" />
+                    <div class="col-sm-4">
+                        <label class="form-label">Descripcion</label>
+                        <input type="search" name="search" />
                     </div>
-                    <div class="col-sm-4" style="padding-left:30px">
-                        <br />
-                        <input type="submit" value="Buscar" class="btn btn-dark" />
+                    <div class="col-sm-4" style="padding-top:15px">
+                        <button type="submit" value="Buscar" class="btn btn-dark">Buscar</button>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <br />
-                <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" data-target="#miInventario">Nuevo Articulo</button>
+            <div class="col-sm-6" style="padding-top:15px">
+                <div class="row justify-content-end">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success form-control" data-toggle="modal">Nuevo Articulo</button>
+                    </div>
+                </div>
             </div>
-         </div>
+        </div>
 
         <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>Acciones</th>
                     <th>Imagen</th>
                     <th>Nombre</th>
@@ -55,10 +63,10 @@
                 <tr>
                     <td>
                         <button type="button" class="btn btn-warning">
-                            Modificar
+                            <i class="fa fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
+                        <button type="button" class="btn  btn-danger">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </td>
                     <td>@item.Imagen</td>
@@ -86,7 +94,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Imagen de Referencia</label>
+                                    <label class="form-label" >Imagen de Referencia</label>
                                     <input type="file" class="form-control"/>
                                 </div>
                                 <div class="form-group">
@@ -116,6 +124,7 @@
         </div>
     -->
         <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     </body>
 </html>
