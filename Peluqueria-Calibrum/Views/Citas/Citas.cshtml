@@ -4,38 +4,24 @@
     ViewData["Title"] = "Citas";
 }
 
-
-
-<html>
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-</head>
-<body>
+<div class="card">
     <div class="text-center">
         <div>
             <h1>Lista de Citas</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6" style="padding-bottom:10px">
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="servicio">Servicio</label><br />
-                    <input type="text" name="search" />
-                </div>
-                <div class="col-sm-4" style="padding-left:25px">
-                    <label for="servicio">Peluquero</label><br />
-                    <input type="text" name="search" />
-                </div>
-                <div class="col-sm-4" style="padding-left:30px">
-                    <br />
-                    <input type="submit" value="Buscar" class="btn btn-dark" />
-                </div>
-            </div>
+        <div class="input-field col s4">
+            <input id="Servicio" type="text" class="validate">
+            <label for="Servicio">Servicio</label>
         </div>
-        <div class="col-sm-2">
-            <br />
-            <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" >Agendar Cita</button>
+        <div class="input-field col s4">
+            <input id="Peluquero" type="text" class="validate">
+            <label for="Peluquero">Peluquero</label>
+        </div>
+        <div class="input-field col s4" style="float: right">
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="fa-solid fa-plus"></i></a>
         </div>
     </div>
 
@@ -55,22 +41,19 @@
             {
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-warning">
-                            Modificar
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
-                        </button>
+                        <a class="btn btn-warning waves-effect waves-dark btn modal-trigger">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-warning waves-effect waves-dark btn modal-trigger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
                     </td>
                     <td>@item.Hora @item.Dia</td>
                     <td>@item.Nombre_servicio</td>
                     <td>@item.Nombre_cliente <br />@item.Telefono</td>
                     <td>$@item.Precio_total</td>
                 </tr>
-
             }
-            
-            
         </tbody>
     </table>
     <!-- 
@@ -155,8 +138,4 @@
         </div>
     </div>
     -->
-
-
-    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
-</body>
-</html>
+</div>
