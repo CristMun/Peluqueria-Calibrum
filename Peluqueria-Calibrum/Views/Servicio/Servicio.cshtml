@@ -5,61 +5,50 @@
     ViewData["Title"] = "Servicios";
 }
 
-
-
-<html>
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-</head>
-    <body>
-        <div class="text-center">
-            <div>
-                <h1>Lista de Servicios</h1>
-            </div>
+<div class="card">
+    <div class="text-center">
+        <div>
+            <h1>Lista de Servicios</h1>
         </div>
-        <div class="row">
-            <div class="col-sm-6" style="padding-bottom:10px">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label for="servicio">Servicio</label><br />
-                        <input type="text" name="search" />
-                    </div>
-                    <div class="col-sm-4" style="padding-left:25px">
-                        <br />
-                        <input type="submit" value="Buscar" class="btn btn-dark" />
-                    </div>
-                </div> 
-            </div>
-            <div class="col-sm-2">
-                <br />
-                <button type="button" class="btn btn-outline-dark form-control" data-toggle="modal" data-target="#miServicio">Agregar Servicio</button>
-            </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Servicio</label>
         </div>
+        
+        <div class="input-field col s4" style="float: right">
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="fa-solid fa-plus"></i></a>
+        </div>
+    </div>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Acciones</th>
                     <th>Servicios</th>
                     <th>Descripcion</th>
                     <th>Precio</th>
+                    <th>Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        <button type="button" class="btn btn-warning">
-                            Modificar
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
-                        </button>
-                    </td>
+                    
                     <td>@item.Nombre</td>
                     <td>@item.Descripcion</td>
                     <td>$@item.Precio</td>
+                    <td>
+                        <a class="btn btn-warning waves-effect waves-dark btn modal-trigger">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-warning waves-effect waves-light btn modal-trigger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
                 
             }
@@ -107,5 +96,4 @@
 
 
         <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
-    </body>
-</html>
+    </div>

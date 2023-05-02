@@ -2,89 +2,41 @@
     ViewData["Title"] = "Inicio";
 }
 
-<style>
-html,
-body,
-.intro {
-  height: 100%;
-}
 
-table td,
-table th {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-thead th,
-tbody th {
-  color: #fff;
-}
-
-tbody td {
-  font-weight: 500;
-  color: rgba(255,255,255,.65);
-}
-
-.card {
-  border-radius: .5rem;
-}
-</style>
-
-
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
-</head>
-<body>
-
-
-
-    <div class="container">
-        <h2 style="text-align:center">Citas Hoy</h2>
-            <section class="intro">
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-12">
-                    <div class="card bg-dark shadow-2-strong">
-                      <div class="card-body">
-                        <div class="table-responsive">
-                          <table class="table table-dark table-borderless mb-0">
-                            <thead>
-                              <tr>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Servicios</th>
-                                <th scope="col">Empleado</th>
-                                <th scope="col">Datos Cliente</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Finalizado</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">13:00</th>
-                                <td>Corte de pelo</td>
-                                <td>cris.mun</td>
-                                <td>cliente_1 <br /> 99.999.999-9 <br /> +56 9 9999 9999 </td>
-                                <td>$9.950</td>
-                                <td>
-                                  <button type="button" class="btn btn-success btn-sm px-3">
-                                      Si
-                                  </button>
-                                  <button type="button" class="btn btn-danger btn-sm px-3">
-                                      No
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </section>
-     </div>
-
-    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
-</body>
+<div class="card">
+    <div class="text-center">
+        <div>
+            <h1>Citas de Hoy</h1>
+            <p>Citas del dia: [Dia(Lunes,Martes, etc.)]</p>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hora</th>
+                <th>Servicio(s)</th>
+                <th>Empleado</th>
+                <th>Datos</th>
+                <th>Precio</th>
+                <th>Finalizado</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td> 10:00</td>
+                    <td>Corte de pelo</td>
+                    <td>Cristobal</td>
+                    <td>Juanito <br> 9 99223344</td>
+                    <td>$5 </td>
+                    <td>
+                        <a class="btn btn-warning waves-effect waves-dark btn modal-trigger">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-warning waves-effect waves-dark btn modal-trigger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</div>

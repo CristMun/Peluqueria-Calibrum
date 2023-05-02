@@ -16,6 +16,8 @@
     <!-- Styles-->
     <link rel="stylesheet" href="~/Peluqueria_Calibrum.styles.css" asp-append-version="true" />
 
+    <!-- Materialize-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
@@ -31,14 +33,21 @@
         <nav style="background-color:white">
             <div class="row">
                 <div class="col-sm-12">
-                     <a href="#menu-toggle" class="btn" id="menu-toggle"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
+                    <a href="#menu-toggle" class="btn" id="menu-toggle"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
                     
                     <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index" style="color:#f44336;font-family:'Harlow Solid';font-size:40px; text-align:center">Calibrum</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li >
+                            <label style="color: #000000;">[Usuario]</label>
+                        </li>
+                        <li>
+                            <a style="color: #000000;" href="collapsible.html">Cerrar Sesión</a>
+                        </li>
+                    </ul>
                 </div>
+                
             </div>
-            <ul>
-                <!-- boton cerrar sesion -->
-            </ul>
+            
 
         </nav>
     </header>
@@ -95,13 +104,13 @@
             @RenderBody()
         </main>
     </div>
-
+    <!--
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Peluqueria_Calibrum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    
+    -->
     
     
     <!-- jQuery, Bootstrap JS -->
