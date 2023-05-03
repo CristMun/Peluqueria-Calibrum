@@ -1,4 +1,4 @@
-.navbar {
+/*.navbar {
     color: white;
 }
 body {
@@ -13,10 +13,10 @@ body {
 }
 *, :after, :before {
     box-sizing: border-box;
-}
+}*/
 /* Sidebar Styles */
 
-#sidebar-wrapper {
+/*#sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     left: 250px;
@@ -46,12 +46,12 @@ body {
     #wrapper.toggled #page-content-wrapper {
         position: absolute;
         margin-right: -250px;
-    }
+    }*/
 
 
     /* Sidebar Styles */
 
-    .sidebar-nav {
+    /*.sidebar-nav {
         position: absolute;
         top: 0;
         width: 250px;
@@ -69,9 +69,9 @@ body {
         display: block;
         text-decoration: none;
         color: white;
-    }
+    }*/
     /* COLOR BOTONES SIDEMENU  */
-        .sidebar-nav li a:hover {
+        /*.sidebar-nav li a:hover {
             text-decoration: none;
             color: #d9d9d9;
             background: #13544d;
@@ -133,7 +133,7 @@ body {
             position: relative;
             margin-right: 0;
         }
-    }
+    }*/
 
 
 .login-wrapper {
@@ -145,4 +145,188 @@ body {
 .tablas-wrapper {
     padding-top: 20px;
     display: auto;
+}
+
+*{
+margin: 0;
+padding: 0;
+list-style: none;
+text-decoration: none;
+box-sizing: border-box;
+
+}
+
+body {
+background: #e4e5e6;
+
+}
+
+.wrapper .header {
+    z-index: 1;
+    background: white;
+    position: fixed;
+    width: calc(100% - 0%);
+    height: 70px;
+    display: flex;
+    top: 0;
+}
+
+.wrapper .header .header-menu {
+width: calc(100% - 0%);
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+}
+
+.wrapper .header .header-menu .title a {
+color: #0000cc;
+font-size: 40px;
+font-family: 'Harlow Solid';
+}
+
+
+
+.wrapper .header .header-menu .sidebar-btn {
+color: #000000;
+position: absolute;
+margin-left: 190px;
+font-size: 22px;
+font-weight: 900;
+cursor: pointer;
+transition: 0.3s;
+transition-property: color;
+}
+
+.wrapper .header .header-menu .sidebar-btn:hover {
+color: #0000cc;
+}
+
+.wrapper .header .header-menu .dropdown .btn {
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+    background: #0000cc;
+}
+.wrapper .header .header-menu .dropdown .btn:hover {
+    background: white;
+    color: #0000cc;
+}
+    /*
+.wrapper .header .header-menu ul {
+display: flex;
+}
+
+
+.wrapper .header .header-menu ul li a {
+background: #000000;
+color: white;
+display: block;
+margin: 0 10px;
+font-size: 25px;
+width: 40px;
+height: 40px;
+line-height: 100px;
+text-align: center;
+border-radius: 50%;
+transition: 0,3s;
+}
+
+.wrapper .header .header-menu ul li a:hover {
+background: #0000cc;
+color: #fff;
+}*/
+    .wrapper .sidebar {
+        z-index: 1;
+        background: #1f877d;
+        position: fixed;
+        top: auto;
+        width: 250px;
+        height: calc(100% - 9%);
+        transition: 0.3s;
+        transition-property: width;
+        overflow-y: auto;
+    }
+
+.wrapper .sidebar .sidebar-menu {
+overflow: hidden;
+
+}
+/*----
+    .wrapper .sidebar .sidebar-menu li{
+    text-indent: 20px;
+    line-height: 40px;
+}----*/
+
+.wrapper .sidebar .sidebar-menu .logo img {
+margin: 20px 0;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+}
+
+.wrapper .sidebar .sidebar-menu .item-title{
+    padding: 0 20px;
+    font-size: 85%;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+
+.wrapper .sidebar .sidebar-menu .item {
+width: 250px;
+overflow: hidden;
+
+}
+
+
+.wrapper .sidebar .sidebar-menu .item .menu-btn {
+display: block;
+color: white;
+position: relative;
+padding: 20px 20px;
+transition: 0.3s;
+transition-property: color;
+text-decoration:none;
+}
+/*--------*/
+
+.wrapper .sidebar .sidebar-menu .item .menu-btn:hover {
+    color: #cdcdcd;
+    background: #13544d;
+}
+/*--------*/
+
+.wrapper .sidebar .sidebar-menu .item .menu-btn i {
+margin-right: 20px;
+}
+
+.wrapper .container {
+width: auto;
+margin-top: 70px;
+margin-left: 400px;
+padding: 15px;
+background: #e4e5e6;
+background-size: cover;
+height: 100vh;
+transition: 0.3s;
+}
+
+.wrapper .collapse .sidebar {
+width: 70px;
+}
+
+.wrapper .collapse .sidebar .logo img,
+.wrapper .collapse .sidebar a {
+display: none;
+}
+
+.wrapper .collapse .sidebar .sidebar-menu .item .menu-btn {
+font-size: 23px;
+}
+
+.wrapper .collapse .container {
+width: calc(100% - 70px);
+margin-left: 70px;
 }
