@@ -1,0 +1,45 @@
+﻿.card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    background:white;
+    height:145px
+}
+
+.card .card-header .card-title a {
+    font-family: 'Comme', sans-serif;
+    font-size: 45px;
+}
+.card .card-header .card-title span{
+    font-weight: 700;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 20px 9px;
+    font-size: 1em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width:98%;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table thead tr {
+    background-color: #1f877d;
+    color: white;
+    text-align: left;
+
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 13px 14px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
