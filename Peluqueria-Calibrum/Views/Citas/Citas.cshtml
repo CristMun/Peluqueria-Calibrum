@@ -14,7 +14,7 @@
             <a>Administrar <span>Citas</span></a>
         </div>
         <div class="card-btn">
-            <a class="waves-effect waves-light btn green lighten-1">
+            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#miCita">
                 <i class="fa-solid fa-circle-plus"></i>
                 Nueva Cita
             </a>
@@ -22,54 +22,146 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="input-field col s4">
-                <input id="Servicio" type="text" class="validate">
-                <label for="Servicio">Servicio</label>
+            <div class="col-auto">
+                <div class="mt-2 form-floating">
+                    <input id="fullname" type="text" class="form-control">
+                    <label for="fullname">Servicio</label>
+                </div>
             </div>
-            <div class="input-field col s4">
-                <input id="Peluquero" type="text" class="validate">
-                <label for="Peluquero">Peluquero</label>
+            <div class="col-auto">
+                <div class="mt-2 form-floating">
+                    <input id="fullname" type="text" class="form-control">
+                    <label for="fullname">Peluquero</label>
+                </div>
             </div>
-            <div class="input-field col s4">
-                <a class="btn-floating btn-large waves-effect waves-light grey"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <div class="col-auto">
+                <button type="button" class="btn btn-secondary btn-circle">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
         </div>
-
-        <table class="styled-table responsive-table">
-            <thead>
-                <tr>
-                    <th>Hora</th>
-                    <th>Servicio(s)</th>
-                    <th>Datos Cliente</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (var item in Model)
-                {
+        <div class="table-responsive">
+            <table class="styled-table table-sm">
+                <thead>
                     <tr>
+                        <th>Hora</th>
+                        <th>Servicio(s)</th>
+                        <th>Datos Cliente</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
 
-                        <td>@item.Hora @item.Dia</td>
-                        <td>@item.Nombre_servicio</td>
-                        <td>@item.Nombre_cliente <br />@item.Telefono</td>
-                        <td>$@item.Precio_total</td>
-                        <td>
-                            <a class="btn btn-warning waves-effect waves-dark btn modal-trigger  amber lighten-2">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a class="btn btn-warning waves-effect waves-light btn modal-trigger red lighten-2">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.Hora @item.Dia</td>
+                            <td>@item.Nombre_servicio</td>
+                            <td>@item.Nombre_cliente <br />@item.Telefono</td>
+                            <td>$@item.Precio_total</td>
+                            <td>
+                                <a class="btn btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-    
+    <div class="modal fade " id="miCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h2 class="modal-title">Reserva de Hora</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input id="fecha" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="hora" class="form-label">Hora</label>
+                        <input id="hora" class="form-control" type="time" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <select class="form-select" aria-label="Servicios">
+                            <option disabled selected>Servicios</option>
+                            <option value="1">Corte Infantil</option>
+                            <option value="2">Decoloracion</option>
+                            <option value="3">Alisado</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <select class="form-select" arial-label="Peluquero">
+                            <option disabled selected>Peluquero</option>
+                            <option value="peluquero_1">Peluquero 1</option>
+                            <option value="peluquero_1">Peluquero 2</option>
+                            <option value="peluquero_1">Peluquero 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h3 class="modal-title">Datos Cliente</h3>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreCliente" class="form-label">Nombre Cliente</label>
+                        <input type="text" class="form-control" id="nombreCliente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Contacto</label>
+                        <input type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Servicios</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Corte de Cabello</td>
+                                    <td>$5000</td>
+                                </tr>
+                                <tr>
+                                    <td>Alisado Permanente</td>
+                                    <td>$5000</td>
+                                </tr>
+                                <tr>
+                                    <td>Corte Infantil</td>
+                                    <td>$5000</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-info">
+                                <tr>
+                                    <th>Total</th>
+                                    <th>$15000</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">
+                        Agendar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- 
     <div class="modal fade" id="miCita" role="dialog">
         <div class="modal-dialog modal-xl modal-dialog-centered">

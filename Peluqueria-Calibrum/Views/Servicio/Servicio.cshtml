@@ -15,7 +15,7 @@
             <a>Administrar <span>Servicios</span></a>
         </div>
         <div class="card-btn">
-            <a class="waves-effect waves-light btn green lighten-1">
+            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#miEmpleado">
                 <i class="fa-solid fa-circle-plus"></i>
                 Nuevo Servicio
             </a>
@@ -24,47 +24,81 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="input-field col s4">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Servicio</label>
+            <div class="col-auto">
+                <div class="mt-2 form-floating">
+                    <input id="fullname" type="text" class="form-control">
+                    <label for="fullname">Servicio</label>
+                </div>
             </div>
-
-            <div class="input-field col s4">
-                <a class="btn-floating btn-large waves-effect waves-light grey"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <div class="col-auto">
+                <button type="button" class="btn btn-secondary btn-circle">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
         </div>
-
-        <table class="styled-table responsive-table">
-            <thead>
-                <tr>
-                    <th>Servicios</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <div class="table-responsive">
+            <table class="styled-table table-sm">
+                <thead>
                     <tr>
+                        <th>Servicios</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
 
-                        <td>@item.Nombre</td>
-                        <td>@item.Descripcion</td>
-                        <td>$@item.Precio</td>
-                        <td>
-                            <a class="btn btn-warning waves-effect waves-dark btn modal-trigger  amber lighten-2">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a class="btn btn-warning waves-effect waves-light btn modal-trigger red lighten-2">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
 
-                }
-            </tbody>
-        </table>
+                            <td>@item.Nombre</td>
+                            <td>@item.Descripcion</td>
+                            <td>$@item.Precio</td>
+                            <td>
+                                <a class="btn btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>    
+    </div>
+    <div class="modal fade " id="miEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h2 class="modal-title">Agregar Nuevo Servicio</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="servicio" class="form-label">Servicio</label><br />
+                        <input id="servicio" type="text" class=" form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" value="$" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
     
 <!--

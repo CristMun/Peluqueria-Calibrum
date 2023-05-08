@@ -43,3 +43,15 @@
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
+
+
+.btn-circle
+{
+    width: 65px;
+    height: 65px;
+    padding: 18px 0 19px;
+    font-size: 27px;
+    border-radius: 50%;
+}
+
+

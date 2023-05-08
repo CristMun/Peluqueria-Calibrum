@@ -16,7 +16,7 @@
             <a>Administrar <span>Inventario</span></a>
         </div>
         <div class="card-btn">
-            <a class="waves-effect waves-light btn green lighten-1">
+            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#miInventario">
                 <i class="fa-solid fa-circle-plus"></i>
                 Nuevo Articulo
             </a>
@@ -25,52 +25,90 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="input-field col s4">
-                <input id="Nombre" type="text" class="validate">
-                <label for="Nombre">Nombre</label>
+            <div class="col-auto">
+                <div class="mt-2 form-floating">
+                    <input id="nombre" type="text" class="form-control">
+                    <label for="nombre">Nombre</label>
+                </div>
             </div>
-            <div class="input-field col s4">
-                <input id="Descripcion" type="text" class="validate">
-                <label for="Descripcion">Descripcion</label>
+            <div class="col-auto">
+                <div class="mt-2 form-floating">
+                    <input id="descripcion" type="text" class="form-control">
+                    <label for="descripcion">Descripcion</label>
+                </div>
             </div>
-
-            <div class="input-field col s4">
-                <a class="btn-floating btn-large waves-effect waves-light grey"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <div class="col-auto">
+                <button type="button" class="btn btn-secondary btn-circle">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
         </div>
-        <table class="styled-table responsive-table">
-            <thead>
-                <tr class="table">
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Cantidad</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-
-                        <td>@item.Imagen</td>
-                        <td>@item.Nombre</td>
-                        <td>@item.Descripcion</td>
-                        <td>@item.Cantidad</td>
-                        <td>
-                            <a class="btn btn-warning waves-effect waves-dark btn modal-trigger  amber lighten-2">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a class="btn btn-warning waves-effect waves-light btn modal-trigger red lighten-2">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
+        <div class="table-responsive">
+            <table class="styled-table table-sm">
+                <thead>
+                    <tr class="table">
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Imagen</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Cantidad</td>
+                            <td>
+                                <a class="btn btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade " id="miInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h2 class="modal-title">Agregar Nuevo Articulo</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="imagenReferencia" class="form-label">Imagen de referencia</label>
+                        <input class="form-control" type="file" id="imagenReferencia">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Nombre Articulo</label><br />
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">
+                        Agregar
+                    </button>
+                </div>
+            </div>
 
-
-            </tbody>
-        </table>
+        </div>
     </div>
     
         <!--
