@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Peluqueria_Calibrum.Controllers
 {
-    public class InicioEmpleadoController : MyController
+    public class InicioController : MyController
     {
         [Route("CitasHoy")]
         public IActionResult CitasHoy()
