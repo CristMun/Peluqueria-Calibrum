@@ -3,42 +3,84 @@
 </head>
 <body>
     <div>
-        <div class="container">
-            <form>
-                <br />
-                <select id="cargo" name="cargo">
-                    <option value="servicio">Corte de Pelo</option>
-                    <option value="servicio">Alisado</option>
-                    <option value="servicio">Corte de Barba</option>
-                    <option value="servicio">Teñido</option>
-                </select>
-                <br />
-                <br />
-                <select id="cargo" name="cargo">
-                    <option value="peluquero">Peluquero 1</option>
-                    <option value="peluquero">Peluquero 2</option>
-                    <option value="peluquero">Peluquero 3</option>
-                </select>
-                <br />
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h2 class="modal-title">Reserva de Hora</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input id="fecha" class="form-control" type="date" />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input id="hora" class="form-control" type="time" />
+                </div>
+                <div class="form-group mb-3">
+                    <select class="form-select" aria-label="Servicios">
+                        <option disabled selected>Servicios</option>
+                        <option value="1">Corte Infantil</option>
+                        <option value="2">Decoloracion</option>
+                        <option value="3">Alisado</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <select class="form-select" arial-label="Peluquero">
+                        <option disabled selected>Peluquero</option>
+                        <option value="peluquero_1">Peluquero 1</option>
+                        <option value="peluquero_1">Peluquero 2</option>
+                        <option value="peluquero_1">Peluquero 3</option>
+                    </select>
+                </div>
+                <div>
+                    <h3 class="modal-title">Datos Cliente</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="nombreCliente" class="form-label">Nombre Cliente</label>
+                    <input type="text" class="form-control" id="nombreCliente">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Contacto</label>
+                    <input type="number" class="form-control" id="telefono">
+                </div>
+                <div class="mb-3">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Servicios</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Corte de Cabello</td>
+                                <td>$5000</td>
+                            </tr>
+                            <tr>
+                                <td>Alisado Permanente</td>
+                                <td>$5000</td>
+                            </tr>
+                            <tr>
+                                <td>Corte Infantil</td>
+                                <td>$5000</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="table-info">
+                            <tr>
+                                <th>Total</th>
+                                <th>$15000</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
 
-                <div class="col-sm-4" style="padding-bottom:10px">
-                    <label for="nombre_cliente">Nombre Cliente</label><br />
-                    <input type="text" name="search" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="telefono">Contacto</label><br />
-                    <input type="text" name="search" placeholder="987654321" />
-                </div>
-                <br />
-                <div class="col-sm-4">
-                    <input class="btn btn-primary" type="submit" value="Submit">
-                </div>
-            </form>
-            
-        </div>
-
-        <div class="col-sm-4">
-            <input class="btn btn-primary" type="submit" value="Quienes somos?">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">
+                    Agendar
+                </button>
+            </div>
         </div>
     </div>
 
