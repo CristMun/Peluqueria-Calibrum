@@ -29,11 +29,11 @@
         <!--Header Menu Start-->
         <div class="header">
             <div class="header-menu">
+                <div class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <div class="title">
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">Calibrum</a>
-                </div>
-                <div class="sidebar-btn">
-                    <i class="fas fa-bars"></i>
                 </div>
                 <div class="dropdown">
                     <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,12 +52,14 @@
             </div>
         </div>
         <!--Header Menu End-->
+
         <!--Sidebar Start-->
-        <div class="sidebar">
-            <div class="sidebar-menu">
-                <div class="logo text-center" >
-                    <img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" />
-                </div>
+        <div class="wrapper sidebar-collapse">
+            <div class="sidebar">
+            <div class="logo text-center" >
+                <img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" />
+            </div>
+            <ul class ="sidebar-menu">
                 <li class="item-title">
                     Mantenedores
                 </li>
@@ -88,7 +90,7 @@
                         Inventario
                     </a>
                 </li>
-            </div>
+            </ul>
         </div>
         <!--Sidebar End-->
         <!--Main Container Start-->
@@ -97,17 +99,13 @@
                 @RenderBody()
             </div>
         </div>
+        </div>
+        
         <!--Main Container End-->
 
     </div>
     <!--Wrapper End-->
-    <!--
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Peluqueria_Calibrum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    -->
+    
     <!-- jQuery, Bootstrap JS -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
@@ -115,11 +113,20 @@
 
     <script src="https://kit.fontawesome.com/ba1c51d352.js" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        // Agregamos un listener al botón para que al hacer clic en él, el sidebar se oculte o muestre
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const wrapper = document.querySelector('.wrapper');
+
+        sidebarToggle.addEventListener('click', () => {
+            wrapper.classList.toggle('sidebar-collapsed');
+        });
+    </script>
+
 
 </body>
 </html>
