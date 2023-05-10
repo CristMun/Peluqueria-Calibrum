@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = null;
     ViewData["Title"] = "Login";
 }
 
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
-    <div class="login-wrapper">
+    <div class="login-wrapper" style="padding-top: 15%">
         <div class="card" style="width:auto">
             <div class="card-img-top" style="text-align:center">
                 <h1><img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" height="110px" width="110px" /></h1>
@@ -19,7 +20,7 @@
                 <div class="d-flex justify-content-center h-100">
                     <div class="user_card">
                         <div class=" d-flex justify-content-center form_container">
-                            <form action="@Url.Action("Login","Acceso")" method="post">
+                            <form action="@Url.Action("Login","Inicio")" method="post">
                                 <div class="input-group mb-3">
                                     <input type="text" name="Usuario" class="form-control input_user" value="" placeholder="Usuario">
                                 </div>
