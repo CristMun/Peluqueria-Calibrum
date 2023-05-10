@@ -29,10 +29,9 @@
 }
 
 .styled-table thead tr {
-    background-color: #1f877d;
+    background-color: #0d47a1;
     color: white;
     text-align: left;
-
 }
 
 .styled-table th,
@@ -41,7 +40,7 @@
 }
 
 .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 2px solid #dddddd;
 }
 
 

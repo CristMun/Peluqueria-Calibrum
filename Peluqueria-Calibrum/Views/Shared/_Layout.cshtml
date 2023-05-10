@@ -18,9 +18,6 @@
     <!-- Styles-->
     <link rel="stylesheet" href="~/Peluqueria_Calibrum.styles.css" asp-append-version="true" />
 
-    @*<!-- Materialize-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">*@
 
 </head>
 
@@ -33,13 +30,13 @@
         <div class="header">
             <div class="header-menu">
                 <div class="title">
-                    <a asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration:none">Calibrum</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">Calibrum</a>
                 </div>
                 <div class="sidebar-btn">
                     <i class="fas fa-bars"></i>
                 </div>
                 <div class="dropdown">
-                    <a class="btn btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="nav-icon fas fa-circle-user"></i>
                         [Usuario]
                     </a>
@@ -58,9 +55,9 @@
         <!--Sidebar Start-->
         <div class="sidebar">
             <div class="sidebar-menu">
-                <center class="logo">
-                    <img src="~/images/Logo-Cuadrado.jpg" width="200px" height="200px" />
-                </center>
+                <div class="logo text-center" >
+                    <img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" />
+                </div>
                 <li class="item-title">
                     Mantenedores
                 </li>
@@ -121,8 +118,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
-    <!-- Materialize -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
