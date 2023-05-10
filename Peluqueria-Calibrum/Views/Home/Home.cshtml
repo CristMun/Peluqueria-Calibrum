@@ -1,16 +1,51 @@
 ﻿@{
-    Layout = "_LayoutClientes";
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Inicio";
 }
-                    <a asp-controller="Home" asp-action="Home" type="button" class="btn btn-primary">
-                        Inicio
-                    </a>
-                    <a asp-controller="Home" asp-action="About" type="button" class="btn btn-primary">
-                        About
-                    </a>
-                    <a asp-controller="Home" asp-action="Agendar" type="button" class="btn btn-primary">
-                        Agendar Hora
-                    </a>
-                    <a asp-controller="Home" asp-action="Peluqueros" type="button" class="btn btn-primary">
-                        Nuestros Peluqueros
-                    </a>
+<head>
+<link rel="stylesheet" href="~/css/vistas.css">
+</head>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <a>Citas <span>Hoy</span></a>
+            <p>Citas del dia: [Dia(Lunes,Martes, etc.)]</p>
+        </div>
+    </div>
+    <div class="card-body">
+        
+        <div class="table-responsive">
+            <table class="styled-table table-sm">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Servicio(s)</th>
+                        <th>Empleado</th>
+                        <th>Datos</th>
+                        <th>Precio</th>
+                        <th>Finalizado</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+
+                            <td> 10:00</td>
+                            <td>Corte de pelo</td>
+                            <td>Cristobal</td>
+                            <td>Juanito <br> 9 99223344</td>
+                            <td>$5 </td>
+                            <td>
+                                <a class="btn btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
