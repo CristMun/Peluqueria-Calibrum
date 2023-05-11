@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Peluqueria_Calibrum.Controllers
@@ -30,20 +31,16 @@ namespace Peluqueria_Calibrum.Controllers
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
-        public IActionResult Insert(Models.CitaModel model)
+        public IActionResult InsertEmpleado(Models.EmpleadoModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Emplado(Nombre, Apellido, Usuario, Contrasena, Horario, Cargo) " +
-                    " values(@nombre, @apellido, @usuario, @contrasena, @horario, @cargo)";
+                var sql = "INSERT INTO Empleado(Nombre, Apellido, Usuario, Contrasena, Cargo, Dias, Hora, Servicios) " +
+                    " values(@nombre, @apellido, @usuario, @contrasena, @cargo, @dias, @hora, @servicios)";
                 result = db.Execute(sql, model);
             }
-            return Ok(result);
+            return RedirectToAction("Empleado");
         }
-
-
     }
-
-    
 }

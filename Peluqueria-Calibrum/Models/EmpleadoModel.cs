@@ -26,10 +26,14 @@ namespace Peluqueria_Calibrum.Models
         [JsonProperty("contrasena")]
         public string Contrasena { get; set; }
 
-        [JsonProperty("horario")]
-        public string Horario { get; set; }
-
         [JsonProperty("cargo")]
         public string Cargo { get; set; }
+
+        [JsonProperty("dias")]
+        public string Dias { get; set; }
+        [JsonProperty("hora")]
+        public string Hora { get; set; }
+        [JsonProperty("servicios")]
+        public string Servicios { get; set; }
     }
 }
