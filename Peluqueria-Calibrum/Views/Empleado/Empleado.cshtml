@@ -88,7 +88,7 @@
                                 <a class="btn btn-warning">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a class="btn btn-danger">
+                                <a class="btn btn-danger" onclick="eliminar(@item.Id)">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
@@ -183,4 +183,23 @@
     </div>
 </div>
 
+
+<script>
+    function eliminar(id) {
+        if (confirm("¿Está seguro que desea eliminar este elemento?")) {
+            $.ajax({
+                url: "/Empleado/DeleteEmpleado",
+                type: "DELETE",
+                data: { id: id },
+                success: function (data) {
+                    // Actualizar la vista después de eliminar el elemento
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    }
+</script>
 

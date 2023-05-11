@@ -42,5 +42,18 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return RedirectToAction("Empleado");
         }
+
+        /*Metodo para Eliminar datos en la base de datos*/
+        [HttpDelete]
+        public IActionResult DeleteEmpleado(Models.EmpleadoModel model)
+        {
+            int result = 0;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "DELETE FROM Empleado WHERE Id=@id";
+                result = db.Execute(sql, model);
+            }
+            return RedirectToAction("Empleado");
+        }
     }
 }
