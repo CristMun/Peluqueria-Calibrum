@@ -46,6 +46,7 @@
             <table class="styled-table table-sm">
                 <thead>
                     <tr class="table">
+                        <th>Id</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
@@ -57,17 +58,24 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>@item.Id</td>
                             <td>@item.Imagen</td>
                             <td>@item.Nombre</td>
                             <td>@item.Descripcion</td>
                             <td>@item.Cantidad</td>
                             <td>
-                                <a class="btn btn-warning">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                                <form method="post" asp-action="Edit" asp-controller="Inventario">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </form>
+                                <form method="post" asp-action="Delete" asp-controller="Inventario">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }
@@ -78,80 +86,38 @@
     <div class="modal fade " id="miInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content rounded-2  align-items-center ">
-                <div class="modal-header">
-                    <h2 class="modal-title">Agregar Nuevo Articulo</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="imagenReferencia" class="form-label">Imagen de referencia</label>
-                        <input class="form-control" type="file" id="imagenReferencia">
+                <form asp-action="Insert" asp-controller="Inventario" method="post">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Agregar Nuevo Articulo</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Nombre Articulo</label><br />
-                        <input type="text" class="form-control">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Imagen de referencia</label>
+                            <input class="form-control" type="file">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Nombre Articulo</label><br />
+                            <input type="text" class="form-control" name="Nombre">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <textarea class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="text" class="form-control" id="cantidad" name="Cantidad">
+                        </div>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Agregar
+                        </button>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="cantidad" class="form-label">Cantidad</label>
-                        <input type="text" class="form-control" id="cantidad">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                        Agregar
-                    </button>
-                </div>
+                </form>
             </div>
-
         </div>
     </div>
     
-        <!--
-        <div class="modal fade" id="miInventario" role="dialog">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="modal-header">
-                            <h2 class="modal-title text-primary text-center">Agregar Nuevo Articulo</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
-                                <div class="row p-3 border-0">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" >Imagen de Referencia</label>
-                                    <input type="file" class="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nombre Articulo</label>
-                                    <input asp-for="Nombre" class="form-control" />
-                                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                                </div>
-                                <div class="form-group"> 
-                                    <label>Descripcion</label>
-                                    <textarea asp-for="Descripcion_art" class="form-control"></textarea>
-                                    <span asp-validation-for="Descripcion_art" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cantidad</label>
-                                    <input asp-for="Cantidad" class="form-control" />
-                                    <span asp-validation-for="Cantidad" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer; text-center">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button><br />
-                            <button type="submit" class="btn btn-success">Volver</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    -->
+      
 </div>
