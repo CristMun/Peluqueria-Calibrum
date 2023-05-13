@@ -1,14 +1,12 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using Peluqueria_Calibrum.Models;
-using System.Net.NetworkInformation;
 
 namespace Peluqueria_Calibrum.Controllers
 {
     public class InventarioController : MyController
     {
-        [Route("Inventario")]
+        [Route("ListaInventario")]
         public IActionResult Inventario()
         {
             GetInventario();
@@ -18,11 +16,11 @@ namespace Peluqueria_Calibrum.Controllers
         [HttpGet]
         public IActionResult GetInventario()
         {
-            IEnumerable<InventarioModel> lst = null;
+            IEnumerable<Models.InventarioModel> lst = null;
             using (var db = new MySqlConnection(MyController.csCal))
             {
                 var sql = "SELECT * FROM Inventario";
-                lst = db.Query<InventarioModel>(sql);
+                lst = db.Query<Models.InventarioModel>(sql);
             }
             return View(lst);
         }
@@ -30,7 +28,7 @@ namespace Peluqueria_Calibrum.Controllers
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
         
-        public IActionResult Insert(Models.InventarioModel model)
+        public IActionResult InsertInventario(Models.InventarioModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -42,28 +40,17 @@ namespace Peluqueria_Calibrum.Controllers
             return RedirectToAction("Inventario");
         }
 
-        [HttpPut]
-        public IActionResult Edit(Models.InventarioModel model)
-        {
-            int result = 0;
-            using (var db = new MySqlConnection(MyController.csCal))
-            {
-                var sql = "UPDATE Inventario SET Nombre=@Nombre, Descripcion=@Descripcion, Cantidad=@Cantidad";
-                result = db.Execute(sql, model);
-            }
-            return RedirectToAction("Inventario");
-        }
-
-        [HttpPost]
-        public IActionResult Delete(int id)
+        /*Metodo para editar datos en la base de datos*/
+        [HttpDelete]
+        public IActionResult DeleteInventario(Models.InventarioModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
                 var sql = "DELETE FROM Inventario WHERE Id=@id";
-                result = db.Execute(sql, new { id });
+                result = db.Execute(sql, model);
             }
-            return RedirectToAction("Inventario");
+            return Ok(result);
         }
     }
 }

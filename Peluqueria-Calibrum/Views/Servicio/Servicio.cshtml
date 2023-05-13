@@ -4,10 +4,6 @@
 @{
     ViewData["Title"] = "Servicios";
 }
-<head>
-<link rel="stylesheet" href="~/css/vistas.css">
-</head>
-
 <div class="card">
     <div class="card-header">
         <div class="card-title">
@@ -59,7 +55,7 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
                                 </a>
                             </td>
                         </tr>
@@ -71,7 +67,7 @@
     </div>
 
 
-
+ <!-- Modal -->
     <div class="modal fade " id="miEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content rounded-2  align-items-center ">
@@ -79,70 +75,47 @@
                     <h2 class="modal-title">Agregar Nuevo Servicio</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group mb-3">
-                        <label for="servicio" class="form-label">Servicio</label><br />
-                        <input id="servicio" type="text" class=" form-control" />
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="precio" class="form-label">Precio</label>
-                        <input type="text" class="form-control" id="precio" value="$" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                        Agregar
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    
-<!--
-        <div class="modal fade" id="miServicio" role="dialog">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="modal-header">
-                            <h2 class="modal-title text-primary text-center">Agregar Nuevo Servicio</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <form action="/Servicio/InsertServicios" method="post">
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />
+                            <input required type="text" class="form-control" id="nombre" name="Nombre" />
                         </div>
-                        <div class="modal-body">
-                            <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
-                                <div class="row p-3 border-0">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Servicio</label>
-                                    <input asp-for="Nombre_serv" class="form-control" placeholder="Corte de Barba"/>
-                                    <span asp-validation-for="Nombre_serv" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea asp-for="Descripcion_serv" class="form-control" placeholder="Cualquier Corte de Barba"></textarea>
-                                    <span asp-validation-for="Descripcion_serv" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Precio</label>
-                                    <input asp-for="Precio" class="form-control" type="number" value="$" />
-                                    <span asp-validation-for="Precio" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <div class="form-group mb-3">
+                            <label for="Descripcion" class="form-label">Descripción</label>
+                            <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
                         </div>
-                        <div class="modal-footer; text-center">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Crear Empleado</button><br />
+                        <div class="mb-3">
+                            <label for="Precio" class="form-label">Precio</label>
+                            <input required type="number" class="form-control" id="precio" name="Precio" />
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Agregar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        -->
-
-
-        <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
     </div>
+</div>
+
+<script>
+    function eliminar(id) {
+        if (confirm("¿Está seguro que desea eliminar este elemento?")) {
+            $.ajax({
+                url: "/Servicio/DeleteServicios",
+                type: "DELETE",
+                data: { id: id },
+                success: function (data) {
+                    // Actualizar la vista después de eliminar el elemento
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    }
+</script>

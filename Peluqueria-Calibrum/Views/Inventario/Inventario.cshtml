@@ -46,7 +46,6 @@
             <table class="styled-table table-sm">
                 <thead>
                     <tr class="table">
-                        <th>Id</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
@@ -58,24 +57,17 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Id</td>
                             <td>@item.Imagen</td>
                             <td>@item.Nombre</td>
                             <td>@item.Descripcion</td>
                             <td>@item.Cantidad</td>
                             <td>
-                                <form method="post" asp-action="Edit" asp-controller="Inventario">
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" class="btn btn-warning">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </form>
-                                <form method="post" asp-action="Delete" asp-controller="Inventario">
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
+                                <a class="btn btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="btn btn-danger">
+                                    <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
+                                </a>
                             </td>
                         </tr>
                     }
@@ -83,14 +75,17 @@
             </table>
         </div>
     </div>
+
+    <!--MODAL-->
     <div class="modal fade " id="miInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content rounded-2  align-items-center ">
-                <form asp-action="Insert" asp-controller="Inventario" method="post">
+                
                     <div class="modal-header">
                         <h2 class="modal-title">Agregar Nuevo Articulo</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                <form asp-action="InsertInventario" method="post">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Imagen de referencia</label>
@@ -98,15 +93,15 @@
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">Nombre Articulo</label><br />
-                            <input type="text" class="form-control" name="Nombre">
+                            <input required type="text" class="form-control" name="Nombre">
                         </div>
                         <div class="form-group mb-3">
                             <label for="descripcion" class="form-label">Descripcion</label>
-                            <textarea class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                            <textarea required class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="cantidad" class="form-label">Cantidad</label>
-                            <input type="text" class="form-control" id="cantidad" name="Cantidad">
+                            <input required type="number" class="form-control" id="cantidad" name="Cantidad">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -118,6 +113,22 @@
             </div>
         </div>
     </div>
-    
-      
 </div>
+<script>
+    function eliminar(id) {
+        if (confirm("¿Está seguro que desea eliminar este elemento?")) {
+            $.ajax({
+                url: "/Inventario/DeleteInventario",
+                type: "DELETE",
+                data: { id: id },
+                success: function (data) {
+                    // Actualizar la vista después de eliminar el elemento
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    }
+</script>

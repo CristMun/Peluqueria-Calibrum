@@ -29,21 +29,21 @@ namespace Peluqueria_Calibrum.Controllers
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
-        public IActionResult Insert(Models.CitaModel model)
+        public IActionResult InsertCitas(Models.CitaModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita(Hora, Dia, Nombre_cliente, Nombre_servicio, Telefono, Precio_total) " +
-                    " values(@hora, @dia, @nombre_cliente, @nombre_servicio, @telefono, @precio_total)";
+                var sql = "INSERT INTO Cita(Hora, Dia, Nombre_cliente,  Telefono, Nombre_servicio) " +
+                    " values(@hora, @dia, @nombre_cliente,  @telefono, @nombre_servicio)";
                 result = db.Execute(sql, model);
             }
-            return Ok(result);
+            return RedirectToAction("Citas");
         }
 
         /*Metodo para editar datos en la base de datos*/
         [HttpPut]
-        public IActionResult Edit(Models.CitaModel model)
+        public IActionResult EditCitas(Models.CitaModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -56,7 +56,7 @@ namespace Peluqueria_Calibrum.Controllers
 
         /*Metodo para editar datos en la base de datos*/
         [HttpDelete]
-        public IActionResult Delete(Models.CitaModel model)
+        public IActionResult DeleteCitas(Models.CitaModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
