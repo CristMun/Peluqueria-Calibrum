@@ -1,0 +1,55 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+/*body {
+    background: white;
+}*/
+.navbar .navbar-brand {
+    color: #0d47a1;
+    font-size: 35px;
+    font-family: 'Harlow Solid';
+}
+.navbar .navbar-toggler {
+    margin-right: 65%;
+}
+
+.navbar .navbar-nav .nav-item{
+    padding:15px;
+    color:black;
+}
+
+.navbar .btn-outline {
+    color: #0d47a1;
+    background-color: white;
+    border-color: #0d47a1;
+    letter-spacing: 0.03rem;
+}
+
+.navbar .btn-outline:hover,
+.navbar .btn-outline:active,
+.navbar .btn-outline:focus,
+.navbar .btn-outline.active {
+    background: #0d47a1;
+    color: #ffffff;
+    border-color: #0d47a1;
+}
+
+.redes {
+    margin-left:auto;
+    display:flex;
+
+}
+
+.redes i:not(:last-child) {
+    margin-right: 8px;
+}
+
+.footer {
+    height: 90px;
+
+}

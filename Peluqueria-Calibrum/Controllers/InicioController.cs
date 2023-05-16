@@ -6,7 +6,7 @@ namespace Peluqueria_Calibrum.Controllers
 {
     public class InicioController : MyController
     {
-        [Route("CitasHoy")]
+        
         public IActionResult CitasHoy()
         {
             return View();
