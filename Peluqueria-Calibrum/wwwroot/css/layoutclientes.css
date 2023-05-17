@@ -3,7 +3,6 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-
 }
 
 /*body {
@@ -14,9 +13,7 @@
     font-size: 35px;
     font-family: 'Harlow Solid';
 }
-.navbar .navbar-toggler {
-    margin-right: 65%;
-}
+
 
 .navbar .navbar-nav .nav-item{
     padding:15px;
@@ -53,3 +50,69 @@
     height: 90px;
 
 }
+
+h1 {
+    font-family:Arial;
+    font-size: 50px;
+    margin-top: 5px;
+    font-weight:800;
+}
+/* Banner */
+.banner-imagen {
+    background-image: url('../images/banner.jpg') ;
+    width: 100%;
+    height: 940px;
+    background-size: cover;
+    background-color:black;
+    position: relative;
+}
+
+.banner-texto {
+    color:white;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; 
+}
+
+.banner-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* ---------- */
+/* HR diseño linea abajo de un titulo*/
+hr {
+    width: 12%;
+    margin-bottom: 40px;
+    margin-top: -35px;
+    border-color: #0d47a1;
+    display: inline-block;
+    border-top-width:4px;
+    border-top-style: solid;
+}
+
+
+/* ---------------- */
+.banner-area h3,
+.banner-area h1,
+.banner-area a {
+    position:absolute;
+    left: 50%; /* Ajusta la posición horizontalmente según tus necesidades */
+    transform: translate(-50%, -50%); /* Centra los elementos */
+    color: #ffffff; /* Color del texto */
+    z-index: 1; /* Asegura que los elementos estén por encima del fondo */
+}
+
+.banner-area button {
+    padding: 10px 20px; /* Ajusta el relleno (padding) del botón según tus necesidades */
+    font-size: 18px; /* Ajusta el tamaño de fuente del botón según tus necesidades */
+    background-color: #ff0000; /* Color de fondo del botón */
+    border: none; /* Elimina los bordes del botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+}
+
