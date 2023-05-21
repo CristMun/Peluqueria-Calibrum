@@ -85,7 +85,7 @@
                             <td>@item.Hora @item.Dias</td>
                             <td>@item.Cargo</td>
                             <td>
-                                <a class="btn btn-warning">
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarEmpleado" onclick="cargarEmpleado(@item.Id)">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a class="btn btn-danger" onclick="eliminar(@item.Id)">
@@ -98,90 +98,186 @@
             </table>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade " id="miEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+    <!-- Modal para editar empleado -->
+    <div class="modal fade" id="editarEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content rounded-2  align-items-center">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fw-bold">Agregar Nuevo Empleado</h2>
+                    <h5 class="modal-title" id="staticLabel">Editar Empleado</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/Empleado/InsertEmpleado" method="post">
+                <form id="formEditarEmpleado" method="post" onsubmit="return validateForm()">
                     <div class="modal-body">
+                        <!-- Campos del formulario para editar el empleado -->
                         <div class="form-group mb-3">
-                            <label class="form-label" for="Nombre">Nombre</label><br />
-                            <input type="text" class="form-control" id="nombre" name="Nombre" />
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label" for="Apellido">Apellido</label><br />
-                            <input type="text" class="form-control" id="apellido" name="Apellido" />
+                            <label class="form-label" for="apellido">Apellido</label>
+                            <input type="text" class="form-control" id="apellido" name="apellido" required>
                         </div>
-                    <hr>
+                        <hr>
                         <div class="form-group mb-3">
-                            <label class="form-check-label"> Seleccione el cargo del nuevo empleado:</label> </br>
-                            <select class="form-select" name="Cargo" aria-label="Cargo">
+                            <label class="form-check-label">Seleccione el cargo del nuevo empleado:</label> <br>
+                            <select class="form-select" id="cargo" name="Cargo" aria-label="Cargo" required>
                                 <option disabled selected>Cargo</option>
                                 <option value="Peluquero">Peluquero</option>
                                 <option value="Barbero">Barbero</option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
-                    <hr>
+                            <hr>
+                            <div class="form-group mb-3">
+                                <!--ESTA OPCION TIENE QUE SALIR DE LA TABLA SERVICIOS! POR MIENTRAS SERAN ITEMS EN BRUTO-->
+                                <label class="form-check-label">Seleccione los servicios que realizará:</label> <br>
+                                <select class="form-select" name="Servicios" aria-label="Servicios" required>
+                                    <option disabled selected>Servicios</option>
+                                    <option value="Corte Infantil">Corte Infantil</option>
+                                    <option value="Decoloración">Decoloración</option>
+                                </select>
+                            </div>
+                            <hr>
                         <div class="form-group mb-3">
-                            <label class="form-check-label"> Seleccione los servicios que realizara:</label> </br>
-                            <select class="form-select" name="Servicios" aria-label="Servicios">
-                                <option disabled selected>Servicios</option>
-                                <option value="Corte Infantil">Corte Infantil</option>
-                                <option value="Decoloracion">Decoloracion</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <table class="table table-striped">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Servicios</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Corte de Cabello</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    <hr>
-                        <div class="form-group mb-3">
-                            <label class="form-label" for="Hora">Horario</label><br />
-                            <input type="text" class="form-control" id="hora" name="Hora" />
+                            <label class="form-label" for="Hora">Horario</label><br>
+                            <input type="text" class="form-control" id="hora" name="hora" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label" for="Dias">Dias</label><br />
-                            <input type="text" class="form-control" id="dias" name="Dias" />
+                            <label class="form-label" for="Dias">Días</label><br>
+                            <input type="text" class="form-control" id="dias" name="Dias" required>
                         </div>
                         <hr>
                         <div>
-                            <h3 class="modal-title">Inicio de Sesion</h3>
+                            <h3 class="modal-title">Inicio de Sesión</h3>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Usuario">Usuario</label>
-                            <input type="email" class="form-control" id="usuario" name="Usuario">
+                            <input type="email" class="form-control" id="usuario" name="Usuario" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Contrasena">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasena" name="Contrasena">
+                            <input type="password" class="form-control" id="contrasena" name="Contrasena" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Cambiar Empleado</button>
+                    </div>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade " id="miEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content rounded-2  align-items-center">
+                <div class="modal-header">
+                    <h2 class="modal-title fw-bold">Agregar Nuevo Empleado</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/Empleado/InsertEmpleado" method="post" onsubmit="return validateForm()">
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="Nombre">Nombre</label><br />
+                            <input type="text" class="form-control" id="nombre" name="Nombre" required />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="Apellido">Apellido</label><br />
+                            <input type="text" class="form-control" id="apellido" name="Apellido" required />
+                        </div>
+                        <hr>
+                        <div class="form-group mb-3">
+                            <label class="form-check-label">Seleccione el cargo del nuevo empleado:</label> <br>
+                            <select class="form-select" id="cargo" name="Cargo" aria-label="Cargo" required>
+                                <option disabled selected>Cargo</option>
+                                <option value="Peluquero">Peluquero</option>
+                                <option value="Barbero">Barbero</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="form-group mb-3">
+                            <label class="form-check-label">Seleccione los servicios que realizará:</label> <br>
+                            <select class="form-select" name="Servicios" aria-label="Servicios" required>
+                                <option disabled selected>Servicios</option>
+                                <option value="Corte Infantil">Corte Infantil</option>
+                                <option value="Decoloracion">Decoloración</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="Hora">Horario</label><br />
+                            <input type="text" class="form-control" id="hora" name="Hora" required />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="Dias">Dias</label><br />
+                            <input type="text" class="form-control" id="dias" name="Dias" required />
+                        </div>
+                        <hr>
+                        <div>
+                            <h3 class="modal-title">Inicio de Sesión</h3>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Usuario">Usuario</label>
+                            <input type="email" class="form-control" id="usuario" name="Usuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Contrasena">Contraseña</label>
+                            <input type="password" class="form-control" id="contrasena" name="Contrasena" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Crear Empleado
-                        </button>
+                        <button type="submit" class="btn btn-primary">Crear Empleado</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
+<script>
+    function validateForm() {
+        var selectedCargo = document.getElementById("cargo").value;
+        if (selectedCargo === "Cargo") {
+            alert("Por favor, seleccione un cargo válido");
+            return false; // Evita el envío del formulario
+        }
+        return true; // Permite el envío del formulario
+    }
+</script>
+<script>
+    function cargarEmpleado(id) {
+        // Realizar una solicitud AJAX para obtener los datos del empleado
+        $.ajax({
+            url: "/Empleado/GetEmpleado",
+            type: "GET",
+            data: { id: id },
+            success: function (data) {
+                // Rellenar los campos del formulario en el modal con los datos del empleado
+                $("#nombre").val(data.nombre);
+                $("#apellido").val(data.apellido);
+                $("#usuario").val(data.usuario);
+                $("#contrasena").val(data.contrasena);
+                $("#cargo").val(data.cargo);
+                $("#dias").val(data.dias);
+                $("#hora").val(data.hora);
+                $("#servicios").val(data.servicios);
+                // Puedes agregar más campos según tus necesidades
+
+                // Actualizar el atributo 'action' del formulario para enviar la solicitud de actualización al controlador
+                $("#formEditarEmpleado").attr("action", "/Empleado/UpdateEmpleado?id=" + data.id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>
+
 
 
 <script>
