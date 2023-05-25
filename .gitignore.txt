@@ -1,5 +1,6 @@
 # Directories
-.vs\
+.vs/
+Peluqueria-Calibrum/obj/
 .vs\Peluqueria-Calibrum\FileContentIndex\2b7ffe87-4733-4853-969f-45fb5d577998.vsidx
 .vs\Peluqueria-Calibrum\FileContentIndex\0c8a9730-4404-4336-a1d4-52e84de24f70.vsidx
 .vs\Peluqueria-Calibrum\FileContentIndex\8278b753-1bba-4daf-b5c3-6242cb9ec2a7.vsidx
