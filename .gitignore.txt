@@ -9,6 +9,11 @@
 .vs\Peluqueria-Calibrum\FileContentIndex\c6d5627f-e039-47f4-a3ee-b71c1cbbf768.vsidx
 .vs\Peluqueria-Calibrum\FileContentIndex\read.lock
 .vs\Peluqueria-Calibrum\FileContentIndex\read.lock
+.vs\Peluqueria-Calibrum\DesignTimeBuild\.dtbcache.v2
+.vs\Peluqueria-Calibrum\v17\.futdcache.v2
+.vs\Peluqueria-Calibrum\v17\.suo
+.vs\ProjectEvaluation\peluqueria-calibrum.projects.v5.2
+.vs\ProjectEvaluation\peluqueria-calibrum.metadata.v5.2
 Peluqueria-Calibrum\bin\Debug\net6.0\
 Peluqueria-Calibrum\bin\Debug\net6.0\Peluqueria-Calibrum.GeneratedMSBuildEditorConfig.editorconfig
 Peluqueria-Calibrum\bin
