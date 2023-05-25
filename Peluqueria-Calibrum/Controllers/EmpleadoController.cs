@@ -57,10 +57,11 @@ namespace Peluqueria_Calibrum.Controllers
         }
 
 
+        
 
-
+        /*Metodo para llamar al EMPLEADO que se va a EDITAR*/
         [HttpGet]
-        public IActionResult GetEmpleado(int id)
+        public IActionResult GetEmpleadoEdit(int id)
         {
             Models.EmpleadoModel empleado = null;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -70,7 +71,7 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return Json(empleado);
         }
-
+        /*Metodo para EDITAR al EMPLEADO llamada */
         [HttpPost]
         public IActionResult UpdateEmpleado(Models.EmpleadoModel model, int id)
         {
