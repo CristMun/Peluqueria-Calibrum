@@ -229,12 +229,12 @@
             data: { id: id },
             success: function (data) {
 
-                $("#hora").val(data.nombre);
-                $("#dia").val(data.apellido);
-                $("#nombre_cliente").val(data.usuario);
-                $("#nombre_servicio").val(data.contrasena);
-                $("#Telefono").val(data.cargo);
-                $("#precio_total").val(data.dias);
+                $("#hora").val(data.hora);
+                $("#dia").val(data.dia);
+                $("#nombre_cliente").val(data.nombre_cliente);
+                $("#nombre_servicio").val(data.nombre_servicio);
+                $("#telefono").val(data.telefono);
+                $("#precio_total").val(data.precio_total);
 
                 $("#formEditarCita").attr("action", "/Citas/UpdateCita?id=" + data.id);
             },

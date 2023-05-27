@@ -51,7 +51,7 @@
                             <td>@item.Descripcion</td>
                             <td>$@item.Precio</td>
                             <td>
-                                <a class="btn btn-warning">
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarServicio" onclick="cargarServicios(@item.Id)">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a class="btn btn-danger">
@@ -66,8 +66,43 @@
         </div>    
     </div>
 
+    <!-- Modal para editar Servicio -->
+    <div class="modal fade" id="editarServicio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticLabel">Editar Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEditarServicio" action="/Servicios/InsertServicios" method="post">
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />
+                            <input required type="text" class="form-control" id="nombre" name="Nombre" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Descripcion" class="form-label">Descripción</label>
+                            <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Precio" class="form-label">Precio</label>
+                            <input required type="number" class="form-control" id="precio" name="Precio" />
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-primary">
+                            Modificar Servicio
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Fin Modal editar Servicio -->
 
- <!-- Modal -->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- Modal -->
     <div class="modal fade " id="miEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content rounded-2  align-items-center ">
@@ -109,7 +144,6 @@
                 type: "DELETE",
                 data: { id: id },
                 success: function (data) {
-                    // Actualizar la vista después de eliminar el elemento
                     location.reload();
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -117,5 +151,24 @@
                 }
             });
         }
+    }
+
+    function cargarServicios(id) {
+        $.ajax({
+            url: "/Servicio/GetServiciosEdit",
+            type: "GET",
+            data: { id: id },
+            success: function (data) {
+
+                $("#nombre").val(data.nombre);
+                $("#descripcion").val(data.descripcion);
+                $("#precio").val(data.precio);
+
+                $("#formEditarServicio").attr("action", "/Servicio/UpdateServicio?id=" + data.id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            }
+        });
     }
 </script>

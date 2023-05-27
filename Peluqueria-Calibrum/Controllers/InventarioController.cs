@@ -52,5 +52,34 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return Ok(result);
         }
+
+
+
+
+        /*Metodo para llamar al elemento del INVENTARIO que se va a EDITAR*/
+        [HttpGet]
+        public IActionResult GetInventarioEdit(int id)
+        {
+            Models.InventarioModel inventario = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Inventario WHERE Id = @id";
+                inventario = db.QuerySingleOrDefault<Models.InventarioModel>(sql, new { id });
+            }
+            return Json(inventario);
+        }
+        /*Metodo para EDITAR el elemento del INVENTARIO que se llamo*/
+        [HttpPost]
+        public IActionResult UpdateInventario(Models.InventarioModel model, int id)
+        {
+            int result = 0;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "UPDATE Inventario SET Nombre=@nombre, Descripcion=@descripcion, Cantidad=@cantidad WHERE Id = @id";
+                model.Id = id;
+                result = db.Execute(sql, model);
+            }
+            return RedirectToAction("Inventario");
+        }
     }
 }

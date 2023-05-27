@@ -5,9 +5,6 @@
 @{
     ViewData["Title"] = "Inventario";
 }
-<head>
-<link rel="stylesheet" href="~/css/vistas.css">
-</head>
 
 <div class="card">
     <div class="card-header">
@@ -21,19 +18,19 @@
             </a>
         </div>
     </div>
-
+    <!--Buscador-->
     <div class="card-body">
         <div class="row">
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="nombre" type="text" class="form-control">
-                    <label for="nombre">Nombre</label>
+                    <input id="fullname" type="text" class="form-control">
+                    <label for="fullname">Nombre</label>
                 </div>
             </div>
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="descripcion" type="text" class="form-control">
-                    <label for="descripcion">Descripcion</label>
+                    <input id="fullname" type="text" class="form-control">
+                    <label for="fullname">Descripcion</label>
                 </div>
             </div>
             <div class="col-auto">
@@ -62,7 +59,7 @@
                             <td>@item.Descripcion</td>
                             <td>@item.Cantidad</td>
                             <td>
-                                <a class="btn btn-warning">
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarInventario" onclick="cargarInventario(@item.Id)">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a class="btn btn-danger">
@@ -75,8 +72,47 @@
             </table>
         </div>
     </div>
+    <!-- Modal para editar Inventario -->
+    <div class="modal fade" id="editarInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticLabel">Editar Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEditarInventario" action="/Inventario/InsertInventario" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Imagen de referencia</label>
+                            <input class="form-control" type="file">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="nombre" class="form-label">Nombre Articulo</label><br />
+                            <input required type="text" class="form-control" id="nombre" name="Nombre">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <textarea required class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input required type="number" class="form-control" id="cantidad" name="Cantidad">
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-primary">
+                            Modificar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal editar Inventario -->
 
-    <!--MODAL-->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!--Modal Agregar Inventario-->
     <div class="modal fade " id="miInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content rounded-2  align-items-center ">
@@ -92,12 +128,12 @@
                             <input class="form-control" type="file">
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label">Nombre Articulo</label><br />
-                            <input required type="text" class="form-control" name="Nombre">
+                            <label for="nombre" class="form-label">Nombre Articulo</label><br />
+                            <input required type="text" class="form-control" id="nombre" name="Nombre">
                         </div>
                         <div class="form-group mb-3">
                             <label for="descripcion" class="form-label">Descripcion</label>
-                            <textarea required class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                            <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="cantidad" class="form-label">Cantidad</label>
@@ -122,7 +158,6 @@
                 type: "DELETE",
                 data: { id: id },
                 success: function (data) {
-                    // Actualizar la vista después de eliminar el elemento
                     location.reload();
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -130,5 +165,25 @@
                 }
             });
         }
+    }
+
+    function cargarInventario(id) {
+        $.ajax({
+            url: "/Inventario/GetInventarioEdit",
+            type: "GET",
+            data: { id: id },
+            success: function (data) {
+
+                //$("#imagen").val(data.imagen);
+                $("#nombre").val(data.nombre);
+                $("#descripcion").val(data.descripcion);
+                $("#cantidad").val(data.cantidad);
+
+                $("#formEditarInventario").attr("action", "/Inventario/UpdateInventario?id=" + data.id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            }
+        });
     }
 </script>

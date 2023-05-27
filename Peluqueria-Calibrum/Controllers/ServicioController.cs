@@ -52,5 +52,34 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return Ok(result);
         }
+
+
+
+
+        /*Metodo para llamar a la SERVICIO que se va a EDITAR*/
+        [HttpGet]
+        public IActionResult GetServiciosEdit(int id)
+        {
+            Models.ServicioModel servicio = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Servicio WHERE Id = @id";
+                servicio = db.QuerySingleOrDefault<Models.ServicioModel>(sql, new { id });
+            }
+            return Json(servicio);
+        }
+        /*Metodo para EDITAR la SERVICIO que se llamo*/
+        [HttpPost]
+        public IActionResult UpdateServicio(Models.ServicioModel model, int id)
+        {
+            int result = 0;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "UPDATE Servicio SET Nombre=@nombre, Descripcion=@descripcion, Precio=@precio WHERE Id = @id";
+                model.Id = id;
+                result = db.Execute(sql, model);
+            }
+            return RedirectToAction("Servicio");
+        }
     }
 }
