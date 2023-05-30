@@ -1,10 +1,12 @@
-﻿@{
+﻿@model Peluqueria_Calibrum.Models.EmpleadoModel
+
+@{
     Layout = null;
     ViewData["Title"] = "Login";
 }
 
 
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,26 +32,29 @@
             <img src="~/images/Logo-Cuadrado-FondoBlanco.jpg" alt="login-logo" style="height:9rem" />
         </div>
         <div class="text-center fs-1 fw-bold text-dark">Login</div>
-        <form>
+
+        @using (Html.BeginForm("CitasHoy", "Inicio", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="input-group mt-4">
                 <div class="input-group-text" style="background:#0d47a1">
                     <i class="fa-solid fa-user" style="color:white"></i>
                 </div>
-                <input class="form-control " type="text" placeholder="Username" />
+                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control", placeholder = "Username" })
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
             </div>
             <div class="input-group mt-2">
                 <div class="input-group-text" style="background:#0d47a1">
                     <i class="fa-solid fa-lock" style="color:white"></i>
                 </div>
-                <input class="form-control" type="password" placeholder="Password" />
+                @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control", placeholder = "Contraseña" })
+                @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
             </div>
-
-            <div class="btn text-white w-100 mt-4" style="background:#0d47a1">
-                <a asp-controller="Inicio" asp-action="CitasHoy" style="color:white; text-decoration:none">Login</a>
+            <div class="d-grid mt-4">
+                <input id="loginInput" type="submit" value="Login" class="btn" style="color:white; text-decoration:none; background:#0d47a1"/>
             </div>
-
-        </form>
-
+        }
     </div>
 
 
