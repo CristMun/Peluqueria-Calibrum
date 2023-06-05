@@ -41,8 +41,6 @@ namespace Peluqueria_Calibrum.Controllers
             return RedirectToAction("Citas");
         }
 
-
-
         /*Metodo para editar datos en la base de datos*/
         [HttpDelete]
         public IActionResult DeleteCitas(Models.CitaModel model)

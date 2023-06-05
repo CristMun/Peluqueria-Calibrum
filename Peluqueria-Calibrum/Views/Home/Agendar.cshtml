@@ -4,98 +4,62 @@
 }
 
 
-    <div class="card" style="padding-left: 25%; padding-right: 25%; padding-top: 10px">
-        <div class="card-body ">
-            <div class="card-header" style="text-align:center">
-                <h2 class="modal-title">Reserva tu Hora!</h2>
+<!-- Modal AGREGAR -->
+<div class="modal fade " id="miCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content rounded-2  align-items-center ">
+            <div class="modal-header ">
+                <h2 class="modal-title">Reserva de Hora</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="form-group mb-3">
-                    <label for="fecha" class="form-label">Fecha</label>
-                    <input id="fecha" class="form-control" type="date" />
-                </div>
-                <div class="form-group mb-3">
-                    <label for="hora" class="form-label">Hora</label>
-                    <input id="hora" class="form-control" type="time" />
-                </div>
-                <div class="form-group mb-3">
-                    <select class="form-select" aria-label="Servicios">
-                        <option disabled selected>Servicios</option>
-                        <option value="1">Corte Infantil</option>
-                        <option value="2">Decoloracion</option>
-                        <option value="3">Alisado</option>
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <select class="form-select" arial-label="Peluquero">
-                        <option disabled selected>Peluquero</option>
-                        <option value="peluquero_1">Peluquero 1</option>
-                        <option value="peluquero_1">Peluquero 2</option>
-                        <option value="peluquero_1">Peluquero 3</option>
-                    </select>
-                </div>
-                <div>
-                    <h3 class="modal-title">Datos Cliente</h3>
-                </div>
-                <div class="mb-3">
-                    <label for="nombreCliente" class="form-label">Nombre Cliente</label>
-                    <input type="text" class="form-control" id="nombreCliente">
-                </div>
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Contacto</label>
-                    <input type="text" class="form-control" id="telefono">
-                </div>
-                <div class="mb-3">
-                    <table class="table">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Servicios</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Corte de Cabello</td>
-                                <td>$5000</td>
-                            </tr>
-                            <tr>
-                                <td>Alisado Permanente</td>
-                                <td>$5000</td>
-                            </tr>
-                            <tr>
-                                <td>Corte Infantil</td>
-                                <td>$5000</td>
-                            </tr>
-                        </tbody>
-                        <tfoot class="table-info">
-                            <tr>
-                                <th>Total</th>
-                                <th>$15000</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-
-            </div>
-            <div style="text-align:center">
-                <div class="card-btn">
-                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#miEmpleado">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        Agendar
-                    </a>
-                </div>
-                <br></br>
-                <div class="card-footer">
-                    <div>
-                        <label>¿Nos quieres conocer?</label>
+            <form action="/Citas/InsertCitas" method="post">
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+                        <label for="fecha">Fecha:</label>
+                        <input required type="date" class="form-control" id="dia" name="dia" />
                     </div>
-                    <a asp-controller="Clientes" asp-action="About" type="button" class="btn btn-primary">
-                        Quienes Somos
-                    </a>
+                    <div class="form-group mb-4">
+                        <label for="hora">Hora:</label>
+                        <input required type="time" class="form-control" id="hora" name="hora">
+                    </div>
+                    <div class="form-group mb3">
+                        <label for="hora">Seleccione un servicio:</label>
+                        <select required class="form-select" aria-label="Servicios" name="nombre_servicio">
+                            <option disabled selected></option>
+                            <option value="Corte de Cabello">Corte de Cabello</option>
+                            <option value="Alisado">Alisado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="hora">Seleccione un empleado:</label>
+                        <select required class="form-select" arial-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado">
+                            <option disabled selected></option>
+                            <option value="1">Peluquero_1</option>
+                            <option value="2">Peluquero_2</option>
+                            <option value="3">Barbero_1</option>
+                            <option value="4">Barbero_2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h3 class="modal-title">Datos Cliente</h3>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreCliente" class="form-label">Nombre Cliente:</label>
+                        <input required type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Numero de telefono:</label>
+                        <input required type="text" class="form-control" id="telefono" name="telefono">
+                    </div>
                 </div>
-            </div>
-            
-            
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        Agendar cita
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 

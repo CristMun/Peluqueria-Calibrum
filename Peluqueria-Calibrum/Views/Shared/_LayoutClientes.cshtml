@@ -1,3 +1,7 @@
+@using Peluqueria_Calibrum.Models
+@using System.Linq
+
+@model IEnumerable<EmpleadoModel>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,7 +27,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    
+    <nav 
+        class="navbar navbar-expand-lg bg-white fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/Home">
                 <img src="~/images/Logo-Cuadrado.jpg" width="65px" height="65px" />
@@ -44,27 +50,27 @@
                         <a class="nav-link  fw-bold" style="color:#0d47a1" href="#equipo">Equipo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  fw-bold" style="color:#0d47a1" href="/Agendar">Agendar</a>
+                        <a id="agendarCitaBtn" class="nav-link fw-bold" style="color:#0d47a1" data-bs-toggle="modal" href="#miCita">Agendar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  fw-bold" style="color:#0d47a1" href="#contacto">Contacto</a>
                     </li>
                 </ul>
                 <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <a class="btn btn-outline" href="\login\login">Login</a>
+                    <a class="btn btn-outline" href="\Iniciar-Sesion">Login</a>
                 </div>
             </div>
         </div>
     </nav>
 
-   @* <!-- Banner -->
+   <!-- Banner -->
     <div class="banner-imagen">
         <div class="banner-texto">
             <h3 style="font-size:40px">Bienvenidos a</h3>
             <h1 style="font-size:80px">Calibrum</h1>
         </div>
         <div class="banner-button">
-            <a role="button" class="btn btn-primary btn-lg text-uppercase fw-bold" href="/Agendar">Agenda tu hora</a>
+            <a role="button" id="agendarCitaBtn" class="btn btn-primary btn-lg text-uppercase fw-bold"  data-bs-toggle="modal" data-bs-target="#miCita">Agenda tu hora</a>
         </div>
     </div>
 
@@ -179,66 +185,36 @@
                 <div class="col-lg-8 col-xl-7">
                     <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active bg-black" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" class="bg-black" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" class="bg-black" aria-label="Slide 3"></button>
+                            @for (var i = 0; i < Model.Count(); i++)
+                            {
+                                <button type="button" data-bs-target="#carousel1" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "") bg-black" aria-current="@(i == 0 ? "true" : "false")" aria-label="Slide @(i + 1)"></button>
+                            }
                         </div>
                         <div class="carousel-inner">
-                            <!-- Item Start-->
-                            <div class="equipo-item bg-white carousel-item active shadow-sm rounded p-4 mb-5 ">
-                                <div class="equipo-info d-flex">
-                                    <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="1" height="100px" width="100px">
-                                    <div class="info ms-3">
-                                        <h3 class="fs-4 mb-1">Nicolas</h3>
-                                        <p class="text-muted m-0">Peluquero</p>
+                            @for (var i = 0; i < Model.Count(); i++)
+                            {
+                                var empleado = Model.ToList()[i];
+                                <div class="equipo-item bg-white carousel-item @(i == 0 ? "active" : "") shadow-sm rounded p-4 mb-5">
+                                    <div class="equipo-info d-flex">
+                                        <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="1" height="100px" width="100px">
+                                        <div class="info ms-3">
+                                            <h3 class="fs-4 mb-1">@($"{empleado.Nombre} {empleado.Apellido}")</h3>
+                                            <p class="text-muted m-0">@empleado.Cargo</p>
+                                        </div>
+                                        <div class="redes">
+                                            <i class="fa-brands fa-instagram fa-xl"></i>
+                                            <i class="fa-brands fa-facebook fa-xl"></i>
+                                            <i class="fa-brands fa-whatsapp fa-xl"></i>
+                                        </div>
                                     </div>
-                                    <div class="redes">
-                                        <i class="fa-brands fa-instagram fa-xl"></i>
-                                        <i class="fa-brands fa-facebook fa-xl"></i>
-                                        <i class="fa-brands fa-whatsapp fa-xl"></i>
-                                    </div>
+                                    <p class="text-muted mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                 </div>
-                                <p class="text-muted mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                            </div>
-                            <!-- Item End-->
-                            <!-- Item Start-->
-                            <div class="equipo-item bg-white carousel-item shadow-sm rounded p-4 mb-5">
-                                <div class="equipo-info d-flex">
-                                    <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="2" height="100px" width="100px">
-                                    <div class="info ms-3">
-                                        <h3 class="fs-4 mb-1">Cristobal</h3>
-                                        <p class="text-muted m-0">Administrador</p>
-                                    </div>
-                                    <div class="redes">
-                                        <i class="fa-brands fa-instagram fa-xl"></i>
-                                        <i class="fa-brands fa-facebook fa-xl"></i>
-                                        <i class="fa-brands fa-whatsapp fa-xl"></i>
-                                    </div>
-                                </div>
-                                <p class="text-muted mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                            </div>
-                            <!-- Item End-->
-                            <!-- Item Start-->
-                            <div class="equipo-item bg-white carousel-item shadow-sm rounded p-4 mb-5">
-                                <div class="equipo-info d-flex">
-                                    <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="3" height="100px" width="100px">
-                                    <div class="info ms-3">
-                                        <h3 class="fs-4 mb-1">Elias</h3>
-                                        <p class="text-muted m-0">Barbero</p>
-                                    </div>
-                                    <div class="redes">
-                                        <i class="fa-brands fa-instagram fa-xl"></i>
-                                        <i class="fa-brands fa-facebook fa-xl"></i>
-                                        <i class="fa-brands fa-whatsapp fa-xl"></i>
-                                    </div>
-                                </div>
-                                <p class="text-muted mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                            </div>
-                            <!-- Item End-->
+                            }
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -303,11 +279,70 @@
         </div>
     </section>
 
+    <!-- Modal AGREGAR -->
+    <div class="modal fade " id="miCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content rounded-2  align-items-center">
+                <div class="modal-header">
+                    <h2 class="modal-title">Agenda tu cita!</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formCita" action="/Home/InsertCitasInicio" method="post">
+                    <div class="modal-body">
+                        <div class="form-group mb-6">
+                            <label for="fecha">Fecha:</label>
+                            <input required type="date" class="form-control" id="dia" name="dia" />
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="hora">Hora:</label>
+                            <input required type="time" class="form-control" id="hora" name="hora">
+                        </div>
+                        <div class="form-group mb3">
+                            <label for="hora">Seleccione un servicio:</label>
+                            <select required class="form-select" aria-label="Servicios" name="nombre_servicio">
+                                <option disabled selected></option>
+                                <option value="Corte de Cabello">Corte de Cabello</option>
+                                <option value="Alisado">Alisado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="hora">Seleccione un empleado:</label>
+                            <select required class="form-select" arial-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado">
+                                <option disabled selected></option>
+                                <option value="1">Peluquero_1</option>
+                                <option value="2">Peluquero_2</option>
+                                <option value="3">Barbero_1</option>
+                                <option value="4">Barbero_2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3 class="modal-title">Datos Cliente</h3>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombreCliente" class="form-label">Nombre Cliente:</label>
+                            <input required type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Numero de telefono:</label>
+                            <input required type="text" class="form-control" id="telefono" name="telefono">
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
+                            Agendar cita
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer d-flex justify-content-center align-items-center text-center text-muted" style="background:#e4e5e6;">
         <p class="text-black">2023 - Peluqueria_Calibrum &copy; <br />Todos los derechos reservados</p>
-    </footer>*@
-
+    </footer>
+    
 
 
 
@@ -327,3 +362,30 @@
 
 </body>
 </html>
+
+<script>
+    // Obtener el formulario y el botón de envío
+    const form = document.getElementById('formCita');
+    const submitButton = document.getElementById('agendarCitaBtnModal');
+
+    // Agregar un controlador de eventos al envío del formulario
+    form.addEventListener('submit', function (event) {
+        // Detener el envío del formulario
+        event.preventDefault();
+
+        // Validar los campos del formulario
+        if (form.checkValidity()) {
+            // Mostrar el mensaje "Todo listo"
+            alert('Cita agendada con éxito!');
+
+            // Agregar un retraso de 2 segundos antes de enviar el formulario
+            setTimeout(function () {
+                // Enviar el formulario
+                form.submit();
+            }, 2000);
+        } else {
+            alert('Por favor complete todos los campos');
+        }
+    });
+
+</script>
