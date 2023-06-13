@@ -1,5 +1,6 @@
 ﻿@model Peluqueria_Calibrum.Models.EmpleadoModel
 
+
 @{
     Layout = null;
     ViewData["Title"] = "Login";
@@ -33,28 +34,23 @@
         </div>
         <div class="text-center fs-1 fw-bold text-dark">Login</div>
 
-        @using (Html.BeginForm("CitasHoy", "Inicio", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        <form method="post" asp-action="Login">
             <div class="input-group mt-4">
                 <div class="input-group-text" style="background:#0d47a1">
                     <i class="fa-solid fa-user" style="color:white"></i>
                 </div>
-                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control", placeholder = "Username" })
-                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                <input class="form-control" type="text" placeholder="Username" asp-for="Usuario" />
             </div>
             <div class="input-group mt-2">
                 <div class="input-group-text" style="background:#0d47a1">
                     <i class="fa-solid fa-lock" style="color:white"></i>
                 </div>
-                @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control", placeholder = "Contraseña" })
-                @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                <input class="form-control" type="password" placeholder="Password" asp-for="Contrasena" />
             </div>
             <div class="d-grid mt-4">
-                <input id="loginInput" type="submit" value="Login" class="btn" style="color:white; text-decoration:none; background:#0d47a1"/>
+                <input id="loginInput" type="submit" value="Login" class="btn" style="color:white; text-decoration:none; background:#0d47a1" />
             </div>
-        }
+        </form>
     </div>
 
 
