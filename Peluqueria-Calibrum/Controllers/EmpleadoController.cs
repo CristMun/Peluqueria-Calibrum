@@ -81,7 +81,7 @@ namespace Peluqueria_Calibrum.Controllers
                 var sql = "UPDATE Empleado SET Nombre = @nombre, Apellido = @apellido, Usuario = @usuario, " +
                           "Contrasena = @contrasena, Cargo = @cargo, Dias = @dias, Hora = @hora, Servicios = @servicios " +
                           "WHERE Id = @id";
-                model.Id = id; // Actualizar el ID del modelo con el ID recibido en la solicitud
+                model.Id = id; 
                 result = db.Execute(sql, model);
             }
             return RedirectToAction("Empleado");

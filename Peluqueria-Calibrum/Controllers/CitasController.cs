@@ -1,10 +1,11 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
 namespace Peluqueria_Calibrum.Controllers
 {
-
+    [Authorize]
     public class CitasController : MyController
     {
         [Route("ListaCitas")]
@@ -13,6 +14,7 @@ namespace Peluqueria_Calibrum.Controllers
             GetCitas();
             return View();
         }
+
 
         /*Metodo para llamar datos en la base de datos*/
         [HttpGet]

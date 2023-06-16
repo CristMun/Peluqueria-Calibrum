@@ -15,21 +15,6 @@ namespace PeluqueriaCalibrum.Controllers
             GetEquipo();
             return View();
         }
-        [Route("About")]
-        public IActionResult About()
-        {
-            return View();
-        }
-        [Route("Agendar")]
-        public IActionResult Agendar()
-        {
-            return View();
-        }
-        [Route("Peluqueros")]
-        public IActionResult Peluqueros()
-        {
-            return View();
-        }
 
         /*Metodo para llamar los datos de los empleados para la vista de "Nuestro Equipo"*/
         public IActionResult GetEquipo()

@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Peluqueria_Calibrum.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Peluqueria_Calibrum.Controllers
 {
+    [Authorize]
     public class InicioController : MyController
     {
-        //[Authorize] // Agregar este atributo para restringir el acceso a usuarios autenticados
         public IActionResult CitasHoy()
         {
             return View();
         }
+
     }
 }

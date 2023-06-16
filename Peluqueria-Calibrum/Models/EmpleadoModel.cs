@@ -1,9 +1,5 @@
-﻿using Dapper;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 
 
 namespace Peluqueria_Calibrum.Models
@@ -20,11 +16,11 @@ namespace Peluqueria_Calibrum.Models
         [JsonProperty("apellido")]
         public string Apellido { get; set; }
 
-        [JsonProperty("usuario")]
-        public string Usuario { get; set; }
+        [JsonProperty("usuario")] //CREDENCIAL
+        public string? Usuario { get; set; }
 
-        [JsonProperty("contrasena")]
-        public string Contrasena { get; set; }
+        [JsonProperty("contrasena")] //CREDENCIAL
+        public string? Contrasena { get; set; }
 
         [JsonProperty("cargo")]
         public string Cargo { get; set; }
@@ -35,5 +31,8 @@ namespace Peluqueria_Calibrum.Models
         public string Hora { get; set; }
         [JsonProperty("servicios")]
         public string Servicios { get; set; }
+
+        [NotMapped]
+        public bool MantenerActivo { get; set; }
     }
 }
