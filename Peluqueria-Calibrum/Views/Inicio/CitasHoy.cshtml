@@ -49,3 +49,27 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.querySelector('.dropdown-item').addEventListener('click', function (event) {
+        event.preventDefault();
+        let timerInterval;
+        Swal.fire({
+            title: 'Cerrando sesión...',
+            html: 'Espera, ¿¡QUE?! <br><br> <b></b> segundos.',
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                const b = Swal.getHtmlContainer().querySelector('b');
+                timerInterval = setInterval(() => {
+                    b.textContent = ((Swal.getTimerLeft() / 1000).toFixed(1));
+                }, 100);
+            },
+        }).then(() => {
+            window.location.href = '/Home';
+        });
+    });
+
+</script>

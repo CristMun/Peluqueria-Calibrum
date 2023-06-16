@@ -38,7 +38,7 @@
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="/Home">
+                            <a class="dropdown-item" href="#" id="cerrarSesionBtn">
                                 Cerrar Sesión
                                 <i class="fas fa-right-from-bracket"></i>
                             </a>
@@ -86,6 +86,18 @@
                             Inventario
                         </a>
                     </li>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    
+                    <li class="item">
+                        <a class="menu-btn" style="background-color:#0d47a1; color:#0d47a1" onclick="test()" style="font-size:0px">
+                            Boton oculto
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!--Sidebar End-->
@@ -102,12 +114,39 @@
     </div>
     <!--Wrapper End-->
     <!-- jQuery, Bootstrap JS -->
+
+
+
+    
+    <script>
+        //BOTON DE PRUEBA ESTO ES PARA PROBAR SWEETALERT2
+        function test(){
+            Swal.fire({
+                title: 'SUPER ADMIN ACTIVADO',
+                html:'<br>Esto no hace nada en realidad...',
+                width: 600,
+                padding: '3em',
+                color: '#716add',
+                background: '# ',
+                backdrop: `
+                 rgba(255, 125, 0, 0.5)
+                url("https://media.tenor.com/-AyTtMgs2mMAAAAi/nyan-cat-nyan.gif")
+                left top / 50% auto
+                no-repeat
+                  `
+            })
+        }
+        
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/ba1c51d352.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
 
@@ -120,8 +159,11 @@
         sidebarToggle.addEventListener('click', () => {
             wrapper.classList.toggle('sidebar-collapsed');
         });
+
+
     </script>
 
 
 </body>
 </html>
+

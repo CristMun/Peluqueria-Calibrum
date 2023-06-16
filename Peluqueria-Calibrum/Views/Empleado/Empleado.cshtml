@@ -118,7 +118,7 @@
                         </div>
                         <hr>
                         <div class="form-group mb-3">
-                            <label class="form-check-label">Seleccione el cargo del nuevo empleado:</label> <br>
+                            <label class="form-check-label">Seleccione el nuevo cargo:</label> <br>
                             <select class="form-select" id="cargo" name="Cargo" aria-label="Cargo" required>
                                 <option disabled selected>Cargo</option>
                                 <option value="Peluquero">Peluquero</option>
@@ -129,9 +129,9 @@
                             <hr>
                             <div class="form-group mb-3">
                                 <!--ESTA OPCION TIENE QUE SALIR DE LA TABLA SERVICIOS! POR MIENTRAS SERAN ITEMS EN BRUTO-->
-                                <label class="form-check-label">Seleccione los servicios que realizará:</label> <br>
-                                <select class="form-select" name="Servicios" aria-label="Servicios" required>
-                                    <option disabled selected>Servicios</option>
+                                <label class="form-check-label">Seleccione el servicio que realizará:</label> <br>
+                                <select class="form-select" id="servicios" name="Servicios" required>
+                                    <option value=""  disabled selected>Seleccione</option>
                                     <option value="Corte Infantil">Corte Infantil</option>
                                     <option value="Decoloración">Decoloración</option>
                                 </select>
@@ -201,7 +201,7 @@
                         <hr>
                         <div class="form-group mb-3">
                             <label class="form-check-label">Seleccione los servicios que realizará:</label> <br>
-                            <select class="form-select" name="Servicios" aria-label="Servicios" required>
+                            <select class="form-select" id="servicios" name="servicios" aria-label="Servicios" required>
                                 <option disabled selected>Servicios</option>
                                 <option value="Corte Infantil">Corte Infantil</option>
                                 <option value="Decoloracion">Decoloración</option>
@@ -240,38 +240,37 @@
     <!-- Fin Modal Agregar -->
 </div>
 
-<!--Metodo para verificar que Cargo no este vacio -->
-@*<script>
-    function validateForm() {
-        var selectedCargo = document.getElementById("cargo").value;
-        if (selectedCargo === "Cargo") {
-            alert("Por favor, seleccione un cargo válido");
-            return false; 
-        }
-        return true; 
-    }
-</script>
-*@
-
 <script>
-  
 
-//Metodo eliminar elementos
+
+    // Método eliminar elementos
     function eliminar(id) {
-        if (confirm("¿Está seguro que desea eliminar este elemento?")) {
-            $.ajax({
-                url: "/Empleado/DeleteEmpleado",
-                type: "DELETE",
-                data: { id: id },
-                success: function (data) {
-                    location.reload();
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
-                }
-            });
-        }
+        Swal.fire({
+            title: '¿Está seguro que desea eliminar este empleado?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/Empleado/DeleteEmpleado",
+                    type: "DELETE",
+                    data: { id: id },
+                    success: function (data) {
+                        Swal.fire('¡Eliminado!', 'El empleado ha sido eliminado con éxito', 'success');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        });
     }
+
 
 //Metodo para mostrar el elemento seleccionado -->
     function cargarEmpleado(id) {

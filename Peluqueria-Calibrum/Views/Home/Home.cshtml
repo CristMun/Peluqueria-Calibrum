@@ -139,21 +139,25 @@
                     <div class="carousel-inner">
                         @for (var i = 0; i < Model.Count(); i++)
                         {
+                            
                             var empleado = Model.ToList()[i];
                             <div class="equipo-item bg-white carousel-item @(i == 0 ? "active" : "") shadow-sm rounded p-4 mb-5">
                                 <div class="equipo-info d-flex">
                                     <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="1" height="100px" width="100px">
                                     <div class="info ms-3">
                                         <h3 class="fs-4 mb-1">@($"{empleado.Nombre} {empleado.Apellido}")</h3>
-                                        <p class="text-muted m-0">@empleado.Cargo</p>
+                                        <strong class="m-0">@empleado.Cargo</strong><br>
+                                        <span>Horario de atencion:</span>
+                                        <h6>@empleado.Dias de @empleado.Hora</h6>
                                     </div>
                                     <div class="redes">
                                         <i class="fa-brands fa-instagram fa-xl"></i>
                                         <i class="fa-brands fa-facebook fa-xl"></i>
                                         <i class="fa-brands fa-whatsapp fa-xl"></i>
                                     </div>
+                                   
                                 </div>
-                                <p class="text-muted mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                               
                             </div>
                         }
                     </div>
@@ -224,7 +228,7 @@
         </div>
     </div>
 </section>
-
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Modal Agendar Hora-->
 <div class="modal fade" id="modalAgendar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
@@ -238,7 +242,7 @@
                     <div class="form-group">
                         <label class="form-label">Seleccione un servicio:</label>
                         <select required class="form-select" aria-label="Servicios" name="nombre_servicio">
-                            <option disabled selected></option>
+                            <option value="" disabled selected>Seleccione</option>
                             <option>Corte de cabello</option>
                             <option>Perfilado de barba</option>
                             <option>Coloracion</option>
@@ -248,7 +252,7 @@
                     <div class="form-group mt-3">
                         <label class="form-label">Seleccione un empleado:</label>
                         <select required class="form-select" arial-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado">
-                            <option disabled selected></option>
+                            <option value="" disabled selected>Seleccione</option>
                             <option value="1">Barbero 1</option>
                             <option value="2">Barbero 2</option>
                             <option value="3">Peluquero 1</option>
@@ -263,10 +267,26 @@
                         <div class="col-6 mt-3">
                             <label for="hora" class="form-label">Hora</label>
                             <select required class="form-select" id="hora" name="hora">
-                                <option>10 am</option>
-                                <option>12 am</option>
-                                <option>2 pm</option>
-                                <option>4 pm</option>
+                                <option value="" disabled selected>Seleccione</option>
+                                <option>10:00</option>
+                                <option>10:30</option>
+                                <option>11:00</option>
+                                <option>11:30</option>
+                                <option>12:00</option>
+                                <option>12:30</option>
+                                <option>13:00</option>
+                                <option>13:30</option>
+                                <option>14:00</option>
+                                <option>14:30</option>
+                                <option>15:00</option>
+                                <option>15:30</option>
+                                <option>16:00</option>
+                                <option>16:30</option>
+                                <option>17:00</option>
+                                <option>17:30</option>
+                                <option>18:00</option>
+                                <option>18:30</option>
+                                <option>19:00</option>
                             </select>
                         </div>
                     </div>
@@ -283,7 +303,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
+                    <button id="agendarCitaBtnModal" onclick="agendarCitaAlerta()" type="submit" class="btn btn-primary">
                         Agendar cita
                     </button>
                 </div>
@@ -298,59 +318,27 @@
     const form = document.getElementById('formCita');
     const submitButton = document.getElementById('agendarCitaBtnModal');
 
-    // Agregar un controlador de eventos al envío del formulario
     form.addEventListener('submit', function (event) {
-        // Detener el envío del formulario
         event.preventDefault();
 
-        // Validar los campos del formulario
         if (form.checkValidity()) {
-            // Mostrar el mensaje "Todo listo"
-            alert('Cita agendada con éxito!');
-
-            // Agregar un retraso de 2 segundos antes de enviar el formulario
+            Swal.fire('Excelente!','Cita agendada con exito','success');
             setTimeout(function () {
-                // Enviar el formulario
                 form.submit();
-            }, 2000);
+            }, 1000);
         } else {
-            alert('Por favor complete todos los campos');
+            Swal.fire('Complete todos los campos!')
         }
     });
 
+    //Mensaje Alerta
+    function agendarCitaAlerta(){
+        
+    }
+
+
+    //Para limitar que no puedan tomar hora un dia antes del dia actual
+    var fechaActual = new Date().toISOString().split('T')[0];
+    document.getElementById("dia").setAttribute("min", fechaActual);
+
 </script>
-
-@*<div class="modal-body">
-
-    <div class="mb-3">
-        <table class="table">
-            <thead class="table-dark">
-                <tr>
-                    <th>Servicios</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Corte de Cabello</td>
-                    <td>$5000</td>
-                </tr>
-                <tr>
-                    <td>Alisado Permanente</td>
-                    <td>$5000</td>
-                </tr>
-                <tr>
-                    <td>Corte Infantil</td>
-                    <td>$5000</td>
-                </tr>
-            </tbody>
-            <tfoot class="table-info">
-                <tr>
-                    <th>Total</th>
-                    <th>$15000</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
-</div>*@
