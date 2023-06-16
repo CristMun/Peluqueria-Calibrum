@@ -1,6 +1,5 @@
 ﻿@model Peluqueria_Calibrum.Models.EmpleadoModel
 
-
 @{
     Layout = null;
     ViewData["Title"] = "Login";
@@ -34,7 +33,7 @@
         </div>
         <div class="text-center fs-1 fw-bold text-dark">Login</div>
 
-        <form method="post" asp-action="Login">
+        <form method="post" asp-action="IniciarSesion">
             <div class="input-group mt-4">
                 <div class="input-group-text" style="background:#0d47a1">
                     <i class="fa-solid fa-user" style="color:white"></i>
@@ -48,9 +47,6 @@
                 <input class="form-control" type="password" placeholder="Password" asp-for="Contrasena" />
             </div>
             <div class="d-grid mt-4">
-                <a class="btn btn-success" asp-area="" asp-controller="Inicio" asp-action="CitasHoy">
-                   BOTON LOGIN TEMPORAL
-                </a>
                 <input id="loginInput" type="submit" value="Login" class="btn" style="color:white; text-decoration:none; background:#0d47a1" />
             </div>
         </form>

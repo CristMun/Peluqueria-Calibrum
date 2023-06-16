@@ -276,7 +276,7 @@
 //Metodo para mostrar el elemento seleccionado -->
     function cargarEmpleado(id) {
         $.ajax({
-            url: "/Empleado/GetEmpleado",
+            url: "/Empleado/GetEmpleadoEdit",
             type: "GET",
             data: { id: id },
             success: function (data) {

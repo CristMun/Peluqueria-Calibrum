@@ -5,7 +5,6 @@ using MySql.Data.MySqlClient;
 
 namespace Peluqueria_Calibrum.Controllers
 {
-    [Authorize]
     public class CitasController : MyController
     {
         [Route("ListaCitas")]

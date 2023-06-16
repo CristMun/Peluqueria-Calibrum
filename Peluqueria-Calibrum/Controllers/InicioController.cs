@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Peluqueria_Calibrum.Controllers
 {
-    [Authorize]
     public class InicioController : MyController
     {
         public IActionResult CitasHoy()
