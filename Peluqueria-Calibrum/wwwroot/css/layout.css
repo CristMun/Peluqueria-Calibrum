@@ -1,18 +1,22 @@
-
-
-
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('../fonts/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Inter Regular';
+    src: url('../fonts/Inter-Regular.ttf') format('truetype');
+}
 
 * {
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
-
 }
 
 body {
     background: #e4e5e6;
-
+    font-family: 'Inter Regular';
 }
 
 .wrapper .header {
@@ -38,6 +42,7 @@ body {
     color: #0d47a1;
     font-size: 50px;
     font-family: 'Harlow Solid';
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -81,28 +86,34 @@ body {
     overflow-y: auto;
 }
 
-    .wrapper .sidebar .sidebar-menu {
-        overflow: hidden;
-        margin-left: 0;
-        padding-left: 30px;
-    }
+.wrapper .sidebar .sidebar-menu {
+    overflow: hidden;
+    margin-left: 0;
+    padding-left: 30px;
+}
 
 
-    .wrapper .sidebar .logo img {
-        margin: 20px 0;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-    }
+.wrapper .sidebar .logo img {
+    margin: 20px 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
 
     .wrapper .sidebar .sidebar-menu .item-title {
-        font-size: 90%;
-        font-weight: 700;
+        font-size: 16px;
         color: white;
         text-transform: uppercase;
         margin-bottom: 10px;
         text-align: center;
         margin-left: -40px;
+        background-color: #FFFFFF;
+        color: #0d47a1;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter Bold';
     }
 
 .wrapper .sidebar .sidebar-menu .item {
@@ -111,19 +122,19 @@ body {
     position:relative;
     width: 250px;
     left: -30px;
-
+    font-size:15px;
 }
 
 
-    .wrapper .sidebar .sidebar-menu .item .menu-btn {
-        display: block;
-        color: white;
-        position: relative;
-        padding: 20px;
-        transition: 0.3s;
-        transition-property: color;
-        text-decoration: none;
-    }
+.wrapper .sidebar .sidebar-menu .item .menu-btn {
+    display: block;
+    color: white;
+    position: relative;
+    padding: 20px;
+    transition: 0.3s;
+    transition-property: color;
+    text-decoration: none;
+}
 /*-- Hover --*/
 
 .wrapper .sidebar .sidebar-menu .item .menu-btn:hover {
@@ -146,66 +157,4 @@ body {
     background: #e4e5e6;
     background-size: cover;
     transition: 0.3s;
-}
-
-
-/* Agregamos estilos al botón para que se posicione en el borde del sidebar */
-.wrapper .header .header-menu .sidebar-toggle {
-    color: #000000;
-    position: absolute;
-    margin-left: 220px;
-    font-size: 23px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: 0.3s;
-    transition-property: color;
-}
-
-    /* Cambiamos el color del botón al pasar el cursor sobre él */
-    .wrapper .header .header-menu .sidebar-toggle:hover {
-        color: #0000cc;
-    }
-
-    /* Agregamos estilos para el icono */
-    .wrapper .header .header-menu .sidebar-toggle i {
-        font-size: 25px;
-        font-weight: 900;
-    }
-
-/* Agregamos una clase para mostrar u ocultar el sidebar */
-.wrapper.sidebar-collapsed .sidebar {
-    width: 110px;
-}
-
-    .wrapper.sidebar-collapsed .sidebar .logo img {
-        height:100px;
-        width:100px;
-    }
-
-    .wrapper.sidebar-collapsed .sidebar .sidebar-menu .item-title {
-        display: none;
-    }
-
-    .wrapper.sidebar-collapsed .sidebar .sidebar-menu .item .menu-btn span {
-        display: none;
-    }
-
-    .wrapper.sidebar-collapsed .sidebar .sidebar-menu .item .menu-btn i {
-        margin-right: 70px;
-        margin-left: 25px;
-        margin-bottom:10px;
-        font-size:23px;
-    }
-
-.wrapper.sidebar-collapsed .sidebar-menu .item .menu-btn:hover {
-    color: white;
-    background-color: #0d47a1;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
 }

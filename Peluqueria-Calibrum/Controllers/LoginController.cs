@@ -10,8 +10,8 @@ namespace Peluqueria_Calibrum.Controllers
         [Route("IniciarSesion")]
         public IActionResult Login()
         {
-            return View();
-
+            var empleado = new EmpleadoModel(); // Crea una nueva instancia de EmpleadoModel
+            return View(empleado); // Pasa el modelo a la vista
         }
 
         [HttpPost]
@@ -24,6 +24,11 @@ namespace Peluqueria_Calibrum.Controllers
 
                 if (count > 0)
                 {
+                    var sqlNombre = "SELECT Nombre FROM Empleado WHERE Usuario = @usuario";
+                    var nombre = connection.ExecuteScalar<string>(sqlNombre, new { usuario = empleado.Usuario });
+
+                    ViewData["NombreUsuario"] = nombre;
+
                     return RedirectToAction("CitasHoy","Inicio");
                 }
                 else

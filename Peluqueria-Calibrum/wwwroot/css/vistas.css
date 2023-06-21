@@ -8,11 +8,11 @@
 }
 
 .card .card-header .card-title a {
-    font-family: 'Comme', sans-serif;
     font-size: 45px;
 }
+
 .card .card-header .card-title span{
-    font-weight: 700;
+    font-family:'Inter Bold';
 }
 
 .styled-table {
@@ -37,8 +37,15 @@
 .styled-table th,
 .styled-table td {
     padding: 13px 14px;
-}
 
+}
+th {
+    font-family: 'Inter Bold';
+    font-size: 15px;
+}
+td{
+    font-size:14px;
+}
 .styled-table tbody tr {
     border-bottom: 2px solid #dddddd;
 }
