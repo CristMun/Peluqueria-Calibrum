@@ -1,10 +1,9 @@
 ﻿@using Peluqueria_Calibrum.Models
-@using System.Linq
+@model EmpleadoServicioModel
 
-@model IEnumerable<EmpleadoModel>
 @{
-   Layout = "_LayoutClientes";
-   ViewData["Title"] = "Home";
+    Layout = "_LayoutClientes";
+    ViewData["Title"] = "Home";
 }
 
 <!-- Banner -->
@@ -131,16 +130,16 @@
             <div class="col-lg-8 col-xl-7">
                 <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        @for (var i = 0; i < Model.Count(); i++)
+                        @for (var i = 0; i < Model.Empleados.Count(); i++)
                         {
                             <button type="button" data-bs-target="#carousel1" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "") bg-black" aria-current="@(i == 0 ? "true" : "false")" aria-label="Slide @(i + 1)"></button>
                         }
                     </div>
                     <div class="carousel-inner">
-                        @for (var i = 0; i < Model.Count(); i++)
+                        @for (var i = 0; i < Model.Empleados.Count(); i++)
                         {
-                            
-                            var empleado = Model.ToList()[i];
+
+                            var empleado = Model.Empleados.ToList()[i];
                             <div class="equipo-item bg-white carousel-item @(i == 0 ? "active" : "") shadow-sm rounded p-4 mb-5">
                                 <div class="equipo-info d-flex">
                                     <img src="~/images/Logo-Cuadrado.jpg" class="img-thumbnail rounded-circle" alt="1" height="100px" width="100px">
@@ -155,9 +154,9 @@
                                         <i class="fa-brands fa-facebook fa-xl"></i>
                                         <i class="fa-brands fa-whatsapp fa-xl"></i>
                                     </div>
-                                   
+
                                 </div>
-                               
+
                             </div>
                         }
                     </div>
@@ -241,22 +240,26 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-label">Seleccione un servicio:</label>
-                        <select required class="form-select" aria-label="Servicios" name="nombre_servicio">
-                            <option value="" disabled selected>Seleccione</option>
-                            <option>Corte de cabello</option>
-                            <option>Perfilado de barba</option>
-                            <option>Coloracion</option>
-                            <option>Alisado</option>
-                        </select>                           
+                       
+                            <select required class="form-select" aria-label="Servicios" name="Id_Servicio">
+                                <option value="" disabled selected>Seleccione</option>
+                                @foreach (var servicio in Model.Servicios)
+                                {
+                                    <option value="@servicio.Id">@servicio.Nombre</option>
+                                }
+                            </select>
+
                     </div>
+
+
                     <div class="form-group mt-3">
                         <label class="form-label">Seleccione un empleado:</label>
-                        <select required class="form-select" arial-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado">
+                        <select required class="form-select" aria-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarCargo()">
                             <option value="" disabled selected>Seleccione</option>
-                            <option value="1">Barbero 1</option>
-                            <option value="2">Barbero 2</option>
-                            <option value="3">Peluquero 1</option>
-                            <option value="4">Peluquero 2</option>
+                            @foreach (var empleado in Model.Empleados)
+                            {
+                                <option value="@empleado.Id">@empleado.Nombre | @empleado.Cargo</option>
+                            }
                         </select>
                     </div>
                     <div class="row">
@@ -303,7 +306,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="agendarCitaBtnModal" onclick="agendarCitaAlerta()" type="submit" class="btn btn-primary">
+                    <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
                         Agendar cita
                     </button>
                 </div>
@@ -319,23 +322,38 @@
     const submitButton = document.getElementById('agendarCitaBtnModal');
 
     form.addEventListener('submit', function (event) {
+        submitButton.disabled = true;
         event.preventDefault();
 
-        if (form.checkValidity()) {
-            Swal.fire('Excelente!','Cita agendada con exito','success');
-            setTimeout(function () {
+        let timerInterval
+        Swal.fire({
+            title: 'Excelente!',
+            html: 'Cita agendada con éxito<br>Redirigiendo al comprobante...',
+            icon: 'success',
+            showCancelButton: false,
+            showCloseButton: false,
+            confirmButtonText: 'Ver Comprobante',
+            reverseButtons: true,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
                 form.submit();
-            }, 1000);
-        } else {
-            Swal.fire('Complete todos los campos!')
-        }
+            }
+        });
+        setTimeout(function () {
+            form.submit();
+        }, 1500);
     });
-
-    //Mensaje Alerta
-    function agendarCitaAlerta(){
-        
-    }
-
 
     //Para limitar que no puedan tomar hora un dia antes del dia actual
     var fechaActual = new Date().toISOString().split('T')[0];

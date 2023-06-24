@@ -12,23 +12,61 @@ namespace PeluqueriaCalibrum.Controllers
     {
         public IActionResult Home()
         {
-            GetEquipo();
+            GetEmpServ();
+            return View();
+        }
+        public IActionResult Comprobante()
+        {
             return View();
         }
 
-        /*Metodo para llamar los datos de los empleados para la vista de "Nuestro Equipo"*/
-        public IActionResult GetEquipo()
+        /*Union de EmpleadoModel con ServicioModel*/
+        public ActionResult GetEmpServ()
         {
-            List<EmpleadoModel> empleados;
+            var empleadoServicioModel = new EmpleadoServicioModel();
 
-            using (var connection = new MySqlConnection(MyController.csCal))
+            var listaEmpleados = ObtenerListaEmpleados();
+            var listaServicios = ObtenerListaServicios();
+
+            if (listaEmpleados != null && listaServicios != null)
             {
-                connection.Open();
-                empleados = connection.Query<EmpleadoModel>("SELECT * FROM Empleado").ToList();
+                empleadoServicioModel.Empleados = listaEmpleados;
+                empleadoServicioModel.Servicios = listaServicios;
+            }
+            else
+            {
+                return View(empleadoServicioModel);
             }
 
-            return View(empleados);
+            return View(empleadoServicioModel);
         }
+
+        /*Union de EmpleadoModel con ServicioModel*/
+        private List<EmpleadoModel> ObtenerListaEmpleados()
+        {
+            List<EmpleadoModel> listaEmpleados;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Empleado WHERE Cargo<>'Administrador'";
+                listaEmpleados = db.Query<EmpleadoModel>(sql).ToList();
+            }
+            return listaEmpleados;
+        }
+        private List<ServicioModel> ObtenerListaServicios()
+        {
+            List<ServicioModel> listaServicios;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Servicio";
+                listaServicios = db.Query<ServicioModel>(sql).ToList();
+            }
+            return listaServicios;
+        }
+
+
+
+        
+
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
@@ -37,11 +75,18 @@ namespace PeluqueriaCalibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita(Hora, Dia, Nombre_cliente,  Telefono, Nombre_servicio) " +
-                    " values(@hora, @dia, @nombre_cliente,  @telefono, @nombre_servicio)";
+                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado) " +
+                          "SELECT @hora, @dia, @nombre_cliente, @telefono, @nombre_servicio, Empleado.Id " +
+                          "FROM Empleado WHERE Empleado.Id = @id_empleado";
                 result = db.Execute(sql, model);
             }
-            return RedirectToAction("Home");
+            return View("Comprobante");
         }
+
+
+
+
+        
+
     }
 }

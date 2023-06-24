@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Peluqueria_Calibrum.Models;
 
 namespace Peluqueria_Calibrum.Controllers
 {
@@ -14,6 +15,7 @@ namespace Peluqueria_Calibrum.Controllers
             return View();
         }
 
+        
 
         /*Metodo para llamar datos en la base de datos*/
         [HttpGet]
@@ -22,11 +24,14 @@ namespace Peluqueria_Calibrum.Controllers
             IEnumerable<Models.CitaModel> lst = null;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Cita";
+                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado" +
+                    " FROM Cita JOIN Empleado ON Cita.Id_Empleado = Empleado.Id";
                 lst = db.Query<Models.CitaModel>(sql);
             }
             return View(lst);
         }
+
+       
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
@@ -84,5 +89,17 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return RedirectToAction("Citas");
         }
+
+
+
+
+
+
+
+
+        
+
+
+
     }
 }

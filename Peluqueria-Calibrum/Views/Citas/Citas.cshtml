@@ -46,6 +46,7 @@
                     <tr>
                         <th>Hora | Dia(Año/Mes/Dia)</th>
                         <th>Servicio(s)</th>
+                        <th>Empleado</th>
                         <th>Datos del Cliente</th>
                         <th>Precio</th>
                         <th>Acciones</th>
@@ -59,6 +60,7 @@
                         <tr>
                             <td>@item.Hora | @item.Dia</td>
                             <td>@item.Nombre_servicio</td>
+                            <td>@item.Nombre_Empleado</td>
                             <td colspan style="white-space: pre-wrap;">@item.Nombre_cliente <br />@item.Telefono</td>
                             <td>$@item.Precio_total</td>
                             <td>
@@ -164,6 +166,7 @@
                             </select>
                         </div>
                         <div class="form-group mt-3">
+                            foreach
                             <label class="form-label">Seleccione un empleado:</label>
                             <select required class="form-select" arial-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado">
                                 <option value="" disabled selected>Seleccione</option>
