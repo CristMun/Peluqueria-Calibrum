@@ -41,7 +41,7 @@ namespace PeluqueriaCalibrum.Controllers
             return View(empleadoServicioModel);
         }
 
-        /*Union de EmpleadoModel con ServicioModel*/
+        
         private List<EmpleadoModel> ObtenerListaEmpleados()
         {
             List<EmpleadoModel> listaEmpleados;
@@ -62,12 +62,7 @@ namespace PeluqueriaCalibrum.Controllers
             }
             return listaServicios;
         }
-
-
-
-        
-
-
+        /*FIN Union de EmpleadoModel con ServicioModel*/
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
         public IActionResult InsertCitasInicio(Peluqueria_Calibrum.Models.CitaModel model)

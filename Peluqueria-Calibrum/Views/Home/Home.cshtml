@@ -240,18 +240,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-label">Seleccione un servicio:</label>
-                       
-                            <select required class="form-select" aria-label="Servicios" name="Id_Servicio">
-                                <option value="" disabled selected>Seleccione</option>
-                                @foreach (var servicio in Model.Servicios)
-                                {
-                                    <option value="@servicio.Id">@servicio.Nombre</option>
-                                }
-                            </select>
-
+                        
+                        <select required class="form-select" aria-label="Servicios" name="Id_Servicio" onchange="mostrarPrecioSeleccionado(this)">
+                            <option value="" disabled selected>Seleccione</option>
+                            @foreach (var servicio in Model.Servicios)
+                            {
+                                <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre</option>
+                            }
+                        </select>
                     </div>
-
-
                     <div class="form-group mt-3">
                         <label class="form-label">Seleccione un empleado:</label>
                         <select required class="form-select" aria-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarCargo()">
@@ -305,6 +302,11 @@
                         <input required type="text" class="form-control" id="telefono" name="telefono">
                     </div>
                 </div>
+                </hr>
+                <div class="text-center mt-3">
+                    <h3 class="fw-bold">Total:  </h3>
+                    <h3 id="precioSeleccionado"></h3>
+                </div>
                 <div class="modal-footer">
                     <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
                         Agendar cita
@@ -317,6 +319,9 @@
 
 
 <script>
+
+    
+
     // Obtener el formulario y el botón de envío
     const form = document.getElementById('formCita');
     const submitButton = document.getElementById('agendarCitaBtnModal');
@@ -358,5 +363,14 @@
     //Para limitar que no puedan tomar hora un dia antes del dia actual
     var fechaActual = new Date().toISOString().split('T')[0];
     document.getElementById("dia").setAttribute("min", fechaActual);
+
+
+    //Para obtener el precio y mostrarlo en modal
+    function mostrarPrecioSeleccionado(selectElement) {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var precioSeleccionado = selectedOption.getAttribute('data-precio');
+        document.getElementById('precioSeleccionado').textContent = precioSeleccionado;
+    }
+    
 
 </script>
