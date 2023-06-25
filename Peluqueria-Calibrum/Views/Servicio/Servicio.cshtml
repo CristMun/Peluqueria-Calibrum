@@ -17,15 +17,26 @@
         </div>
     </div>
 
+
     <div class="card-body">
         <div class="row">
-            <div class="col-auto">
+            <div class="col-sm-12 col-md-4">
                 <div class="mt-2 form-floating">
                     <input id="fullname" type="text" class="form-control">
                     <label for="fullname">Servicio</label>
                 </div>
             </div>
-            <div class="col-auto">
+            <div class="col-sm-12 col-md-4">
+                <div class="mt-2 form-floating">
+                    <select class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="Peluquero">Peluquero</option>
+                        <option value="Barbero">Barbero</option>
+                    </select>
+                    <label for="categoria">Categoría:</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
                 <button type="button" class="btn btn-secondary btn-circle">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -36,20 +47,20 @@
                 <thead>
                     <tr>
                         <th>Servicios</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Precio</th>
+                        <th>Categoría</th>
                         <th>Acciones</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-
                             <td>@item.Nombre</td>
                             <td>@item.Descripcion</td>
                             <td>$@item.Precio</td>
+                            <td>@item.Categoria</td>
                             <td>
                                 <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarServicio" onclick="cargarServicios(@item.Id)">
                                     <i class="fa-solid fa-pen-to-square"></i>
@@ -59,12 +70,13 @@
                                 </a>
                             </td>
                         </tr>
-
                     }
                 </tbody>
             </table>
-        </div>    
+        </div>
     </div>
+
+
 
     <!-- Modal para editar Servicio -->
     <div class="modal fade" id="editarServicio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
@@ -80,6 +92,23 @@
                             <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />
                             <input required type="text" class="form-control" id="nombre" name="Nombre" />
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="Categoria" class="form-label">Categoría</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Categoria" id="peluquero" value="Peluquero" required>
+                                <label class="form-check-label" for="peluquero">
+                                    Peluquero
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Categoria" id="barbero" value="Barbero">
+                                <label class="form-check-label" for="barbero">
+                                    Barbero
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="form-group mb-3">
                             <label for="Descripcion" class="form-label">Descripción</label>
                             <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
@@ -116,6 +145,23 @@
                             <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />
                             <input required type="text" class="form-control" id="nombre" name="Nombre" />
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="Categoria" class="form-label">Categoría</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Categoria" id="peluquero" value="Peluquero" required>
+                                <label class="form-check-label" for="peluquero">
+                                    Peluquero
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Categoria" id="barbero" value="Barbero">
+                                <label class="form-check-label" for="barbero">
+                                    Barbero
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="form-group mb-3">
                             <label for="Descripcion" class="form-label">Descripción</label>
                             <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
@@ -174,6 +220,12 @@
                 $("#nombre").val(data.nombre);
                 $("#descripcion").val(data.descripcion);
                 $("#precio").val(data.precio);
+                // Seleccionar la opción de categoría correspondiente
+                if (data.categoria === "Peluquero") {
+                    $("#peluquero").prop("checked", true);
+                } else if (data.categoria === "Barbero") {
+                    $("#barbero").prop("checked", true);
+                }
 
                 $("#formEditarServicio").attr("action", "/Servicio/UpdateServicio?id=" + data.id);
             },

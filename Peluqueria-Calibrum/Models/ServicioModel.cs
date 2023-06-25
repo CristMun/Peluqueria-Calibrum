@@ -16,5 +16,8 @@ namespace Peluqueria_Calibrum.Models
         [JsonProperty("precio")]
         public int Precio { get; set; }
 
+        [JsonProperty("categoria")]
+        public string Categoria { get;  set; }
+
     }
 }

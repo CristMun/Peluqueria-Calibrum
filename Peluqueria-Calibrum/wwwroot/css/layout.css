@@ -158,3 +158,6 @@ body {
     background-size: cover;
     transition: 0.3s;
 }
+.btn-block {
+        width: 100%;
+    }

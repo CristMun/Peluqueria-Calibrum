@@ -34,8 +34,8 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Servicio(Nombre, Descripcion, Precio) " +
-                    " values(@nombre, @descripcion, @precio)";
+                var sql = "INSERT INTO Servicio(Nombre, Descripcion, Precio, Categoria) " +
+                    " values(@nombre, @descripcion, @precio, @categoria)";
                 result = db.Execute(sql, model);
             }
             return RedirectToAction("Servicio");

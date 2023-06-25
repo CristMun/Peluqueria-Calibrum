@@ -80,7 +80,7 @@
                             Servicios
                         </a>
                     </li>
-                    <br></br>
+
                     <li class="item-title">
                         Administracion
                     </li>
@@ -90,54 +90,32 @@
                             Inventario
                         </a>
                     </li>
-                    </br></br>
-                    
-                    
                     <li class="item">
-                        <a class="menu-btn" style="background-color:#0d47a1; color:#0d47a1; font-size:0px" onclick="test()"">
-                            Boton oculto
+                        <a class="menu-btn" asp-area="" asp-controller="Gestion" asp-action="Gestion">
+                            <i class="nav-icon fas fa-sliders"></i>
+                            Gestión
                         </a>
                     </li>
+                    
+                    
+                    
                 </ul>
             </div>
             <!--Sidebar End-->
+
             <!--Main Container Start-->
-            <div class="container">
-                <div>
-                    @RenderBody()
-                </div>
+            
+        </div>
+        <!--Main Container End-->
+        <div class="container">
+            <div>
+                @RenderBody()
             </div>
         </div>
-
-        <!--Main Container End-->
-
     </div>
-    <!--Wrapper End-->
-    <!-- jQuery, Bootstrap JS -->
+</body>
 
-
-
-    
-    <script>
-        //BOTON DE PRUEBA ESTO ES PARA PROBAR SWEETALERT2
-        function test(){
-            Swal.fire({
-                title: 'SUPER ADMIN ACTIVADO',
-                html:'<br>Esto no hace nada en realidad...',
-                width: 600,
-                padding: '3em',
-                color: '#716add',
-                background: '# ',
-                backdrop: `
-                 rgba(255, 125, 0, 0.5)
-                url("https://media.tenor.com/-AyTtMgs2mMAAAAi/nyan-cat-nyan.gif")
-                left top / 50% auto
-                no-repeat
-                  `
-            })
-        }
-
-
+<script>
         document.querySelector('.dropdown-item').addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -198,6 +176,5 @@
     </script>
 
 
-</body>
 </html>
 

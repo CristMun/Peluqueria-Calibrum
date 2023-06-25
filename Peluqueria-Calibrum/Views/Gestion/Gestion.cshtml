@@ -1,0 +1,283 @@
+﻿@{
+    ViewData["Title"] = "Gestión";
+}
+
+<div class="card">
+    <div class="card-header" >
+        <div class="card-title" >
+            <a>Gestionar <span>Sitio Web</span></a>
+        </div>
+    </div>
+    <br>
+    <div class="mb-3">
+        <h4 style="text-align:center; font-weight:bold">Modificar Apartados</h4>
+        <hr>
+    </div>
+    <div class="card-body" style="text-align:justify; margin:auto">
+        <div class="mb-3">
+            <a class="btn btn-outline-success  btn-block" data-bs-toggle="modal" data-bs-target="#nosotrosModal">
+                <i class="fa-solid fa-people-group"> </i>Nosotros
+            </a>
+        </div>
+        <div class="mb-3">
+            <a class="btn btn-outline-success btn-block" data-bs-toggle="modal" data-bs-target="#serviciosModal">
+                <i class="fa-solid fa-scissors"> </i>Servicios
+            </a>
+        </div>
+        <div class="mb-3">
+            <a class="btn btn-outline-success btn-block" data-bs-toggle="modal" data-bs-target="#contactanosModal">
+                <i class="fa-solid fa-phone"> </i> Contactanos
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--Modals-->
+<!--Modal Nosotros-->
+<div class="modal fade" id="nosotrosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticLabel">Modificar apartado <strong> 'Nosotros'</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Titulo</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Sub titulo</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea required class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Imagen de referencia</label>
+                        <input class="form-control" type="file">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        Modificar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Servicios-->
+<div class="modal fade" id="serviciosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticLabel">Modificar apartado <strong> 'Servicios'</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Iconos disponibles</label>
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Seleccionar servicios (6 Como Máximo)</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        Modificar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Contactanos-->
+<div class="modal fade" id="contactanosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticLabel">Modificar apartado <strong> 'Contactanos'</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Titulo (frase)</label>
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Correo</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Telefono</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Direccion</label><br />
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+                    <hr>
+
+
+
+                    <div class="form-group mb-3">
+                        <label for="CategoriaAbierto" class="form-label">Días Abiertos</label><br />
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="lunesAbierto" value="Lunes">
+                            <label class="form-check-label" for="lunesAbierto">
+                                Lunes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="martesAbierto" value="Martes">
+                            <label class="form-check-label" for="martesAbierto">
+                                Martes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="miercolesAbierto" value="Miércoles" required>
+                            <label class="form-check-label" for="miercolesAbierto">
+                                Miércoles
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="juevesAbierto" value="Jueves" required>
+                            <label class="form-check-label" for="juevesAbierto">
+                                Jueves
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="viernesAbierto" value="Viernes" required>
+                            <label class="form-check-label" for="viernesAbierto">
+                                Viernes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="sabadoAbierto" value="Sábado" required>
+                            <label class="form-check-label" for="sabadoAbierto">
+                                Sábado
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaAbierto[]" id="domingoAbierto" value="Domingo" required>
+                            <label class="form-check-label" for="domingoAbierto">
+                                Domingo
+                            </label>
+                        </div>
+                        <br />
+                        <label for="nombre" class="form-label">Horario</label>
+                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="CategoriaCerrado" class="form-label">Días Cerrados</label><br />
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="lunesCerrado" value="Lunes">
+                            <label class="form-check-label" for="lunesCerrado">
+                                Lunes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="martesCerrado" value="Martes">
+                            <label class="form-check-label" for="martesCerrado">
+                                Martes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="miercolesCerrado" value="Miércoles" required>
+                            <label class="form-check-label" for="miercolesCerrado">
+                                Miércoles
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="juevesCerrado" value="Jueves" required>
+                            <label class="form-check-label" for="juevesCerrado">
+                                Jueves
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="viernesCerrado" value="Viernes" required>
+                            <label class="form-check-label" for="viernesCerrado">
+                                Viernes
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="sabadoCerrado" value="Sábado" required>
+                            <label class="form-check-label" for="sabadoCerrado">
+                                Sábado
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="CategoriaCerrado[]" id="domingoCerrado" value="Domingo" required>
+                            <label class="form-check-label" for="domingoCerrado">
+                                Domingo
+                            </label>
+                        </div>
+                        <br />
+                    </div>
+                    
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        Modificar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Bloquear checkboxes seleccionados en días abiertos en días cerrados
+    $('input[name="CategoriaAbierto[]"]').change(function () {
+        var selectedValues = $('input[name="CategoriaAbierto[]"]:checked').map(function () {
+            return this.value;
+        }).get();
+
+        $('input[name="CategoriaCerrado[]"]').each(function () {
+            if (selectedValues.includes(this.value)) {
+                $(this).prop('disabled', true).prop('checked', false);
+            } else {
+                $(this).prop('disabled', false);
+            }
+        });
+    });
+
+    // Bloquear checkboxes seleccionados en días cerrados en días abiertos
+    $('input[name="CategoriaCerrado[]"]').change(function () {
+        var selectedValues = $('input[name="CategoriaCerrado[]"]:checked').map(function () {
+            return this.value;
+        }).get();
+
+        $('input[name="CategoriaAbierto[]"]').each(function () {
+            if (selectedValues.includes(this.value)) {
+                $(this).prop('disabled', true).prop('checked', false);
+            } else {
+                $(this).prop('disabled', false);
+            }
+        });
+    });
+
+
+
+</script>
