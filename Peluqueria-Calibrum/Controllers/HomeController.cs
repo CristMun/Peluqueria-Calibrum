@@ -27,11 +27,13 @@ namespace PeluqueriaCalibrum.Controllers
 
             var listaEmpleados = ObtenerListaEmpleados();
             var listaServicios = ObtenerListaServicios();
+            var listaGestiones = ObtenerListaGestiones();
 
             if (listaEmpleados != null && listaServicios != null)
             {
                 empleadoServicioModel.Empleados = listaEmpleados;
                 empleadoServicioModel.Servicios = listaServicios;
+                empleadoServicioModel.Gestiones = listaGestiones;
             }
             else
             {
@@ -61,6 +63,17 @@ namespace PeluqueriaCalibrum.Controllers
                 listaServicios = db.Query<ServicioModel>(sql).ToList();
             }
             return listaServicios;
+        }
+
+        private List<GestionModel> ObtenerListaGestiones()
+        {
+            List<GestionModel> listaGestiones;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Gestion ORDER BY Id DESC LIMIT 1;";
+                listaGestiones = db.Query<GestionModel>(sql).ToList();
+            }
+            return listaGestiones;
         }
         /*FIN Union de EmpleadoModel con ServicioModel*/
         /*Metodo para ingresar datos en la base de datos*/

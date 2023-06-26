@@ -46,20 +46,19 @@
                 <h5 class="modal-title" id="staticLabel">Modificar apartado <strong> 'Nosotros'</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form action="/Gestion/InsertNosotros" method="post">
                 <div class="modal-body">
-                    
                     <div class="form-group mb-3">
-                        <label for="nombre" class="form-label">Titulo</label><br />
-                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                        <label for="Nosotros_Titulo" class="form-label">Titulo</label><br />
+                        <input required type="text" class="form-control" id="nosotros_titulo" name="Nosotros_Titulo">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nombre" class="form-label">Sub titulo</label><br />
-                        <input required type="text" class="form-control" id="nombre" name="Nombre">
+                        <label for="Nosotros_Subtitulo" class="form-label">Sub titulo</label><br />
+                        <input required type="text" class="form-control" id="nosotros_subtitulo" name="Nosotros_Subtitulo">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea required class="form-control" id="descripcion" rows="3" name="Descripcion"></textarea>
+                        <label for="Nosotros_Descripcion" class="form-label">Descripcion</label>
+                        <textarea required class="form-control" id="nosotros_descripcion" rows="3" name="Nosotros_Descripcion"></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Imagen de referencia</label>

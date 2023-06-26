@@ -28,13 +28,16 @@
             </div>
             <div class="col-md-6 mt-md-0 order-md-first">
                 <div class="about-text">
-                    <h1 class="text-uppercase fs-1" style="color:#0d47a1">Nosotros</h1>
-                    <h2 class="fs-4">Barberia / Peluqueria</h2>
-                    <p class="mt-4 text-muted">
-                        En Calibrum contamos con una amplia variedad de estilistas expertos en distintas áreas para ofrecer el mejor
-                        servicio posible a nuestros clientes. Al ser una Peluqueria y Barberia ofrecemos una amplia gama de servicios; cortes
-                        de pelo, barba, peinados, coloración y decoloración entre otras cosas. Visítanos, nuestra ubicación es...
-                    </p>
+                    @foreach (var gestion in Model.Gestiones)
+                    {
+                        <h1 class="text-uppercase fs-1" style="color:#0d47a1">@gestion.Nosotros_Titulo</h1>
+                        <h2 class="fs-4">@gestion.Nosotros_Subtitulo</h2>
+                    
+                        <p class="mt-4 text-muted">
+                            @gestion.Nosotros_Descripcion
+                        </p>
+                    }
+                    
                 </div>
             </div>
         </div>
