@@ -24,9 +24,9 @@
             @foreach (var gestion in Model.Gestiones)
             {
             <div class="col-md-6 mt-0 mt-md-0">
-                    <div class="about-image text-center">
-                        <img class="mw-100" src="~/images/Nosotros/@gestion.Nos_Imagen" alt="Imagen">
-                    </div>
+                <div class="about-image text-center">
+                    <img class="mw-100" src="@Url.Content("~/images/Nosotros/" + gestion.Nos_Imagen)" alt="Imagen">
+                </div>
             </div>
             <div class="col-md-6 mt-md-0 order-md-first">
                 <div class="about-text">

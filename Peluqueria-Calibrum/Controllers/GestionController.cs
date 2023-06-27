@@ -1,23 +1,44 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-
 
 namespace Peluqueria_Calibrum.Controllers
 {
     public class GestionController : Controller
     {
+        private readonly IWebHostEnvironment hostingEnvironment;
+
+        public GestionController(IWebHostEnvironment environment)
+        {
+            hostingEnvironment = environment;
+        }
+
         public IActionResult Gestion()
         {
+            var imagePath = Path.Combine(hostingEnvironment.WebRootPath, "images", "Nosotros");
+
+            // Verificar si existe un archivo PNG
+            var pngFilePath = Path.Combine(imagePath, "nosotrosfoto.png");
+            if (System.IO.File.Exists(pngFilePath))
+            {
+                ViewBag.ImagePath = "/images/Nosotros/nosotrosfoto.png";
+            }
+            else
+            {
+                // Si no existe un archivo PNG, se asume que existe un archivo JPG
+                ViewBag.ImagePath = "/images/Nosotros/nosotrosfoto.jpg";
+            }
+
+            // ... obtener otros datos y preparar el modelo ...
+
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult InsertNosotros(Models.GestionModel model, IFormFile Nos_Imagen, [FromServices] IWebHostEnvironment hostingEnvironment)
+        public IActionResult InsertNosotros(Models.GestionModel model, IFormFile Nos_Imagen)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -54,8 +75,5 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return RedirectToAction("Gestion");
         }
-
-
-
     }
 }

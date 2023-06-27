@@ -58,11 +58,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="Nos_Descripcion" class="form-label">Descripcion</label>
-                        <textarea required class="form-control" id="nos_descripcion" rows="3" name="Nos_Descripcion"></textarea>
+                        <textarea required class="form-control" id="nos_descripcion" rows="3" name="Nos_Descripcion" maxlength="400"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="Nos_Imagen" class="form-label">Imagen de referencia</label>
-                        <input class="form-control" type="file" id="nos_imagen" name="Nos_Imagen" onchange="previewImage(event)">
+                        <input required class="form-control" type="file" id="nos_imagen" name="Nos_Imagen" onchange="previewImage(event)">
                         <img id="preview" src="#" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px; margin-top: 10px; display: none;">
                     </div>
                 </div>
