@@ -21,25 +21,25 @@
 <section class="about py-5" id="about" style="background:#e4e5e6;">
     <div class="container-lg py-4">
         <div class="row  align-content-center align-items-center">
+            @foreach (var gestion in Model.Gestiones)
+            {
             <div class="col-md-6 mt-0 mt-md-0">
-                <div class="about-image text-center">
-                    <img class="mw-100" src="~/images/pelo.jpg" alt="Imagen">
-                </div>
+                    <div class="about-image text-center">
+                        <img class="mw-100" src="~/images/Nosotros/@gestion.Nos_Imagen" alt="Imagen">
+                    </div>
             </div>
             <div class="col-md-6 mt-md-0 order-md-first">
                 <div class="about-text">
-                    @foreach (var gestion in Model.Gestiones)
-                    {
-                        <h1 class="text-uppercase fs-1" style="color:#0d47a1">@gestion.Nosotros_Titulo</h1>
-                        <h2 class="fs-4">@gestion.Nosotros_Subtitulo</h2>
+                    
+                        <h1 class="text-uppercase fs-1" style="color:#0d47a1">@gestion.Nos_Titulo</h1>
+                        <h2 class="fs-4">@gestion.Nos_Subtitulo</h2>
                     
                         <p class="mt-4 text-muted">
-                            @gestion.Nosotros_Descripcion
+                            @gestion.Nos_Descripcion
                         </p>
-                    }
-                    
                 </div>
             </div>
+            }
         </div>
     </div>
 </section>

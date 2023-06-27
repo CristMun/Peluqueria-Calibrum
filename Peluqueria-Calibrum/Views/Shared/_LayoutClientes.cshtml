@@ -86,6 +86,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-
+    <script>
+        document.addEventListener('keydown', function (event) {
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
