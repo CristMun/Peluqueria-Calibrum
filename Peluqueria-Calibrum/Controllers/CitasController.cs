@@ -15,23 +15,26 @@ namespace Peluqueria_Calibrum.Controllers
             return View();
         }
 
-        
+
 
         /*Metodo para llamar datos en la base de datos*/
         [HttpGet]
         public IActionResult GetCitas()
         {
-            IEnumerable<Models.CitaModel> lst = null;
+            IEnumerable<CitaModel> lst = null;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado" +
-                    " FROM Cita JOIN Empleado ON Cita.Id_Empleado = Empleado.Id";
+                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
+                          "FROM Cita " +
+                          "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id";
                 lst = db.Query<Models.CitaModel>(sql);
             }
             return View(lst);
         }
 
-       
+
+
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]

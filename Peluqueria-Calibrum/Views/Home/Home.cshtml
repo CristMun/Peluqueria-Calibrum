@@ -57,65 +57,23 @@
             </div>
         </div>
         <div class="row text-center">
+            @foreach (var servicio in Model.Servicios.Take(6))
+            {
             <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <img src="~/images/icon/hair-clipper.png" width="100px" height="100px" alt="corte" />
+                    <div class="servicio-item shadow-lg p-4 rounded bg-white" style="height:300;">
+                        <div class="icon my-3 fs-2">
+                            <img src="~/images/icon/hair-clipper.png" width="100px" height="100px" alt="corte" />
+                        </div>
+                        <h3 class="fs-5 py-2">@servicio.Nombre</h3>
+                        <p class="text-muted">@servicio.Descripcion</p>
+                        <b>$@servicio.Precio</b>
                     </div>
-                    <h3 class="fs-5 py-2">Corte de cabello</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
             </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <img src="~/images/icon/razor.png" width="100px" height="100px" alt="perfilado" />
-                    </div>
-                    <h3 class="fs-5 py-2">Perfilado de barba</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
+            }
+            <div class="text-center">
+                <a role="button" class="btn btn-primary btn-lg text-uppercase fw-bold" data-bs-toggle="modal" data-bs-target="#modalAgendar">Agenda tu hora</a>
             </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <img src="~/images/icon/barber-chair.png" width="100px" height="100px" alt="silla" />
-                    </div>
-                    <h3 class="fs-5 py-2">Servicio completo</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <img src="~/images/icon/hair-color.png" width="100px" height="100px" alt="silla" />
-                    </div>
-                    <h3 class="fs-5 py-2">Coloracion</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <img src="~/images/icon/hair-iron.png" width="100px" height="100px" alt="silla" />
-                    </div>
-                    <h3 class="fs-5 py-2">Alisado</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="servicio-item shadow-lg p-4 rounded bg-white">
-                    <div class="icon my-3 fs-2">
-                        <i class="fa-solid fa-question" style="height:100px; width:100px"></i>
-                    </div>
-                    <h3 class="fs-5 py-2">Lorem</h3>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit <b>$10.000</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
-            <a role="button" class="btn btn-primary btn-lg text-uppercase fw-bold" data-bs-toggle="modal" data-bs-target="#modalAgendar">Agenda tu hora</a>
-        </div>
-    </div>
+         </div>
 </section>
 
 <!-- Equipo -->
@@ -243,18 +201,17 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-label">Seleccione un servicio:</label>
-                        
-                        <select required class="form-select" aria-label="Servicios" name="Id_Servicio" onchange="mostrarPrecioSeleccionado(this)">
+                        <select required class="form-select" aria-label="Id_Servicio" name="Id_Servicio" onchange="mostrarPrecioSeleccionado(this)">
                             <option value="" disabled selected>Seleccione</option>
                             @foreach (var servicio in Model.Servicios)
                             {
-                                <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre</option>
+                                <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre,  $@servicio.Precio</option>
                             }
                         </select>
                     </div>
                     <div class="form-group mt-3">
                         <label class="form-label">Seleccione un empleado:</label>
-                        <select required class="form-select" aria-label="Peluquero" name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarCargo()">
+                        <select required class="form-select"  name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarCargo()">
                             <option value="" disabled selected>Seleccione</option>
                             @foreach (var empleado in Model.Empleados)
                             {

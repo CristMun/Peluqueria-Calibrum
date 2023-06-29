@@ -41,6 +41,13 @@ function cargarServicios(id) {
             } else if (data.categoria === "Barbero") {
                 $("#barbero").prop("checked", true);
             }
+            // Seleccionar la opción de mostrar_home correspondiente
+            if (data.mostrar_home === 1) {
+                $("#1").prop("checked", true);
+            } else if (data.mostrar_home === 0) {
+                $("#2").prop("checked", true);
+            }
+
 
             $("#formEditarServicio").attr("action", "/Servicio/UpdateServicio?id=" + data.id);
         },

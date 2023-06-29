@@ -51,6 +51,7 @@
                         <th>Precio</th>
                         <th>Categoría</th>
                         <th>Acciones</th>
+                        <th>Mostrar en Inicio</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,8 +69,24 @@
                                 <a class="btn btn-danger">
                                     <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
                                 </a>
+                                
+                            </td>
+                            <td style="text-align:center">
+                                @switch (item.Mostrar_Home)
+                                {
+                                    case 1:
+                                        <a class="btn btn-success" >Si</a>
+                                        break;
+                                    case 0:
+                                        <a class="btn btn-secondary">No</a>
+                                        break;
+                                    default:
+                                        <a class="btn btn-info">No asignado</a>
+                                        break;
+                                }
                             </td>
                         </tr>
+                        
                     }
                 </tbody>
             </table>
@@ -116,6 +133,21 @@
                         <div class="mb-3">
                             <label for="Precio" class="form-label">Precio</label>
                             <input required type="number" class="form-control" id="precio" name="Precio" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Mostrar_Home" class="form-label">Mostrar en la página de inicio</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Mostrar_Home" id="1" value="1" required>
+                                <label class="form-check-label" for="1">
+                                    Sí
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Mostrar_Home" id="0" value="0">
+                                <label class="form-check-label" for="0">
+                                    No
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">

@@ -76,7 +76,7 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "UPDATE Servicio SET Nombre=@nombre, Descripcion=@descripcion, Precio=@precio WHERE Id = @id";
+                var sql = "UPDATE Servicio SET Nombre=@nombre, Descripcion=@descripcion, Precio=@precio, Categoria=@categoria, Mostrar_Home=@mostrar_home WHERE Id = @id";
                 model.Id = id;
                 result = db.Execute(sql, model);
             }

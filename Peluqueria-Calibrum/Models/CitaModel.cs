@@ -16,8 +16,6 @@ namespace Peluqueria_Calibrum.Models
         public string Nombre_servicio { get; set; }
         [JsonProperty("telefono")]
         public string Telefono { get; set; }
-        [JsonProperty("precio_total")]
-        public int? Precio_total { get; set; }
         [JsonProperty("id_cliente")]
         public int? Id_Cliente { get; set; }
         [JsonProperty("id_empleado")]
@@ -26,8 +24,9 @@ namespace Peluqueria_Calibrum.Models
         public int? Id_Servicio { get; set; }
 
 
-
+        public int? Precio_Total { get; set; }
         public string? Nombre_Empleado { get; set; }
+
 
     }
 }

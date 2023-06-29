@@ -59,7 +59,7 @@ namespace PeluqueriaCalibrum.Controllers
             List<ServicioModel> listaServicios;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Servicio";
+                var sql = "SELECT * FROM Servicio where Mostrar_Home=1";
                 listaServicios = db.Query<ServicioModel>(sql).ToList();
             }
             return listaServicios;
@@ -76,17 +76,27 @@ namespace PeluqueriaCalibrum.Controllers
             return listaGestiones;
         }
         /*FIN Union de EmpleadoModel con ServicioModel*/
+
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
-        public IActionResult InsertCitasInicio(Peluqueria_Calibrum.Models.CitaModel model)
+        public IActionResult InsertCitasInicio(CitaModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado) " +
-                          "SELECT @hora, @dia, @nombre_cliente, @telefono, @nombre_servicio, Empleado.Id " +
-                          "FROM Empleado WHERE Empleado.Id = @id_empleado";
-                result = db.Execute(sql, model);
+                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio) " +
+                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id " +
+                          "FROM Servicio " +
+                          "WHERE Servicio.Id = @id_servicio";
+                result = db.Execute(sql, new
+                {
+                    model.Hora,
+                    model.Dia,
+                    model.Nombre_cliente,
+                    model.Telefono,
+                    model.Id_Empleado,
+                    model.Id_Servicio
+                });
             }
             return View("Comprobante");
         }
@@ -94,7 +104,8 @@ namespace PeluqueriaCalibrum.Controllers
 
 
 
-        
+
+
 
     }
 }
