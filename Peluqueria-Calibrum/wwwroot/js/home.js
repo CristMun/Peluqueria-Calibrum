@@ -26,7 +26,7 @@ function validarNumero(input) {
     }
 }
 
-function aletaEnviado() {
+function alertaEnviado() {
     // Obtener el formulario y el botón de envío
     const form = document.getElementById('formCita');
     const submitButton = document.getElementById('agendarCitaBtnModal');
@@ -68,4 +68,4 @@ function aletaEnviado() {
 
 
 limitarFecha()
-aletaEnviado()
+alertaEnviado()

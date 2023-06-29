@@ -1,7 +1,8 @@
-﻿using Dapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Dapper;
+using Peluqueria_Calibrum;
+using System.Reflection;
 using Peluqueria_Calibrum.Models;
 
 namespace Peluqueria_Calibrum.Controllers
@@ -11,7 +12,8 @@ namespace Peluqueria_Calibrum.Controllers
         [Route("ListaCitas")]
         public IActionResult Citas()
         {
-            GetCitas();
+            
+            GetTables();
             return View();
         }
 
@@ -86,7 +88,7 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "UPDATE Cita SET Dia=@dia, Hora=@hora, Nombre_cliente=@nombre_cliente, Telefono=@telefono, Precio_total=@precio_total WHERE Id = @id";
+                var sql = "UPDATE Cita SET Dia=@dia, Hora=@hora, Nombre_cliente=@nombre_cliente, Telefono=@telefono, Id_Servicio=@id_servicio,   WHERE Id = @id";
                 model.Id = id;
                 result = db.Execute(sql, model);
             }
@@ -96,11 +98,69 @@ namespace Peluqueria_Calibrum.Controllers
 
 
 
+        /*Union varias tablas*/
+        public ActionResult GetTables()
+        {
+            var empleadoServicioModel = new EmpleadoServicioModel();
+
+            var listaEmpleados = ObtenerListaEmpleados();
+            var listaServicios = ObtenerListaServicios();
+            var listaCitas = ObtenerListaCitas();
+
+            if (listaEmpleados != null && listaServicios != null)
+            {
+                empleadoServicioModel.Empleados = listaEmpleados;
+                empleadoServicioModel.Servicios = listaServicios;
+                empleadoServicioModel.Citas = listaCitas;
+            }
+            else
+            {
+                return View(empleadoServicioModel);
+            }
+
+            return View(empleadoServicioModel);
+        }
+
+
+        private List<EmpleadoModel> ObtenerListaEmpleados()
+        {
+            List<EmpleadoModel> listaEmpleados;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Empleado WHERE Cargo<>'Administrador'";
+                listaEmpleados = db.Query<EmpleadoModel>(sql).ToList();
+            }
+            return listaEmpleados;
+        }
+        private List<ServicioModel> ObtenerListaServicios()
+        {
+            List<ServicioModel> listaServicios;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Servicio where Mostrar_Home=1";
+                listaServicios = db.Query<ServicioModel>(sql).ToList();
+            }
+            return listaServicios;
+        }
+
+        private List<CitaModel> ObtenerListaCitas()
+        {
+            List<CitaModel> listaCitas;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
+                          "FROM Cita " +
+                          "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id";
+                listaCitas = db.Query<CitaModel>(sql).ToList();
+            }
+            return listaCitas;
+        }
+        /*FIN Union varias tablas*/
 
 
 
 
-        
 
 
 

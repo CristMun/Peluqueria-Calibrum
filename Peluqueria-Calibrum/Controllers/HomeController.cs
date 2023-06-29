@@ -12,7 +12,7 @@ namespace PeluqueriaCalibrum.Controllers
     {
         public IActionResult Home()
         {
-            GetEmpServ();
+            GetTables();
             return View();
         }
         public IActionResult Comprobante()
@@ -21,7 +21,7 @@ namespace PeluqueriaCalibrum.Controllers
         }
 
         /*Union de EmpleadoModel con ServicioModel*/
-        public ActionResult GetEmpServ()
+        public ActionResult GetTables()
         {
             var empleadoServicioModel = new EmpleadoServicioModel();
 

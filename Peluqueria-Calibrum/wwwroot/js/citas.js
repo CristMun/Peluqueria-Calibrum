@@ -24,7 +24,11 @@
         }
     });
 }
-
+//Para limitar que no puedan tomar hora un dia antes del dia actual
+function limitarFecha() {
+    var fechaActual = new Date().toISOString().split('T')[0];
+    document.getElementById("dia").setAttribute("min", fechaActual);
+}
 function cargarCitas(id) {
     $.ajax({
         url: "/Citas/GetCitaEdit",
@@ -37,7 +41,6 @@ function cargarCitas(id) {
             $("#nombre_cliente").val(data.nombre_cliente);
             $("#nombre_servicio").val(data.nombre_servicio);
             $("#telefono").val(data.telefono);
-            $("#precio_total").val(data.precio_total);
 
             $("#formEditarCita").attr("action", "/Citas/UpdateCita?id=" + data.id);
         },
@@ -61,3 +64,7 @@ function validarNumero(input) {
         input.setCustomValidity("");
     }
 }
+
+
+
+limitarFecha()

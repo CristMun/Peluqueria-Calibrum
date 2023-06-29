@@ -1,5 +1,5 @@
 ﻿@using Peluqueria_Calibrum.Models
-@model IEnumerable<CitaModel>
+@model EmpleadoServicioModel
 @{
     ViewData["Title"] = "Citas";
 }
@@ -55,19 +55,19 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var item in Model)
+                    @foreach (var cita in Model.Citas)
                     {
                         <tr>
-                            <td>@item.Hora | @item.Dia</td>
-                            <td>@item.Nombre_servicio</td>
-                            <td>@item.Nombre_Empleado</td>
-                            <td >@item.Nombre_cliente <br />@item.Telefono</td>
-                            <td>$@item.Precio_Total</td>
+                            <td>@cita.Hora | @cita.Dia</td>
+                            <td>@cita.Nombre_servicio</td>
+                            <td>@cita.Nombre_Empleado</td>
+                            <td>@cita.Nombre_cliente <br />@cita.Telefono</td>
+                            <td>$@cita.Precio_Total</td>
                             <td>
-                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarCita" onclick="cargarCitas(@item.Id)">
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarCita" onclick="cargarCitas(@cita.Id)">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a class="btn btn-danger" onclick="eliminar(@item.Id)">
+                                <a class="btn btn-danger" onclick="eliminar(@cita.Id)">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
@@ -98,27 +98,23 @@
                         </div>
                         <div class="form-group mb3">
                             <label for="hora">Seleccione un servicio:</label>
-                            <select required class="form-select" aria-label="Servicios" id="nombre_servicio" name="nombre_servicio">
+                            <select required class="form-select" aria-label="Id_Servicio" id="id_servicio" name="Id_Servicio">
                                 <option value="" disabled selected>Seleccione</option>
-                                <option>Corte de cabello</option>
-                                <option>Perfilado de barba</option>
-                                <option>Coloracion</option>
-                                <option>Alisado</option>
+                                @foreach (var servicio in Model.Servicios)
+                                {
+                                    <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre,  $@servicio.Precio</option>
+                                }
                             </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="hora">Seleccione un empleado:</label>
-                            <select required class="form-select" arial-label="Peluquero" id="id_empleado" name="id_empleado" aria-label="id_empleado">
+                            <select required class="form-select" name="Id_Empleado" aria-label="Id_Empleado">
                                 <option value="" disabled selected>Seleccione</option>
-                                <option value="1">Barbero 1</option>
-                                <option value="2">Barbero 2</option>
-                                <option value="3">Peluquero 1</option>
-                                <option value="4">Peluquero 2</option>
+                                @foreach (var empleado in Model.Empleados)
+                                {
+                                    <option value="@empleado.Id">@empleado.Nombre | @empleado.Cargo</option>
+                                }
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precioTotal" class="form-label">Cambiar Precio</label>
-                            <input required type="text" class="form-control" id="precio_total" name="precio_total">
                         </div>
                         <div>
                             <h3 class="modal-title">Datos Cliente</h3>
@@ -231,5 +227,6 @@
 
 
 </div>
+
 
 <script src="js/citas.js"></script>
