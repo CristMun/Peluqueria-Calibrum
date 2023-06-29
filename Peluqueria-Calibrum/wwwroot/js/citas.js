@@ -26,9 +26,13 @@
 }
 //Para limitar que no puedan tomar hora un dia antes del dia actual
 function limitarFecha() {
+    var inputFecha = document.querySelectorAll('#dia-editar, #dia-agregar');
     var fechaActual = new Date().toISOString().split('T')[0];
-    document.getElementById("dia").setAttribute("min", fechaActual);
+    inputFecha.forEach(function (element) {
+        element.min = fechaActual;
+    });
 }
+
 function cargarCitas(id) {
     $.ajax({
         url: "/Citas/GetCitaEdit",
@@ -67,4 +71,4 @@ function validarNumero(input) {
 
 
 
-limitarFecha()
+limitarFecha();

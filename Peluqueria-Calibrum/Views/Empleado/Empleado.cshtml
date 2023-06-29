@@ -68,7 +68,6 @@
                     <tr>
                         <th>Nombre y Apellido</th>
                         <th>Usuario</th>
-                        <th>Servicios</th>
                         <th>Horarios</th>
                         <th>Cargo</th>
                         <th>Acciones</th>
@@ -81,7 +80,6 @@
 
                             <td>@item.Nombre @item.Apellido</td>
                             <td>@item.Usuario</td>
-                            <td>@item.Servicios</td>
                             <td>@item.Hora @item.Dias</td>
                             <td>@item.Cargo</td>
                             <td>
@@ -126,16 +124,6 @@
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
-                            <hr>
-                            <div class="form-group mb-3">
-                                <!--ESTA OPCION TIENE QUE SALIR DE LA TABLA SERVICIOS! POR MIENTRAS SERAN ITEMS EN BRUTO-->
-                                <label class="form-check-label">Seleccione el servicio que realizará:</label> <br>
-                                <select class="form-select" id="servicios" name="Servicios" required>
-                                    <option value=""  disabled selected>Seleccione</option>
-                                    <option value="Corte Infantil">Corte Infantil</option>
-                                    <option value="Decoloración">Decoloración</option>
-                                </select>
-                            </div>
                             <hr>
                         <div class="form-group mb-3">
                             <label class="form-label" for="Hora">Horario</label><br>
@@ -194,15 +182,6 @@
                                 <option value="Peluquero">Peluquero</option>
                                 <option value="Barbero">Barbero</option>
                                 <option value="Administrador">Administrador</option>
-                            </select>
-                        </div>
-                        <hr>
-                        <div class="form-group mb-3">
-                            <label class="form-check-label">Seleccione los servicios que realizará:</label> <br>
-                            <select class="form-select" id="servicios" name="servicios" aria-label="Servicios" required>
-                                <option disabled selected>Servicios</option>
-                                <option value="Corte Infantil">Corte Infantil</option>
-                                <option value="Decoloracion">Decoloración</option>
                             </select>
                         </div>
                         <hr>
