@@ -8,7 +8,6 @@
     <!-- Icono navegador-->
     <link rel="shortcut icon" href="~/images/Logo-Cuadrado-FondoBlanco.jpg">
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
     <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -18,6 +17,8 @@
 
     <!-- Css-->
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css" />
 
     <!-- Styles Personalizados -->
     <link rel="stylesheet" href="~/Peluqueria_Calibrum.styles.css" asp-append-version="true" />
@@ -113,73 +114,27 @@
             </div>
         </div>
     </div>
-</body>
 
-<script>
-        document.addEventListener('keydown', function (event) {
-            if (event.ctrlKey && event.key === 's') {
-                event.preventDefault(); // Prevenir el comportamiento predeterminado de guardar la página
-            }
-        });
+    
 
-        document.querySelector('.dropdown-item').addEventListener('click', function (event) {
-            event.preventDefault();
-
-            let timerInterval;
-            Swal.fire({
-                title: 'Cerrando sesión',
-                html: 'Espera, ¿¡QUE?! <br><b></b> segundos.',
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                    const b = Swal.getHtmlContainer().querySelector('b');
-                    timerInterval = setInterval(() => {
-                        b.textContent = ((Swal.getTimerLeft() / 1000).toFixed(1));
-                    }, 100);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                },
-                onClose: () => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Has escapado del cierre de sesión!',
-                        text: 'Parece que alguien no quiere irse... ¡Sigue disfrutando!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                }
-            }).then(() => {
-                window.location.href = '/Home';
-            });
-        });
-        
-    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/ba1c51d352.js" crossorigin="anonymous"></script>
+
     <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
+    <script src="js/layout.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-    <script>
-        // Agregamos un listener al botón para que al hacer clic en él, el sidebar se oculte o muestre
-        const sidebarToggle = document.querySelector('.sidebar-toggle');
-        const wrapper = document.querySelector('.wrapper');
 
-        sidebarToggle.addEventListener('click', () => {
-            wrapper.classList.toggle('sidebar-collapsed');
-        });
-
-
-    </script>
+</body>
 
 
 </html>

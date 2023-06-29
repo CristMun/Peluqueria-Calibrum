@@ -233,7 +233,7 @@
 <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Modal Agendar Hora-->
 <div class="modal fade" id="modalAgendar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title fw-bold" id="modalLabel">Agendar Hora</h2>
@@ -302,10 +302,9 @@
                     </div>
                     <div class="mt-3">
                         <label class="form-label">Telefono Movil</label>
-                        <input required type="text" class="form-control" id="telefono" name="telefono">
+                        <input required type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}" placeholder="993529842" maxlength="9" oninput="validarNumero(this)">
                     </div>
                 </div>
-                </hr>
                 <div class="text-center mt-3">
                     <h3 class="fw-bold">Total:  </h3>
                     <h3 id="precioSeleccionado"></h3>
@@ -320,60 +319,4 @@
     </div>
 </div>
 
-
-<script>
-
-    
-
-    // Obtener el formulario y el botón de envío
-    const form = document.getElementById('formCita');
-    const submitButton = document.getElementById('agendarCitaBtnModal');
-
-    form.addEventListener('submit', function (event) {
-        submitButton.disabled = true;
-        event.preventDefault();
-
-        let timerInterval
-        Swal.fire({
-            title: 'Excelente!',
-            html: 'Cita agendada con éxito<br>Redirigiendo al comprobante...',
-            icon: 'success',
-            showCancelButton: false,
-            showCloseButton: false,
-            confirmButtonText: 'Ver Comprobante',
-            reverseButtons: true,
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading()
-                const b = Swal.getHtmlContainer().querySelector('b')
-                timerInterval = setInterval(() => {
-                    b.textContent = Swal.getTimerLeft()
-                }, 100)
-            },
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        });
-        setTimeout(function () {
-            form.submit();
-        }, 1500);
-    });
-
-    //Para limitar que no puedan tomar hora un dia antes del dia actual
-    var fechaActual = new Date().toISOString().split('T')[0];
-    document.getElementById("dia").setAttribute("min", fechaActual);
-
-
-    //Para obtener el precio y mostrarlo en modal
-    function mostrarPrecioSeleccionado(selectElement) {
-        var selectedOption = selectElement.options[selectElement.selectedIndex];
-        var precioSeleccionado = selectedOption.getAttribute('data-precio');
-        document.getElementById('precioSeleccionado').textContent = precioSeleccionado;
-    }
-    
-
-</script>
+<script src="js/home.js"></script>
