@@ -103,7 +103,7 @@
                     <h5 class="modal-title" id="staticLabel">Editar Servicio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formEditarServicio" action="/Servicios/InsertServicios" method="post">
+                <form id="formEditarServicio" action="/Servicios/InsertServicios" method="post" onsubmit="return modificar()">
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />
@@ -169,7 +169,7 @@
                     <h2 class="modal-title">Agregar Nuevo Servicio</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/Servicio/InsertServicios" method="post">
+                <form action="/Servicio/InsertServicios" method="post" onsubmit="return guardar()">
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label for="Nombre" class="form-label">Nombre del Servicio:</label><br />

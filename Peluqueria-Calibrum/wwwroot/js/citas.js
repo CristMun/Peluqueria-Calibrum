@@ -24,12 +24,46 @@
         }
     });
 }
+
+function guardar() {
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Creado!',
+        text: 'El empleado ha sido creado con éxito',
+        showConfirmButton: false,
+        timer: 1000
+    });
+
+    // Devuelve true para enviar el formulario
+    return true;
+}
+
+function modificar() {
+
+    // Mostrar SweetAlert cuando la petición se haya completado exitosamente
+    Swal.fire({
+        icon: 'success',
+        title: 'Actualizado',
+        text: 'El empleado ha sido modificado correctamente.',
+        confirmButtonText: 'OK',// Personalizar el texto del botón de confirmación
+        confirmButtonColor: '#3085d6',
+        timer: 1000
+    });
+
+    return true; // Permitir el envío del formulario
+}
 //Para limitar que no puedan tomar hora un dia antes del dia actual
 function limitarFecha() {
-    var inputFecha = document.querySelectorAll('#dia-editar, #dia-agregar');
-    var fechaActual = new Date().toISOString().split('T')[0];
-    inputFecha.forEach(function (element) {
-        element.min = fechaActual;
+    // Obtener la fecha actual en formato YYYY-MM-DD
+    var today = new Date().toISOString().split('T')[0];
+
+    // Obtener todos los elementos de entrada de fecha con la clase "fecha-agregar"
+    var modalFechas = document.querySelectorAll('.fecha-agregar');
+
+    // Establecer el atributo 'min' en los elementos de entrada de fecha
+    modalFechas.forEach(function (element) {
+        element.setAttribute('min', today);
     });
 }
 
@@ -68,7 +102,5 @@ function validarNumero(input) {
         input.setCustomValidity("");
     }
 }
-
-
 
 limitarFecha();

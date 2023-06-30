@@ -104,7 +104,7 @@
                     <h5 class="modal-title" id="staticLabel">Editar Empleado</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formEditarEmpleado" method="post" onsubmit="return validateForm()">
+                <form id="formEditarEmpleado" method="post" onsubmit="return modificar()">
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label class="form-label" for="nombre">Nombre</label>
@@ -164,7 +164,7 @@
                     <h2 class="modal-title fw-bold">Agregar Nuevo Empleado</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/Empleado/InsertEmpleado" method="post" onsubmit="return validateForm()">
+                <form action="/Empleado/InsertEmpleado" method="post" onsubmit="return guardar()">
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label class="form-label" for="Nombre">Nombre</label><br />

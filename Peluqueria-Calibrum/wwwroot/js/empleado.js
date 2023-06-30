@@ -30,7 +30,9 @@ function eliminar(id) {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí',
+        confirmButtonColor: '#3085d6',
         cancelButtonText: 'No',
+        cancelButtonColor: '#d33',
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -49,4 +51,35 @@ function eliminar(id) {
             });
         }
     });
+}
+
+function guardar() {
+    
+    Swal.fire({
+        icon: 'success',
+        title: '¡Creado!',
+        text: 'El empleado ha sido creado con éxito',
+        showConfirmButton: false,
+        timer: 1000
+    });
+
+    // Devuelve true para enviar el formulario
+    return true;
+}
+
+function modificar() {
+    // Realizar la petición al servidor para actualizar el empleado
+    // Aquí debes implementar el código necesario para enviar la solicitud al servidor
+
+    // Mostrar SweetAlert cuando la petición se haya completado exitosamente
+    Swal.fire({
+        icon: 'success',
+        title: 'Actualizado',
+        text: 'El empleado ha sido modificado correctamente.',
+        confirmButtonText: 'OK',// Personalizar el texto del botón de confirmación
+        confirmButtonColor: '#3085d6',
+        timer: 1000
+    });
+
+    return true; // Permitir el envío del formulario
 }
