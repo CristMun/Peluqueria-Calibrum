@@ -1,10 +1,4 @@
 ﻿function cerrarSesion() {
-    document.addEventListener('keydown', function (event) {
-        if (event.ctrlKey && event.key === 's') {
-            event.preventDefault(); // Prevenir el comportamiento predeterminado de guardar la página
-        }
-    });
-
     document.querySelector('.dropdown-item').addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -39,6 +33,6 @@
     });
 }
 
-
-cerrarSesion();
-              
+window.addEventListener('DOMContentLoaded', function () {
+    cerrarSesion();
+});

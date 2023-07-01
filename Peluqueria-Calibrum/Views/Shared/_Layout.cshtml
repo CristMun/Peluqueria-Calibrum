@@ -1,4 +1,5 @@
 <!-- model Peluqueria_Calibrum.Controllers.LoginController-->
+@using Microsoft.AspNetCore.Http;
 
 <html lang="en">
 <head>
@@ -27,77 +28,114 @@
 </head>
 
 <body>
-    <!-- NAVBAR-->
-    <nav class="navbar">
-        <div class="title">
-            <a asp-area="" asp-controller="Inicio" asp-action="CitasHoy">Calibrum</a>
-        </div>
-        <div class="dropdown">
-            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="nav-icon fas fa-circle-user"></i>
-                NOMBRE
-            </a>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                    <a class="dropdown-item" href="#" id="cerrarSesionBtn">
-                        Cerrar Sesión
-                        <i class="fas fa-right-from-bracket"></i>
+    @{
+        var esPeluqueroOBarbero = Context.Session.GetString("EsPeluqueroOBarbero");
+    }
+    @if (!string.IsNullOrEmpty(esPeluqueroOBarbero))
+    {
+        <!-- NAVBAR-->
+        <nav class="navbar">
+            <div class="title">
+                <a asp-area="" asp-controller="Inicio" asp-action="CitasHoy">Calibrum</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="nav-icon fas fa-circle-user"></i>
+                    NOMBRE
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#" id="cerrarSesionBtn">
+                            Cerrar Sesión
+                            <i class="fas fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        <!-- NAVBAR-->
+        <nav class="navbar">
+            <div class="title">
+                <a asp-area="" asp-controller="Inicio" asp-action="CitasHoy">Calibrum</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="nav-icon fas fa-circle-user"></i>
+                    NOMBRE
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#" id="cerrarSesionBtn">
+                            Cerrar Sesión
+                            <i class="fas fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="~/images/Logo-Cuadrado.jpg" />
+            </div>
+            <ul class="sidebar-menu">
+                <li class="item-title">
+                    Mantenedores
+                </li>
+                <li class="item">
+                    <a class="menu-btn" asp-area="" asp-controller="Empleado" asp-action="Empleado">
+                        <i class="nav-icon fas fa-user"></i>
+                        Empleados
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="menu-btn" asp-area="" asp-controller="Citas" asp-action="Citas">
+                        <i class="nav-icon fas fa-calendar-days"></i>
+                        Citas
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="menu-btn" asp-area="" asp-controller="Servicio" asp-action="Servicio">
+                        <i class="nav-icon fas fa-scissors"></i>
+                        Servicios
+                    </a>
+                </li>
+
+                <li class="item-title">
+                    Administracion
+                </li>
+                <li class="item">
+                    <a class="menu-btn" asp-area="" asp-controller="Inventario" asp-action="Inventario">
+                        <i class="nav-icon fas fa-box "></i>
+                        Inventario
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="menu-btn" asp-area="" asp-controller="Gestion" asp-action="Gestion">
+                        <i class="nav-icon fas fa-sliders"></i>
+                        Gestión
                     </a>
                 </li>
             </ul>
         </div>
-    </nav>
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">
-            <img src="~/images/Logo-Cuadrado.jpg" />
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="main-content">
+            @RenderBody()
         </div>
-        <ul class="sidebar-menu">
-            <li class="item-title">
-                Mantenedores
-            </li>
-            <li class="item">
-                <a class="menu-btn" asp-area="" asp-controller="Empleado" asp-action="Empleado">
-                    <i class="nav-icon fas fa-user"></i>
-                    Empleados
-                </a>
-            </li>
-            <li class="item">
-                <a class="menu-btn" asp-area="" asp-controller="Citas" asp-action="Citas">
-                    <i class="nav-icon fas fa-calendar-days"></i>
-                    Citas
-                </a>
-            </li>
-            <li class="item">
-                <a class="menu-btn" asp-area="" asp-controller="Servicio" asp-action="Servicio">
-                    <i class="nav-icon fas fa-scissors"></i>
-                    Servicios
-                </a>
-            </li>
-
-            <li class="item-title">
-                Administracion
-            </li>
-            <li class="item">
-                <a class="menu-btn" asp-area="" asp-controller="Inventario" asp-action="Inventario">
-                    <i class="nav-icon fas fa-box "></i>
-                    Inventario
-                </a>
-            </li>
-            <li class="item">
-                <a class="menu-btn" asp-area="" asp-controller="Gestion" asp-action="Gestion">
-                    <i class="nav-icon fas fa-sliders"></i>
-                    Gestión
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-content">
-        @RenderBody()
-    </div>
+    }
+    
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -113,7 +151,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
-    <script src="js/layout.js"></script>
+    <script src="~/js/layout.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

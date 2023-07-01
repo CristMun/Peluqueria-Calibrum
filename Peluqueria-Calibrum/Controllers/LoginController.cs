@@ -2,6 +2,8 @@
 using Peluqueria_Calibrum.Models;
 using MySql.Data.MySqlClient;
 using Dapper;
+using MySqlX.XDevAPI;
+using System;
 
 namespace Peluqueria_Calibrum.Controllers
 {
@@ -29,7 +31,15 @@ namespace Peluqueria_Calibrum.Controllers
 
                     ViewData["NombreUsuario"] = nombre;
 
-                    return RedirectToAction("CitasHoy","Inicio");
+                    var sqlCargo = "SELECT Cargo FROM Empleado WHERE Usuario = @usuario";
+                    var cargo = connection.ExecuteScalar<string>(sqlCargo, new { usuario = empleado.Usuario });
+
+                    if (cargo == "Peluquero" || cargo == "Barbero")
+                    {
+                        HttpContext.Session.SetString("EsPeluqueroOBarbero", "true");
+                    }
+
+                    return RedirectToAction("CitasHoy", "Inicio");
                 }
                 else
                 {
