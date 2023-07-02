@@ -1,5 +1,4 @@
-﻿@using Peluqueria_Calibrum.Models
-@model UnionModel
+﻿@model Peluqueria_Calibrum.Models.UnionModel
 
 @{
     Layout = "_LayoutClientes";
@@ -225,28 +224,13 @@
                             <input required class="form-control" type="date" id="dia" name="dia" />
                         </div>
                         <div class="col-6 mt-3">
-                            <label for="hora" class="form-label">Hora</label>
+                            <label  class="form-label">Hora</label>
                             <select required class="form-select" id="hora" name="hora">
                                 <option value="" disabled selected>Seleccione</option>
-                                <option>10:00</option>
-                                <option>10:30</option>
-                                <option>11:00</option>
-                                <option>11:30</option>
-                                <option>12:00</option>
-                                <option>12:30</option>
-                                <option>13:00</option>
-                                <option>13:30</option>
-                                <option>14:00</option>
-                                <option>14:30</option>
-                                <option>15:00</option>
-                                <option>15:30</option>
-                                <option>16:00</option>
-                                <option>16:30</option>
-                                <option>17:00</option>
-                                <option>17:30</option>
-                                <option>18:00</option>
-                                <option>18:30</option>
-                                <option>19:00</option>
+                                @foreach (var hora in Model.Horas)
+                                {
+                                    <option value="@hora.Hora">@hora.Hora</option>
+                                }
                             </select>
                         </div>
                     </div>

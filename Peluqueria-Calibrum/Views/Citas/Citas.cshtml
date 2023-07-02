@@ -58,15 +58,7 @@
                 </div>
                 <form id="formEditarCita" action="/Citas/InsertCitas" method="post">
                     <div class="modal-body">
-                        <div class="form-group mb-4">
-                            <label for="fecha">Fecha:</label>
-                            <input required class="form-control fecha-agregar" type="date" id="dia" name="dia" />
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="hora">Hora:</label> <!--CAMBIAR ESTO A TIPO SELECT-->
-                            <input required type="time" class="form-control" id="hora" name="hora">
-                        </div>
-                        <div class="form-group mb3">
+                        <div class="form-group mb3 pb-8">
                             <label for="hora">Seleccione un servicio:</label>
                             <select required class="form-select" aria-label="Id_Servicio" id="id_servicio" name="Id_Servicio">
                                 <option value="" disabled selected>Seleccione</option>
@@ -85,6 +77,23 @@
                                     <option value="@empleado.Id">@empleado.Nombre | @empleado.Cargo</option>
                                 }
                             </select>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-6 mt-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input required class="form-control" type="date" id="dia" name="dia" />
+                            </div>
+                            <div class="col-6 mt-3">
+                                <label class="form-label">Hora</label>
+                                <select required class="form-select" id="hora" name="hora">
+                                    <option value="" disabled selected>Seleccione</option>
+                                    @foreach (var hora in Model.Horas)
+                                    {
+                                        <option value="@hora.Hora">@hora.Hora</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
                         <div>
                             <h3 class="modal-title">Datos Cliente</h3>
