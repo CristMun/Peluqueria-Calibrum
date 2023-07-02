@@ -35,25 +35,21 @@ function guardar() {
         timer: 1000
     });
 
-    // Devuelve true para enviar el formulario
     return true;
 }
 
 function modificar() {
-    // Realizar la petición al servidor para actualizar el empleado
-    // Aquí debes implementar el código necesario para enviar la solicitud al servidor
-
-    // Mostrar SweetAlert cuando la petición se haya completado exitosamente
+   
     Swal.fire({
         icon: 'success',
         title: 'Actualizado',
         text: 'El empleado ha sido modificado correctamente.',
-        confirmButtonText: 'OK',// Personalizar el texto del botón de confirmación
+        confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         timer: 1000
     });
 
-    return true; // Permitir el envío del formulario
+    return true; 
 }
 
 function cargarInventario(id) {
@@ -74,4 +70,20 @@ function cargarInventario(id) {
             console.log(xhr.responseText);
         }
     });
+}
+
+
+function buscarInventario() {
+    var nombre = document.getElementById('nombre').value;
+    var descripcion = document.getElementById('descripcion').value;
+
+    fetch(`/Inventario/BuscarInventario?nombre=${nombre}&descripcion=${descripcion}`)
+        .then(response => response.text())
+        .then(data => {
+            var tablaInventario = document.getElementById('tablaInventario');
+            tablaInventario.innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al buscar Servicios:', error);
+        });
 }

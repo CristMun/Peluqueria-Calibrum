@@ -1,0 +1,33 @@
+﻿@using Peluqueria_Calibrum.Models
+@model IEnumerable<InventarioModel>
+
+<table class="styled-table table-sm">
+    <thead>
+        <tr class="table">
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Imagen</td>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Cantidad</td>
+                <td>
+                    <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarInventario" onclick="cargarInventario(@item.Id)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a class="btn btn-danger">
+                        <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

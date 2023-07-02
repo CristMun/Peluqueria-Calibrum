@@ -23,53 +23,29 @@
         <div class="row">
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="fullname" type="text" class="form-control">
-                    <label for="fullname">Nombre</label>
+                    <input id="nombre" type="text" class="form-control">
+                    <label for="nombre">Nombre</label>
                 </div>
             </div>
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="fullname" type="text" class="form-control">
-                    <label for="fullname">Descripcion</label>
+                    <input id="descripcion" type="text" class="form-control">
+                    <label for="descripcion">Descripcion</label>
                 </div>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-secondary btn-circle">
+                <button type="button" class="btn btn-secondary btn-circle" onclick="buscarInventario()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
+                <a type="button" class="btn btn-primary btn-circle" href="/ListaInventario">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </a>
             </div>
         </div>
         <div class="table-responsive">
-            <table class="styled-table table-sm">
-                <thead>
-                    <tr class="table">
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Cantidad</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Imagen</td>
-                            <td>@item.Nombre</td>
-                            <td>@item.Descripcion</td>
-                            <td>@item.Cantidad</td>
-                            <td>
-                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarInventario" onclick="cargarInventario(@item.Id)">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a class="btn btn-danger">
-                                    <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="table-responsive" id="tablaInventario">
+                @Html.Partial("_TablaInventario", Model)
+            </div>
         </div>
     </div>
     <!-- Modal para editar Inventario -->

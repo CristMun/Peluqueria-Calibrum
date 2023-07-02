@@ -26,6 +26,34 @@ namespace Peluqueria_Calibrum.Controllers
             return View(lst);
         }
 
+
+        /*Metodo para buscar datos en la base de datos*/
+        [HttpGet]
+        public IActionResult BuscarInventario(string nombre, string descripcion)
+        {
+            IEnumerable<Models.InventarioModel> lst = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Inventario WHERE 1 = 1 ";
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    sql += " AND Nombre LIKE @nombre ";
+                }
+
+                if (!string.IsNullOrEmpty(descripcion))
+                {
+                    sql += " AND Descripcion LIKE @descripcion ";
+                }
+
+                var parameters = new { nombre = $"%{nombre}%", descripcion = $"%{descripcion}%" };
+
+                lst = db.Query<Models.InventarioModel>(sql, parameters);
+            }
+            return PartialView("_TablaInventario", lst);
+        }
+
+
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
         
