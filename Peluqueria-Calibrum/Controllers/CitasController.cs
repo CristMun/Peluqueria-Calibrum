@@ -133,7 +133,7 @@ namespace Peluqueria_Calibrum.Controllers
         /*Union varias tablas*/
         public ActionResult GetTables()
         {
-            var empleadoServicioModel = new EmpleadoServicioModel();
+            var empleadoServicioModel = new UnionModel();
 
             var listaEmpleados = ObtenerListaEmpleados();
             var listaServicios = ObtenerListaServicios();
