@@ -12,7 +12,7 @@
             Empleados = new List<EmpleadoModel>();
             Servicios = new List<ServicioModel>();
             Gestiones = new List<GestionModel>();
-            Citas = new List<CitaModel>();
+            Citas   = new List<CitaModel>();
         }
     }
 }

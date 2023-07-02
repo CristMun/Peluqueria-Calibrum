@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Dapper;
-using Peluqueria_Calibrum;
-using System.Reflection;
+
 using Peluqueria_Calibrum.Models;
 
 namespace Peluqueria_Calibrum.Controllers
@@ -33,6 +32,39 @@ namespace Peluqueria_Calibrum.Controllers
                 lst = db.Query<Models.CitaModel>(sql);
             }
             return View(lst);
+        }
+
+
+        /*Metodo para buscar datos en la base de datos*/
+        [HttpGet]
+        public IActionResult BuscarCitas(string servicio, string empleado)
+        {
+            IEnumerable<Models.CitaModel> lst = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total" +
+                            " FROM Cita" +
+                            " JOIN Empleado ON Cita.Id_Empleado = Empleado.Id" +
+                            " JOIN Servicio ON Cita.Id_Servicio = Servicio.Id" +
+                            " WHERE 1 = 1 ";
+
+                if (!string.IsNullOrEmpty(servicio))
+                {
+                    sql += " AND Nombre_servicio LIKE '%%' ";
+                }
+
+                if (!string.IsNullOrEmpty(empleado))
+                {
+                    sql += " AND CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) LIKE '%Juan Muñoz%'";
+                }
+
+                var parameters = new { nombre_servicio = $"%{servicio}%", nombre_empleado = $"%{empleado}%" };
+
+
+
+                lst = db.Query<Models.CitaModel>(sql, parameters);
+            }
+            return PartialView("_TablaCitas", lst);
         }
 
 

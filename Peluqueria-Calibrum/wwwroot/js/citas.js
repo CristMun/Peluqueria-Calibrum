@@ -99,10 +99,10 @@ function validarNumero(input) {
 }
 
 function  buscarCitas() {
-    var servicioBuscar = document.getElementById('buscarServicio').value;
-    var servicioBuscar = document.getElementById('servicioBuscar').value;
+    var servicio = document.getElementById('servicio').value;
+    var empleado = document.getElementById('empleado').value;
 
-    fetch(`/Citas/BuscarCitas?servicioBuscar=${buscarServicio}&servicioBuscar=${servicioBuscar}`)
+    fetch(`/Citas/BuscarCitas?servicio=${servicio}&empleado=${empleado}`)
         .then(response => response.text())
         .then(data => {
             var tablaCitas = document.getElementById('tablaCitas');
@@ -116,5 +116,5 @@ function  buscarCitas() {
 
 
 
-buscarCitas();
+
 limitarFecha();
