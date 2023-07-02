@@ -20,7 +20,6 @@ namespace Peluqueria_Calibrum.Controllers
         {
             var imagePath = Path.Combine(hostingEnvironment.WebRootPath, "images", "Nosotros");
 
-            // Verificar si existe un archivo PNG
             var pngFilePath = Path.Combine(imagePath, "nosotrosfoto.png");
             if (System.IO.File.Exists(pngFilePath))
             {
@@ -28,11 +27,9 @@ namespace Peluqueria_Calibrum.Controllers
             }
             else
             {
-                // Si no existe un archivo PNG, se asume que existe un archivo JPG
                 ViewBag.ImagePath = "/images/Nosotros/nosotrosfoto.jpg";
             }
 
-            // ... obtener otros datos y preparar el modelo ...
 
             return View();
         }
@@ -43,21 +40,19 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var nosImagenFileName = "nosotrosfoto"; // Nombre del archivo fijo
+                var nosImagenFileName = "nosotrosfoto";
                 var nosImagenExtension = Path.GetExtension(Nos_Imagen.FileName);
                 var nosImagenFileNameWithExtension = nosImagenFileName + nosImagenExtension;
 
                 var imagePath = Path.Combine(hostingEnvironment.WebRootPath, "images", "Nosotros");
-                Directory.CreateDirectory(imagePath); // Asegura que la carpeta exista
+                Directory.CreateDirectory(imagePath);
 
-                // Eliminar el archivo existente, si existe
                 var existingFilePath = Path.Combine(imagePath, nosImagenFileNameWithExtension);
                 if (System.IO.File.Exists(existingFilePath))
                 {
                     System.IO.File.Delete(existingFilePath);
                 }
 
-                // Guardar el nuevo archivo
                 using (var stream = new FileStream(Path.Combine(imagePath, nosImagenFileNameWithExtension), FileMode.Create))
                 {
                     Nos_Imagen.CopyTo(stream);

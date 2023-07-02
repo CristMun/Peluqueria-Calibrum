@@ -25,19 +25,10 @@
             <div class="col-auto">
                 <div class="mt-2 form-floating">
                     <input id="servicio" type="text" class="form-control">
-                    <label for="servicio">Servicio</label>
+                    <label for="servicio">Finalizadas</label>
                 </div>
             </div>
             <div class="col-auto">
-                <div class="mt-2 form-floating">
-                    <input id="empleado" type="text" class="form-control">
-                    <label for="empleado">Empleado</label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <button type="button" class="btn btn-secondary btn-circle" onclick="buscarCitas()">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
                 <a type="button" class="btn btn-primary btn-circle" href="/ListaCitas">
                     <i class="fa-solid fa-rotate-right"></i>
                 </a>
@@ -58,57 +49,88 @@
                 </div>
                 <form id="formEditarCita" action="/Citas/InsertCitas" method="post">
                     <div class="modal-body">
-                        <div class="form-group mb3 pb-8">
-                            <label for="hora">Seleccione un servicio:</label>
-                            <select required class="form-select" aria-label="Id_Servicio" id="id_servicio" name="Id_Servicio">
+                        <div class="form-group">
+                            <label class="form-label">Seleccione un servicio:</label>
+                            <select required class="form-select" aria-label="Id_Servicio" name="id_servicio">
                                 <option value="" disabled selected>Seleccione</option>
                                 @foreach (var servicio in Model.Servicios)
                                 {
-                                    <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre,  $@servicio.Precio</option>
+                                    <option value="@servicio.Id" data-precio="@servicio.Precio">@servicio.Nombre, @servicio.Precio</option>
                                 }
                             </select>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="hora">Seleccione un empleado:</label>
-                            <select required class="form-select" name="Id_Empleado" aria-label="Id_Empleado">
+                        <div class="form-group mt-3">
+                            <label class="form-label">Seleccione un empleado:</label>
+                            <select required class="form-select" aria-label="Id_Empleado" name="id_empleado">
                                 <option value="" disabled selected>Seleccione</option>
                                 @foreach (var empleado in Model.Empleados)
                                 {
-                                    <option value="@empleado.Id">@empleado.Nombre | @empleado.Cargo</option>
+                                    <option value="@empleado.Id"> @empleado.Id | @empleado.Nombre | @empleado.Cargo</option>
                                 }
                             </select>
                         </div>
-                       
                         <div class="row">
                             <div class="col-6 mt-3">
                                 <label for="fecha" class="form-label">Fecha</label>
                                 <input required class="form-control" type="date" id="dia" name="dia" />
                             </div>
                             <div class="col-6 mt-3">
-                                <label class="form-label">Hora</label>
-                                <select required class="form-select" id="hora" name="hora">
-                                    <option value="" disabled selected>Seleccione</option>
-                                    @foreach (var hora in Model.Horas)
-                                    {
-                                        <option value="@hora.Hora">@hora.Hora</option>
-                                    }
+                                <label for="hora" class="form-label">Hora</label>
+                                <select required class="form-select fecha-agregar" id="hora" name="hora">
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>10:00</option>
+                                    <option>10:30</option>
+                                    <option>10:00</option>
+                                    <option>10:30</option>
+                                    <option>11:00</option>
+                                    <option>11:30</option>
+                                    <option>12:00</option>
+                                    <option>12:30</option>
+                                    <option>13:00</option>
+                                    <option>13:30</option>
+                                    <option>14:00</option>
+                                    <option>14:30</option>
+                                    <option>15:00</option>
+                                    <option>15:30</option>
+                                    <option>16:00</option>
+                                    <option>16:30</option>
+                                    <option>17:00</option>
+                                    <option>17:30</option>
+                                    <option>18:00</option>
+                                    <option>18:30</option>
+                                    <option>19:00</option>
                                 </select>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="modal-title">Datos Cliente</h3>
+                        <div class="text-center mt-3">
+                            <h3 class="fw-bold">Datos Cliente</h3>
                         </div>
-                        <div class="mb-3">
-                            <label for="nombreCliente" class="form-label">Nombre Cliente:</label>
+                        <div class="mt-2">
+                            <label class="form-label">Nombre Cliente</label>
                             <input required type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
                         </div>
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Numero de telefono:</label>
-                            <input required type="text" class="form-control" id="telefono" name="telefono">
+                        <div class="mt-3">
+                            <label class="form-label">Telefono Movil</label>
+                            <input required type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}" placeholder="993529842" maxlength="9" oninput="validarNumero(this)">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Finalizado" class="form-label">Finalizado</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Finalizado" id="1" value="1" required>
+                                <label class="form-check-label" for="1">
+                                    Sí
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Finalizado" id="0" value="0">
+                                <label class="form-check-label" for="0">
+                                    No
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-primary">
+                    <div class="modal-footer">
+                        <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
                             Agendar cita
                         </button>
                     </div>
@@ -130,7 +152,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label class="form-label">Seleccione un servicio:</label>
-                            <select required class="form-select" aria-label="Servicios" name="nombre_servicio">
+                            <select required class="form-select" aria-label="Id_Servicio" name="id_servicio">
                                 <option value="" disabled selected>Seleccione</option>
                                 @foreach (var servicio in Model.Servicios)
                                 {
@@ -140,11 +162,11 @@
                         </div>
                         <div class="form-group mt-3">
                             <label class="form-label">Seleccione un empleado:</label>
-                            <select required class="form-select" name="Id_Empleado" aria-label="Id_Empleado">
+                            <select required class="form-select" name="id_empleado" aria-label="Id_Empleado">
                                 <option value="" disabled selected>Seleccione</option>
                                 @foreach (var empleado in Model.Empleados)
                                 {
-                                    <option value="@empleado.Id">@empleado.Nombre | @empleado.Cargo</option>
+                                    <option value="@empleado.Id"> @empleado.Id | @empleado.Nombre | @empleado.Cargo</option>
                                 }
                             </select>
                         </div>
@@ -192,6 +214,7 @@
                             <label class="form-label">Telefono Movil</label>
                             <input required type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}" placeholder="993529842" maxlength="9" oninput="validarNumero(this)">
                         </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" onclick="MensajeExito()">

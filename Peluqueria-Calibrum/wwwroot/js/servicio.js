@@ -73,6 +73,8 @@ function cargarServicios(id) {
                 $("#2").prop("checked", true);
             }
 
+            
+
 
             $("#formEditarServicio").attr("action", "/Servicio/UpdateServicio?id=" + data.id);
         },

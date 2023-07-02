@@ -70,11 +70,13 @@ function cargarCitas(id) {
         data: { id: id },
         success: function (data) {
 
-            $("#hora").val(data.hora);
+            $("#id_servicio").val(data.id_servicio);
+            $("#id_empleado").val(data.id_empleado);
             $("#dia").val(data.dia);
+            $("#hora").val(data.hora);
             $("#nombre_cliente").val(data.nombre_cliente);
-            $("#nombre_servicio").val(data.nombre_servicio);
             $("#telefono").val(data.telefono);
+
 
             $("#formEditarCita").attr("action", "/Citas/UpdateCita?id=" + data.id);
         },

@@ -77,8 +77,10 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita(Hora, Dia, Nombre_cliente,  Telefono, Nombre_servicio) " +
-                    " values(@hora, @dia, @nombre_cliente,  @telefono, @nombre_servicio)";
+                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio) " +
+                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id " +
+                          "FROM Servicio " +
+                          "WHERE Servicio.Id = @id_servicio";
                 result = db.Execute(sql, model);
             }
             return RedirectToAction("Citas");
@@ -108,7 +110,10 @@ namespace Peluqueria_Calibrum.Controllers
             Models.CitaModel cita = null;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Cita WHERE Id = @id";
+                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
+                          "FROM Cita " +
+                          "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id  WHERE Cita.Id= @id";
                 cita = db.QuerySingleOrDefault<Models.CitaModel>(sql, new { id });
             }
             return Json(cita);
@@ -120,7 +125,7 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "UPDATE Cita SET Dia=@dia, Hora=@hora, Nombre_cliente=@nombre_cliente, Telefono=@telefono, Id_Servicio=@id_servicio,   WHERE Id = @id";
+                var sql = "UPDATE Cita SET Dia=@dia, Hora=@hora, Nombre_cliente=@nombre_cliente, Telefono=@telefono, Id_Empleado=id_empleado, Id_Servicio=@id_servicio   WHERE Id = @id";
                 model.Id = id;
                 result = db.Execute(sql, model);
             }
