@@ -29,8 +29,6 @@ namespace Peluqueria_Calibrum.Models
         public string Dias { get; set; }
         [JsonProperty("hora")]
         public string Hora { get; set; }
-        [JsonProperty("servicios")]
-        public string Servicios { get; set; }
 
         [NotMapped]
         public bool MantenerActivo { get; set; }

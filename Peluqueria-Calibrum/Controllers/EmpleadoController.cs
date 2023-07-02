@@ -62,8 +62,8 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Empleado(Nombre, Apellido, Usuario, Contrasena, Cargo, Dias, Hora, Servicios) " +
-                    " values(@nombre, @apellido, @usuario, @contrasena, @cargo, @dias, @hora, @servicios)";
+                var sql = "INSERT INTO Empleado(Nombre, Apellido, Usuario, Contrasena, Cargo, Dias, Hora) " +
+                    " values(@nombre, @apellido, @usuario, @contrasena, @cargo, @dias, @hora)";
                 result = db.Execute(sql, model);
             }
             return RedirectToAction("Empleado");
@@ -105,7 +105,7 @@ namespace Peluqueria_Calibrum.Controllers
             using (var db = new MySqlConnection(MyController.csCal))
             {
                 var sql = "UPDATE Empleado SET Nombre = @nombre, Apellido = @apellido, Usuario = @usuario, " +
-                          "Contrasena = @contrasena, Cargo = @cargo, Dias = @dias, Hora = @hora, Servicios = @servicios " +
+                          "Contrasena = @contrasena, Cargo = @cargo, Dias = @dias, Hora = @hora " +
                           "WHERE Id = @id";
                 model.Id = id; 
                 result = db.Execute(sql, model);
