@@ -83,10 +83,10 @@ function cargarServicios(id) {
 }
 
 function buscarServicio() {
-    var fullname = document.getElementById('nombreServicio').value;
-    var cargo = document.getElementById('categoria').value;
+    var nombre = document.getElementById('nombre').value;
+    var categoria = document.getElementById('categoria').value;
 
-    fetch(`/Servicio/BuscarServicios?nombre=${nombreServicio}&categoria=${categoria}`)
+    fetch(`/Servicio/BuscarServicios?nombre=${nombre}&categoria=${categoria}`)
         .then(response => response.text())
         .then(data => {
             var tablaServicios = document.getElementById('tablaServicios');

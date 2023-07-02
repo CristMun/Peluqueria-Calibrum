@@ -98,11 +98,11 @@ function validarNumero(input) {
     }
 }
 
-function buscarCitas() {
-    var fullname = document.getElementById('servicioBuscar').value;
-    var cargo = document.getElementById('servicioBuscar').value;
+function  buscarCitas() {
+    var servicioBuscar = document.getElementById('buscarServicio').value;
+    var servicioBuscar = document.getElementById('servicioBuscar').value;
 
-    fetch(`/Citas/BuscarCitas?servicioBuscar=${servicioBuscar}&servicioBuscar=${servicioBuscar}`)
+    fetch(`/Citas/BuscarCitas?servicioBuscar=${buscarServicio}&servicioBuscar=${servicioBuscar}`)
         .then(response => response.text())
         .then(data => {
             var tablaCitas = document.getElementById('tablaCitas');

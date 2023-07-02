@@ -34,7 +34,7 @@ namespace Peluqueria_Calibrum.Controllers
             IEnumerable<Models.ServicioModel> lst = null;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Servicio WHERE 1 = 1";
+                var sql = "SELECT * FROM Servicio WHERE 1 = 1 ";
 
                 if (!string.IsNullOrEmpty(nombre))
                 {
@@ -46,7 +46,7 @@ namespace Peluqueria_Calibrum.Controllers
                     sql += " AND Categoria = @categoria";
                 }
 
-                var parameters = new { nombre, categoria };
+                var parameters = new { nombre = $"%{nombre}%", categoria };
 
                 lst = db.Query<Models.ServicioModel>(sql, parameters);
             }
