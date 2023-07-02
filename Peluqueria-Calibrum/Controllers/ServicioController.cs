@@ -27,6 +27,32 @@ namespace Peluqueria_Calibrum.Controllers
             return View(lst);
         }
 
+        /*Metodo para buscar datos en la base de datos*/
+        [HttpGet]
+        public IActionResult BuscarServicios(string nombre, string categoria)
+        {
+            IEnumerable<Models.ServicioModel> lst = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Servicio WHERE 1 = 1";
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    sql += " AND Nombre LIKE @nombre ";
+                }
+
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    sql += " AND Categoria = @categoria";
+                }
+
+                var parameters = new { nombre, categoria };
+
+                lst = db.Query<Models.ServicioModel>(sql, parameters);
+            }
+            return PartialView("_TablaServicios", lst);
+        }
+
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
         public IActionResult InsertServicios(Models.ServicioModel model)

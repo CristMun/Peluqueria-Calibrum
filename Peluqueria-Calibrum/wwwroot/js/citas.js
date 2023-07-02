@@ -35,7 +35,6 @@ function guardar() {
         timer: 1000
     });
 
-    // Devuelve true para enviar el formulario
     return true;
 }
 
@@ -46,22 +45,19 @@ function modificar() {
         icon: 'success',
         title: 'Actualizado',
         text: 'El empleado ha sido modificado correctamente.',
-        confirmButtonText: 'OK',// Personalizar el texto del botón de confirmación
+        confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         timer: 1000
     });
 
-    return true; // Permitir el envío del formulario
+    return true;
 }
 //Para limitar que no puedan tomar hora un dia antes del dia actual
 function limitarFecha() {
-    // Obtener la fecha actual en formato YYYY-MM-DD
     var today = new Date().toISOString().split('T')[0];
 
-    // Obtener todos los elementos de entrada de fecha con la clase "fecha-agregar"
     var modalFechas = document.querySelectorAll('.fecha-agregar');
 
-    // Establecer el atributo 'min' en los elementos de entrada de fecha
     modalFechas.forEach(function (element) {
         element.setAttribute('min', today);
     });
@@ -89,8 +85,7 @@ function cargarCitas(id) {
 }
 
 function validarNumero(input) {
-    input.value = input.value.replace(/\D/g, ""); // Remueve todos los caracteres no numéricos
-
+    input.value = input.value.replace(/\D/g, "");
     var numero = input.value;
     var esIgual = numero.split('').every(function (digito) {
         return digito === numero[0];
@@ -103,4 +98,23 @@ function validarNumero(input) {
     }
 }
 
+function buscarCitas() {
+    var fullname = document.getElementById('servicioBuscar').value;
+    var cargo = document.getElementById('servicioBuscar').value;
+
+    fetch(`/Citas/BuscarCitas?servicioBuscar=${servicioBuscar}&servicioBuscar=${servicioBuscar}`)
+        .then(response => response.text())
+        .then(data => {
+            var tablaCitas = document.getElementById('tablaCitas');
+            tablaCitas.innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al buscar:', error);
+        });
+}
+
+
+
+
+buscarCitas();
 limitarFecha();

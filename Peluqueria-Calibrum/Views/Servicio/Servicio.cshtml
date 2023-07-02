@@ -1,5 +1,4 @@
-﻿@using Peluqueria_Calibrum.Models
-@model IEnumerable<ServicioModel>
+﻿@model IEnumerable<Peluqueria_Calibrum.Models.ServicioModel>
 
 @{
     ViewData["Title"] = "Servicios";
@@ -22,13 +21,13 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="mt-2 form-floating">
-                    <input id="fullname" type="text" class="form-control">
-                    <label for="fullname">Servicio</label>
+                    <input id="nombreServicio" type="text" class="form-control">
+                    <label for="nombre">Servicio</label>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="mt-2 form-floating">
-                    <select class="form-select">
+                    <select class="form-select" id="categoria">
                         <option value="" disabled selected></option>
                         <option value="Peluquero">Peluquero</option>
                         <option value="Barbero">Barbero</option>
@@ -37,59 +36,13 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <button type="button" class="btn btn-secondary btn-circle">
+                <button type="button" class="btn btn-secondary btn-circle" onclick="buscarServicio()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="styled-table table-sm">
-                <thead>
-                    <tr>
-                        <th>Servicios</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Categoría</th>
-                        <th>Acciones</th>
-                        <th>Mostrar en Inicio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Nombre</td>
-                            <td>@item.Descripcion</td>
-                            <td>$@item.Precio</td>
-                            <td>@item.Categoria</td>
-                            <td>
-                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarServicio" onclick="cargarServicios(@item.Id)">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a class="btn btn-danger">
-                                    <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
-                                </a>
-                                
-                            </td>
-                            <td style="text-align:center">
-                                @switch (item.Mostrar_Home)
-                                {
-                                    case 1:
-                                        <a class="btn btn-success" >Si</a>
-                                        break;
-                                    case 0:
-                                        <a class="btn btn-secondary">No</a>
-                                        break;
-                                    default:
-                                        <a class="btn btn-info">No asignado</a>
-                                        break;
-                                }
-                            </td>
-                        </tr>
-                        
-                    }
-                </tbody>
-            </table>
+        <div class="table-responsive" id="tablaServicios">
+            @Html.Partial("_TablaServicios", Model)
         </div>
     </div>
 

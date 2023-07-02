@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Peluqueria_Calibrum.Models.ServicioModel>
+
+
+<table class="styled-table table-sm">
+    <thead>
+        <tr>
+            <th>Servicios</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+            <th>Mostrar en Inicio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>$@item.Precio</td>
+                <td>@item.Categoria</td>
+                <td>
+                    <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarServicio" onclick="cargarServicios(@item.Id)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a class="btn btn-danger">
+                        <i class="fa-solid fa-trash" onclick="eliminar(@item.Id)"></i>
+                    </a>
+
+                </td>
+                <td style="text-align:center">
+                    @switch (item.Mostrar_Home)
+                    {
+                        case 1:
+                            <a class="btn btn-success">Si</a>
+                            break;
+                        case 0:
+                            <a class="btn btn-secondary">No</a>
+                            break;
+                        default:
+                            <a class="btn btn-info">No asignado</a>
+                            break;
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
