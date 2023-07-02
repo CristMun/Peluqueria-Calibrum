@@ -1,5 +1,6 @@
 ﻿@using Peluqueria_Calibrum.Models
-@model IEnumerable<EmpleadoModel>
+@model IEnumerable<Peluqueria_Calibrum.Models.EmpleadoModel>
+
 @{
     ViewData["Title"] = "Empleado";
 }
@@ -34,13 +35,7 @@
             </div>
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="fullname" type="text" class="form-control">
-                    <label for="fullname">Servicio</label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="mt-2 form-floating">
-                    <select class="form-select">
+                    <select class="form-select" id="cargo">
                         <option value="" disabled selected></option>
                         <option value="Peluquero">Peluquero</option>
                         <option value="Barbero">Barbero</option>
@@ -50,50 +45,13 @@
                 </div>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-secondary btn-circle">
+                <button type="button" class="btn btn-secondary btn-circle" onclick="buscarEmpleado()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
-            @*<label>Ingrese Contraseña</label>
-            <div class="input-group password">
-                <input ID="txtPassword" type="Password" Class="form-control" />
-                <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
-                    <span class="fa fa-eye-slash icon"></span>
-                </button>
-            </div>*@
         </div>
-        <div class="table-responsive">
-            <table class="styled-table table-sm">
-                <thead>
-                    <tr>
-                        <th>Nombre y Apellido</th>
-                        <th>Usuario</th>
-                        <th>Horarios</th>
-                        <th>Cargo</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-
-                            <td>@item.Nombre @item.Apellido</td>
-                            <td>@item.Usuario</td>
-                            <td>@item.Hora @item.Dias</td>
-                            <td>@item.Cargo</td>
-                            <td>
-                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarEmpleado" onclick="cargarEmpleado(@item.Id)">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a class="btn btn-danger" onclick="eliminar(@item.Id)">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="table-responsive" id="tablaEmpleados">
+            @Html.Partial("_TablaEmpleados", Model)
         </div>
     </div>
     <!-- Modal para editar empleado -->

@@ -112,12 +112,13 @@ body, html {
 .item {
     width: auto;
     font-size: 15px;
+    padding-bottom:10px;
 }
 
 .menu-btn {
     display: flex;
     color: white;
-    padding: 20px;
+    padding: 18px 20px;
     align-items: center;
     transition: 0.3s;
     text-decoration: none;

@@ -83,3 +83,21 @@ function modificar() {
 
     return true; // Permitir el envío del formulario
 }
+
+function buscarEmpleado() {
+    var fullname = document.getElementById('fullname').value;
+    var cargo = document.getElementById('cargo').value;
+
+    // Realizar una solicitud al servidor para buscar empleados
+    fetch(`/Empleado/BuscarEmpleados?nombreApellido=${fullname}&cargo=${cargo}`)
+        .then(response => response.text())
+        .then(data => {
+            var tablaEmpleados = document.getElementById('tablaEmpleados');
+            tablaEmpleados.innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al buscar empleados:', error);
+        });
+}
+
+buscarEmpleado();

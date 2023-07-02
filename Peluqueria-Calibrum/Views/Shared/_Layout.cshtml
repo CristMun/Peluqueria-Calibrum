@@ -31,37 +31,9 @@
 
     @{
         var esPeluqueroOBarbero = Context.Session.GetString("EsPeluqueroOBarbero");
+        var esAdministrador = Context.Session.GetString("EsAdministrador");
     }
-    @if (!string.IsNullOrEmpty(esPeluqueroOBarbero))
-    {
-        <!-- NAVBAR-->
-        <nav class="navbar">
-            <div class="title">
-                <a asp-area="" asp-controller="Inicio" asp-action="CitasHoy">Calibrum</a>
-            </div>
-            <div class="dropdown">
-                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="nav-icon fas fa-circle-user"></i>
-                    NOMBRE
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="#" id="cerrarSesionBtn">
-                            Cerrar Sesión
-                            <i class="fas fa-right-from-bracket"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- CONTENIDO PRINCIPAL -->
-        <div class="main-content">
-            @RenderBody()
-        </div>
-    }
-    else
+    @if (esAdministrador == "true")
     {
         <!-- NAVBAR-->
         <nav class="navbar">
@@ -132,10 +104,40 @@
 
         <!-- CONTENIDO PRINCIPAL -->
         <div class="main-content">
+       
+            @RenderBody()
+            
+        </div>
+    }
+    else if (esPeluqueroOBarbero != null && (esPeluqueroOBarbero.Equals("Peluquero") || esPeluqueroOBarbero.Equals("Barbero")))
+    {
+        <!-- NAVBAR-->
+        <nav class="navbar">
+            <div class="title">
+                <a asp-area="" asp-controller="Inicio" asp-action="CitasHoy">Calibrum</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="nav-icon fas fa-circle-user"></i>
+                    NOMBRE
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#" id="cerrarSesionBtn">
+                            Cerrar Sesión
+                            <i class="fas fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="main-content">
             @RenderBody()
         </div>
     }
-    
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Peluqueria_Calibrum.Models.EmpleadoModel>
+
+<table class="styled-table table-sm">
+    <thead>
+        <tr>
+            <th>Nombre y Apellido</th>
+            <th>Usuario</th>
+            <th>Horarios</th>
+            <th>Cargo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre @item.Apellido</td>
+                <td>@item.Usuario</td>
+                <td>@item.Hora @item.Dias</td>
+                <td>@item.Cargo</td>
+                <td>
+                    <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarEmpleado" onclick="cargarEmpleado(@item.Id)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a class="btn btn-danger" onclick="eliminar(@item.Id)">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

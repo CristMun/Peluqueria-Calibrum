@@ -28,6 +28,32 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return View(lst);
         }
+        [HttpGet]
+        public IActionResult BuscarEmpleados(string nombreApellido, string cargo)
+        {
+            IEnumerable<Models.EmpleadoModel> lst = null;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Empleado WHERE 1 = 1";
+
+                if (!string.IsNullOrEmpty(nombreApellido))
+                {
+                    sql += " AND (Nombre LIKE @nombre OR Apellido LIKE @apellido)";
+                }
+
+                if (!string.IsNullOrEmpty(cargo))
+                {
+                    sql += " AND Cargo = @cargo";
+                }
+
+                var parameters = new { nombre = $"%{nombreApellido}%", apellido = $"%{nombreApellido}%", cargo };
+
+                lst = db.Query<Models.EmpleadoModel>(sql, parameters);
+            }
+            return PartialView("_TablaEmpleados", lst);
+        }
+
+
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]

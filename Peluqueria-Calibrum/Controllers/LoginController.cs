@@ -34,9 +34,20 @@ namespace Peluqueria_Calibrum.Controllers
                     var sqlCargo = "SELECT Cargo FROM Empleado WHERE Usuario = @usuario";
                     var cargo = connection.ExecuteScalar<string>(sqlCargo, new { usuario = empleado.Usuario });
 
-                    if (cargo == "Peluquero" || cargo == "Barbero")
+                    if (cargo == "Administrador")
                     {
-                        HttpContext.Session.SetString("EsPeluqueroOBarbero", "true");
+                        HttpContext.Session.SetString("EsAdministrador", "true");
+                        HttpContext.Session.Remove("EsPeluqueroOBarbero"); // Elimina el valor anterior si existe
+                    }
+                    else if (cargo == "Peluquero" || cargo == "Barbero")
+                    {
+                        HttpContext.Session.SetString("EsPeluqueroOBarbero", cargo);
+                        HttpContext.Session.Remove("EsAdministrador"); // Elimina el valor anterior si existe
+                    }
+                    else
+                    {
+                        HttpContext.Session.Remove("EsAdministrador"); // Elimina el valor anterior si existe
+                        HttpContext.Session.Remove("EsPeluqueroOBarbero"); // Elimina el valor anterior si existe
                     }
 
                     return RedirectToAction("CitasHoy", "Inicio");
