@@ -60,8 +60,8 @@ function cargarInventario(id) {
         success: function (data) {
 
             //$("#imagen").val(data.imagen);
-            $("#nombre").val(data.nombre);
-            $("#descripcion").val(data.descripcion);
+            $("#nombreInv").val(data.nombre);
+            $("#descripcionInv").val(data.descripcion);
             $("#cantidad").val(data.cantidad);
 
             $("#formEditarInventario").attr("action", "/Inventario/UpdateInventario?id=" + data.id);

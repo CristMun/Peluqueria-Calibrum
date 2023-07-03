@@ -57,7 +57,7 @@ function cargarServicios(id) {
         data: { id: id },
         success: function (data) {
 
-            $("#nombre").val(data.nombre);
+            $("#nombreServicio").val(data.nombre);
             $("#descripcion").val(data.descripcion);
             $("#precio").val(data.precio);
            

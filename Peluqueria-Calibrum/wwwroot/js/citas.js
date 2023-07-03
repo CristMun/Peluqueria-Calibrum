@@ -52,6 +52,8 @@ function modificar() {
 
     return true;
 }
+
+
 //Para limitar que no puedan tomar hora un dia antes del dia actual
 function limitarFecha() {
     var today = new Date().toISOString().split('T')[0];
@@ -101,8 +103,8 @@ function validarNumero(input) {
 }
 
 function  buscarCitas() {
-    var servicio = document.getElementById('servicio').value;
-    var empleado = document.getElementById('empleado').value;
+    var servicio = document.getElementById('buscarServicio').value;
+    var empleado = document.getElementById('buscarEmpleado').value;
 
     fetch(`/Citas/BuscarCitas?servicio=${servicio}&empleado=${empleado}`)
         .then(response => response.text())
@@ -115,23 +117,54 @@ function  buscarCitas() {
         });
 }
 
+function finalizado() {
+    Swal.fire({
+        icon: 'success',
+        title: 'Cita finalizada',
+        text: 'La cita fue finalizada correctamente.',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
+        timer: 1000
+    }).then(function () {
+        location.reload();
+    });
+
+    return true;
+}
+
+function confirmarFinalizarCita(citaId) {
+    Swal.fire({
+        icon: 'warning',
+        title: '¿Estás seguro?',
+        text: 'Esta acción marcará la cita como finalizada.',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            marcarCitaFinalizada(citaId);
+        } else {
+        }
+    });
+}
+
 function marcarCitaFinalizada(citaId) {
     $.ajax({
         url: '/Citas/FinalizarCita',
         type: 'POST',
         data: { citaId: citaId },
         success: function (result) {
-            // Procesar la respuesta del servidor si es necesario
             console.log(result);
+
+            finalizado();
         },
         error: function (xhr, status, error) {
-            // Manejar errores si los hay
             console.error(error);
         }
     });
 }
-
-
 
 
 

@@ -10,7 +10,7 @@ function cargarEmpleado(id) {
             $("#apellido").val(data.apellido);
             $("#usuario").val(data.usuario);
             $("#contrasena").val(data.contrasena);
-            $("#cargo").val(data.cargo);
+            $("#cargoEmp").val(data.cargo);
             $("#dias").val(data.dias);
             $("#hora").val(data.hora);
             $("#servicios").val(data.servicios);

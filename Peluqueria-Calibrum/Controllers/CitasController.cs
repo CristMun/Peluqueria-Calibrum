@@ -38,7 +38,7 @@ namespace Peluqueria_Calibrum.Controllers
 
         /*Metodo para buscar datos en la base de datos*/
         [HttpGet]
-        public IActionResult BuscarCitas(string servicio, string empleado)
+        public IActionResult BuscarCitas(string finalizado)
         {
             IEnumerable<Models.CitaModel> lst = null;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -49,17 +49,13 @@ namespace Peluqueria_Calibrum.Controllers
                             " JOIN Servicio ON Cita.Id_Servicio = Servicio.Id" +
                             " WHERE 1 = 1 ";
 
-                if (!string.IsNullOrEmpty(servicio))
+                if (!string.IsNullOrEmpty(finalizado))
                 {
-                    sql += " AND Nombre_servicio LIKE '%%' ";
+                    sql += " AND Finalizado LIKE @finalizado ";
                 }
 
-                if (!string.IsNullOrEmpty(empleado))
-                {
-                    sql += " AND CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) LIKE '%Juan Muñoz%'";
-                }
 
-                var parameters = new { nombre_servicio = $"%{servicio}%", nombre_empleado = $"%{empleado}%" };
+                var parameters = new { finalizado = $"%{finalizado}%"};
 
 
 
@@ -211,7 +207,8 @@ namespace Peluqueria_Calibrum.Controllers
                 var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
-                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id ";
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id " +
+                          "WHERE Cita.Finalizado = '0'";
                 listaCitas = db.Query<CitaModel>(sql).ToList();
             }
             return listaCitas;
