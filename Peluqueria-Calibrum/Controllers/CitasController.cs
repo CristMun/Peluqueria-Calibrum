@@ -28,7 +28,8 @@ namespace Peluqueria_Calibrum.Controllers
                 var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
-                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id";
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id " +
+                          "WHERE Cita.Finalizado = '0'";
                 lst = db.Query<Models.CitaModel>(sql);
             }
             return View(lst);
@@ -210,7 +211,7 @@ namespace Peluqueria_Calibrum.Controllers
                 var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
-                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id";
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id ";
                 listaCitas = db.Query<CitaModel>(sql).ToList();
             }
             return listaCitas;

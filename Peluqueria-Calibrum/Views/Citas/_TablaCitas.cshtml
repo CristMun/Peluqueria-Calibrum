@@ -24,6 +24,9 @@
                     @if (cita.Finalizado == 1)
                     {
                         <span>Sí</span>
+                        <a class="btn btn-danger">
+                            <i class="fa-solid fa-trash" onclick="eliminar(@cita.Id)"></i>
+                        </a>
                     }
                     else if (cita.Finalizado == 0)
                     {
