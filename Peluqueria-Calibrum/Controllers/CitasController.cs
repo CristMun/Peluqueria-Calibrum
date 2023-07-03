@@ -125,13 +125,13 @@ namespace Peluqueria_Calibrum.Controllers
 
 
         /*Union varias tablas*/
-        public ActionResult GetTables()
+        public ActionResult GetTables(string Finalizado="0")
         {
             var empleadoServicioModel = new UnionModel();
 
             var listaEmpleados = ObtenerListaEmpleados();
             var listaServicios = ObtenerListaServicios();
-            var listaCitas = ObtenerListaCitas();
+            var listaCitas = ObtenerListaCitas(Finalizado);
 
             if (listaEmpleados != null && listaServicios != null)
             {
@@ -169,7 +169,7 @@ namespace Peluqueria_Calibrum.Controllers
             return listaServicios;
         }
 
-        private List<CitaModel> ObtenerListaCitas()
+        private List<CitaModel> ObtenerListaCitas(string Finalizado = "0")
         {
             List<CitaModel> listaCitas;
             using (var db = new MySqlConnection(MyController.csCal))
@@ -178,7 +178,7 @@ namespace Peluqueria_Calibrum.Controllers
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
                           "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id " +
-                          "WHERE Cita.Finalizado = '0'";
+                          $"WHERE Cita.Finalizado = '{Finalizado}'";
                 listaCitas = db.Query<CitaModel>(sql).ToList();
             }
             return listaCitas;
