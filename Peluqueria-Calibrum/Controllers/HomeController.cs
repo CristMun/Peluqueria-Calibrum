@@ -28,12 +28,14 @@ namespace PeluqueriaCalibrum.Controllers
             var listaEmpleados = ObtenerListaEmpleados();
             var listaServicios = ObtenerListaServicios();
             var listaGestiones = ObtenerListaGestiones();
+            var listaHoras = ObtenerListaHoras();
 
             if (listaEmpleados != null && listaServicios != null)
             {
                 empleadoServicioModel.Empleados = listaEmpleados;
                 empleadoServicioModel.Servicios = listaServicios;
                 empleadoServicioModel.Gestiones = listaGestiones;
+                empleadoServicioModel.Horas = listaHoras;
             }
             else
             {
@@ -75,6 +77,16 @@ namespace PeluqueriaCalibrum.Controllers
             }
             return listaGestiones;
         }
+        private List<HorasModel> ObtenerListaHoras()
+        {
+            List<HorasModel> listaHoras;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Horas";
+                listaHoras = db.Query<HorasModel>(sql).ToList();
+            }
+            return listaHoras;
+        }
         /*FIN Union de EmpleadoModel con ServicioModel*/
 
         /*Metodo para ingresar datos en la base de datos*/
@@ -84,10 +96,10 @@ namespace PeluqueriaCalibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio) " +
-                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id " +
-                          "FROM Servicio " +
-                          "WHERE Servicio.Id = @id_servicio";
+                var sql = " INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio, Finalizado ) " +
+                          " SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id, 0 " +
+                          " FROM Servicio " +
+                          " WHERE Servicio.Id = @id_servicio";
                 result = db.Execute(sql, new
                 {
                     model.Hora,

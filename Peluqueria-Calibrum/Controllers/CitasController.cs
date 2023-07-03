@@ -77,14 +77,36 @@ namespace Peluqueria_Calibrum.Controllers
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio) " +
-                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id " +
+                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio, Finalizado) " +
+                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id, 0 " +
                           "FROM Servicio " +
                           "WHERE Servicio.Id = @id_servicio";
                 result = db.Execute(sql, model);
             }
             return RedirectToAction("Citas");
         }
+
+
+        /*Metodo para finalizar cita*/
+        [HttpPost]
+        public JsonResult FinalizarCita(int citaId)
+        {
+            try
+            {
+                using (var db = new MySqlConnection(MyController.csCal))
+                {
+                    var sql = "UPDATE Cita SET Finalizado = 1 WHERE Id = @citaId";
+                    var result = db.Execute(sql, new { citaId });
+                }
+
+                return Json(new { success = true, message = "Cita marcada como finalizada" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
 
         /*Metodo para editar datos en la base de datos*/
         [HttpDelete]

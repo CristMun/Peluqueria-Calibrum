@@ -115,8 +115,25 @@ function  buscarCitas() {
         });
 }
 
+function marcarCitaFinalizada(citaId) {
+    $.ajax({
+        url: '/Citas/FinalizarCita',
+        type: 'POST',
+        data: { citaId: citaId },
+        success: function (result) {
+            // Procesar la respuesta del servidor si es necesario
+            console.log(result);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores si los hay
+            console.error(error);
+        }
+    });
+}
 
 
 
 
+
+marcarCitaFinalizada();
 limitarFecha();
