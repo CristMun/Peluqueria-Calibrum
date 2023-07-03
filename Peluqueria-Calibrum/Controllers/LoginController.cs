@@ -29,7 +29,7 @@ namespace Peluqueria_Calibrum.Controllers
                     var sqlNombre = "SELECT Nombre FROM Empleado WHERE Usuario = @usuario";
                     var nombre = connection.ExecuteScalar<string>(sqlNombre, new { usuario = empleado.Usuario });
 
-                    ViewData["NombreUsuario"] = nombre;
+                    HttpContext.Session.SetString("NombreEmpleado", nombre);
 
                     var sqlCargo = "SELECT Cargo FROM Empleado WHERE Usuario = @usuario";
                     var cargo = connection.ExecuteScalar<string>(sqlCargo, new { usuario = empleado.Usuario });

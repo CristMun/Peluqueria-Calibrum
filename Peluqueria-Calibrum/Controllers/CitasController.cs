@@ -36,36 +36,6 @@ namespace Peluqueria_Calibrum.Controllers
         }
 
 
-        /*Metodo para buscar datos en la base de datos*/
-        [HttpGet]
-        public IActionResult BuscarCitas(string finalizado)
-        {
-            IEnumerable<Models.CitaModel> lst = null;
-            using (var db = new MySqlConnection(MyController.csCal))
-            {
-                var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total" +
-                            " FROM Cita" +
-                            " JOIN Empleado ON Cita.Id_Empleado = Empleado.Id" +
-                            " JOIN Servicio ON Cita.Id_Servicio = Servicio.Id" +
-                            " WHERE 1 = 1 ";
-
-                if (!string.IsNullOrEmpty(finalizado))
-                {
-                    sql += " AND Finalizado LIKE @finalizado ";
-                }
-
-
-                var parameters = new { finalizado = $"%{finalizado}%"};
-
-
-
-                lst = db.Query<Models.CitaModel>(sql, parameters);
-            }
-            return PartialView("_TablaCitas", lst);
-        }
-
-
-
 
         /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]

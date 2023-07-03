@@ -54,7 +54,8 @@ function eliminar(id) {
 }
 
 function guardar() {
-    
+    document.getElementById("btnAgregar").setAttribute("disabled", "disabled");
+
     Swal.fire({
         icon: 'success',
         title: '¡Creado!',

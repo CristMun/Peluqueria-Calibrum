@@ -26,13 +26,15 @@ function eliminar(id) {
 }
 
 function guardar() {
-
+    document.getElementById("btnAgregar").setAttribute("disabled", "disabled");
     Swal.fire({
         icon: 'success',
         title: '¡Creado!',
         text: 'El empleado ha sido creado con éxito',
         showConfirmButton: false,
         timer: 1000
+    }).then(() => {
+        location.href = "/ListaInventario";
     });
 
     return true;
@@ -87,3 +89,4 @@ function buscarInventario() {
             console.error('Error al buscar Servicios:', error);
         });
 }
+

@@ -24,11 +24,18 @@
         <div class="row">
             <div class="col-auto">
                 <div class="mt-2 form-floating">
-                    <input id="servicio" type="text" class="form-control">
+                    <select class="form-select" id="finalizado">
+                        <option value="" disabled selected></option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
                     <label for="servicio">Finalizadas</label>
                 </div>
             </div>
             <div class="col-auto">
+                <button type="button" class="btn btn-secondary btn-circle">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
                 <a type="button" class="btn btn-primary btn-circle" href="/ListaCitas">
                     <i class="fa-sharp fa-solid fa-filter-circle-xmark"></i>
                 </a>
@@ -148,7 +155,7 @@
                     <h2 class="modal-title fw-bold" id="modalLabel">Agendar Hora</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formCita" action="/Citas/InsertCitas" method="post">
+                <form id="formCita" action="/Citas/InsertCitas" method="post" enctype="multipart/form-data" onsubmit="return guardar()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label class="form-label">Seleccione un servicio:</label>
@@ -217,7 +224,7 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" onclick="MensajeExito()">
+                        <button type="submit" class="btn btn-primary" id="btnAgregar">
                             Agendar cita
                         </button>
                     </div>

@@ -26,6 +26,7 @@
 }
 
 function guardar() {
+    document.getElementById("btnAgregar").setAttribute("disabled", "disabled");
 
     Swal.fire({
         icon: 'success',
@@ -33,7 +34,7 @@ function guardar() {
         text: 'El empleado ha sido creado con éxito',
         showConfirmButton: false,
         timer: 1000
-    });
+        });
 
     return true;
 }
@@ -102,20 +103,6 @@ function validarNumero(input) {
     }
 }
 
-function  buscarCitas() {
-    var servicio = document.getElementById('buscarServicio').value;
-    var empleado = document.getElementById('buscarEmpleado').value;
-
-    fetch(`/Citas/BuscarCitas?servicio=${servicio}&empleado=${empleado}`)
-        .then(response => response.text())
-        .then(data => {
-            var tablaCitas = document.getElementById('tablaCitas');
-            tablaCitas.innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error al buscar:', error);
-        });
-}
 
 function finalizado() {
     Swal.fire({

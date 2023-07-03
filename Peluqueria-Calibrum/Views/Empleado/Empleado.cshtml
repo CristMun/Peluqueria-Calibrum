@@ -125,7 +125,7 @@
                     <h2 class="modal-title fw-bold">Agregar Nuevo Empleado</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/Empleado/InsertEmpleado" method="post" onsubmit="return guardar()">
+                <form action="/Empleado/InsertEmpleado" method="post" enctype="multipart/form-data" onsubmit="return guardar()">
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label class="form-label" for="Nombre">Nombre</label><br />
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Crear Empleado</button>
+                        <button type="submit" class="btn btn-primary" id="btnAgregar">Crear Empleado</button>
                     </div>
                 </form>
 
