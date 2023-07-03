@@ -40,18 +40,18 @@
                 <td>
                     @if (cita.Finalizado == 1)
                     {
-                        <a class="btn btn-success" data-bs-toggle="modal" onclick="marcarCitaFinalizada(@cita.Id)">
-                            <i class="fa-solid fa-check"></i>
+                        <a class="btn btn-danger">
+                            <i class="fa-solid fa-trash" onclick="eliminar(@cita.Id)"></i>
                         </a>
+                        
 
                     }
 
                     else if (cita.Finalizado == 0)
                     {
-                        <a class="btn btn-danger">
-                            <i class="fa-solid fa-trash" onclick="eliminar(@cita.Id)"></i>
+                        <a class="btn btn-success" data-bs-toggle="modal" onclick="marcarCitaFinalizada(@cita.Id)">
+                            <i class="fa-solid fa-check"></i>
                         </a>
-
                     }
                     
                 </td>
