@@ -12,7 +12,7 @@ function limitarFecha(){
 }
 
 function validarNumero(input) {
-    input.value = input.value.replace(/\D/g, ""); // Remueve todos los caracteres no numéricos
+    input.value = input.value.replace(/\D/g, "");
 
     var numero = input.value;
     var esIgual = numero.split('').every(function (digito) {
@@ -27,7 +27,7 @@ function validarNumero(input) {
 }
 
 function alertaEnviado() {
-    // Obtener el formulario y el botón de envío
+    
     const form = document.getElementById('formCita');
     const submitButton = document.getElementById('agendarCitaBtnModal');
 
@@ -64,6 +64,30 @@ function alertaEnviado() {
             form.submit();
         }, 1500);
     });
+}
+
+
+function mostrarServiciosDisponibles(selectEmpleado) {
+    var selectServicio = document.getElementById('select-servicio');
+    var cargoEmpleado = selectEmpleado.options[selectEmpleado.selectedIndex].getAttribute('data-cargo');
+
+    for (var i = 0; i < selectServicio.options.length; i++) {
+        selectServicio.options[i].disabled = false;
+        selectServicio.options[i].classList.remove('opcion-no-seleccionada');
+    }
+
+    for (var i = 0; i < selectServicio.options.length; i++) {
+        var categoriaServicio = selectServicio.options[i].getAttribute('data-categoria');
+
+        if (categoriaServicio !== cargoEmpleado) {
+            selectServicio.options[i].disabled = true;
+            selectServicio.options[i].classList.add('opcion-no-seleccionada');
+        }
+    }
+
+    selectServicio.selectedIndex = 0;
+
+    selectServicio.disabled = false;
 }
 
 

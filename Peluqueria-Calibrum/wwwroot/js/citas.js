@@ -153,6 +153,29 @@ function marcarCitaFinalizada(citaId) {
     });
 }
 
+function mostrarServicioDisponible(selectEmpleado) {
+    var selectServicio = document.getElementById('select-servicio');
+    var cargoEmpleado = selectEmpleado.options[selectEmpleado.selectedIndex].getAttribute('data-cargo');
+
+    for (var i = 0; i < selectServicio.options.length; i++) {
+        selectServicio.options[i].disabled = false;
+        selectServicio.options[i].classList.remove('opcion-no-seleccionada');
+    }
+
+    for (var i = 0; i < selectServicio.options.length; i++) {
+        var categoriaServicio = selectServicio.options[i].getAttribute('data-categoria');
+
+        if (categoriaServicio !== cargoEmpleado) {
+            selectServicio.options[i].disabled = true;
+            selectServicio.options[i].classList.add('opcion-no-seleccionada');
+        }
+    }
+
+    selectServicio.selectedIndex = 0;
+
+    selectServicio.disabled = false;
+}
+
 
 
 marcarCitaFinalizada();
