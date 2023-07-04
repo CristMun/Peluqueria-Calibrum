@@ -81,5 +81,38 @@ namespace Peluqueria_Calibrum.Controllers
         }
 
         /*FIN Union varias tablas*/
+
+        /*Metodo para finalizar cita*/
+        [HttpPost]
+        public JsonResult FinalizarCita(int citaId)
+        {
+            try
+            {
+                using (var db = new MySqlConnection(MyController.csCal))
+                {
+                    var sql = "UPDATE Cita SET Finalizado = 1 WHERE Id = @citaId";
+                    var result = db.Execute(sql, new { citaId });
+                }
+
+                return Json(new { success = true, message = "Cita marcada como finalizada" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+        /*Metodo para editar datos en la base de datos*/
+        [HttpDelete]
+        public IActionResult DeleteCitas(Models.CitaModel model)
+        {
+            int result = 0;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "DELETE FROM Cita WHERE Id=@id";
+                result = db.Execute(sql, model);
+            }
+            return Ok(result);
+        }
+
     }
 }
