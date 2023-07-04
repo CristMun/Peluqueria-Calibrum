@@ -1,0 +1,55 @@
+﻿@model Peluqueria_Calibrum.Models.UnionModel
+
+<table class="styled-table table-sm">
+    <p>Citas de <strong>Hoy</strong>:</p>
+    <thead>
+        <tr>
+            <th>Hora | Dia(Año/Mes/Dia)</th>
+            <th>Servicio(s)</th>
+            <th>Empleado</th>
+            <th>Datos del Cliente</th>
+            <th>Precio</th>
+            <th>Finalizado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cita in Model.Citas)
+        {
+            <tr>
+                <td>@cita.Hora | @cita.Dia</td>
+                <td>@cita.Nombre_servicio</td>
+                <td>@cita.Nombre_Empleado</td>
+                <td>@cita.Nombre_cliente <br />@cita.Telefono</td>
+                <td>$@cita.Precio_Total</td>
+                <td >
+                    @if (cita.Finalizado == 1)
+                    {
+                        <span>Sí</span>
+                    }
+                    else if (cita.Finalizado == 0)
+                    {
+                        <span>No</span>
+                    }
+                </td>
+                <td>
+                    @if (cita.Finalizado == 1)
+                    {
+                        <a class="btn btn-danger">
+                            <i class="fa-solid fa-trash" onclick="eliminar(@cita.Id)"></i>
+                        </a>
+                    }
+
+                    else if (cita.Finalizado == 0)
+                    {
+                        <a class="btn btn-success" data-bs-toggle="modal" onclick="confirmarFinalizarCita(@cita.Id)">
+                            <i class="fa-solid fa-check"></i>
+                        </a>
+                    }
+                    
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

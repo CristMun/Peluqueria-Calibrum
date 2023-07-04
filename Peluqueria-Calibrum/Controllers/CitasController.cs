@@ -107,6 +107,8 @@ namespace Peluqueria_Calibrum.Controllers
             }
             return Json(cita);
         }
+
+
         /*Metodo para EDITAR la CITA que se llamo*/
         [HttpPost]
         public IActionResult UpdateCita(Models.CitaModel model, int id)

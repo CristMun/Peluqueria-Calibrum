@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Peluqueria_Calibrum.Models.UnionModel
+@{
     ViewData["Title"] = "Inicio" ;
     var esPeluqueroOBarbero = Context.Session.GetString("EsPeluqueroOBarbero");
     var esAdministrador = Context.Session.GetString("EsAdministrador");
@@ -80,36 +81,7 @@ else if (esPeluqueroOBarbero != null && (esPeluqueroOBarbero.Equals("Peluquero")
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <p>Citas de <strong>Hoy</strong>:</p>
-                <table class="styled-table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Hora</th>
-                            <th>Servicio(s)</th>
-                            <th>Empleado</th>
-                            <th>Datos</th>
-                            <th>Precio</th>
-                            <th>Finalizado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> 10:00</td>
-                            <td>Corte de pelo</td>
-                            <td>Cristobal</td>
-                            <td>Juanito <br> 9 99223344</td>
-                            <td>$5 </td>
-                            <td>
-                                <a class="btn btn-warning">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                @Html.Partial("_TablaCitasHoy", Model)
             </div>
         </div>
     </div>
