@@ -1,5 +1,9 @@
-﻿@using Peluqueria_Calibrum.Models
-@model IEnumerable<InventarioModel>
+﻿@model IEnumerable<InventarioModel>
+
+@{
+    int pageSize = 5;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+}
 
 <table class="styled-table table-sm">
     <thead>
@@ -11,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Skip((pageNumber - 1) * pageSize).Take(pageSize))
         {
             <tr>
                 <td>@item.Nombre</td>
@@ -29,3 +33,14 @@
         }
     </tbody>
 </table>
+
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= Math.Ceiling((double)Model.Count() / pageSize); i++)
+        {
+            <li class="page-item @(pageNumber == i ? "active" : "")">
+                <a class="page-link" href="?pageNumber=@i">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
