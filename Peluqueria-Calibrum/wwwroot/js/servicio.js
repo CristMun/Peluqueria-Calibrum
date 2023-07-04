@@ -100,5 +100,11 @@ function buscarServicio() {
         });
 }
 
+function validarPrecio(input) {
+    input.value = input.value.replace(/\D/g, "");
+    var numero = input.value;
 
-
+    if (esIgual) {
+        input.setCustomValidity("");
+    }
+}

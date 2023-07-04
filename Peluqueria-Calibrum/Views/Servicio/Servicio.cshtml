@@ -153,9 +153,10 @@
                             <textarea required class="form-control" rows="3" id="descripcion" name="Descripcion"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="Precio" class="form-label">Precio</label>
-                            <input required type="number" class="form-control" id="precio" name="Precio" />
+                            <label for="precio" class="form-label">Precio</label>
+                            <input required type="text" class="form-control" id="precio" name="Precio" minlength="4" maxlength="5" pattern="[0-9]+" oninput="validarPrecio(this)" />
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" id="btnAgregar">
