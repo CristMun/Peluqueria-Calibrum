@@ -1,35 +1,98 @@
 ﻿@{
-    ViewData["Title"] = "Inicio Empleado";
+    ViewData["Title"] = "Inicio" ;
+    var esPeluqueroOBarbero = Context.Session.GetString("EsPeluqueroOBarbero");
+    var esAdministrador = Context.Session.GetString("EsAdministrador");
+    DateTime fechaActual = DateTime.Now;
 }
 <head>
 <link rel="stylesheet" href="~/css/vistas.css">
 </head>
 
-<div class="card">
-    <div class="card-header">
-        <div class="card-title">
-            <a>Citas <span>Hoy</span></a>
-            <p>Citas del dia: [Dia(Lunes,Martes, etc.)]</p>
+@if (esAdministrador == "true")
+{
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h1>¡Bienvenido <strong>@Context.Session.GetString("NombreEmpleado")</strong>!</h1>
+
+            </div>
         </div>
+        <br>
+        <div class="mb-3">
+            <div class="mb-3">
+                <h4 style="text-align:center; font-weight:bold">Acceso Rápido</h4>
+                <p style="text-align:center">
+                    Estás en la vista Administrador,
+                    aquí puedes gestionar tu local.
+                </p>
+                <hr>
+            </div>
+
+        </div>
+        <div class="card-body" style="text-align:justify; margin:auto">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <a class="btn btn-outline-success btn-block" asp-area="" asp-controller="Empleado" asp-action="Empleado">
+                        <i class="nav-icon fas fa-user"></i>
+                        Empleados
+                    </a>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <a class="btn btn-outline-success btn-block" asp-area="" asp-controller="Citas" asp-action="Citas">
+                        <i class="nav-icon fas fa-calendar-days"></i>
+                        Citas
+                    </a>
+                </div>
+                <div class=" mb-3">
+                    <a class="btn btn-outline-success btn-block" asp-area="" asp-controller="Servicio" asp-action="Servicio">
+                        <i class="nav-icon fas fa-scissors"></i>
+                        Servicios
+                    </a>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-3">
+                    <a class="btn btn-outline-success btn-block" asp-area="" asp-controller="Inventario" asp-action="Inventario">
+                        <i class="nav-icon fas fa-box "></i>
+                        Inventario
+                    </a>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <a class="btn btn-outline-success btn-block" asp-area="" asp-controller="Gestion" asp-action="Gestion">
+                        <i class="nav-icon fas fa-sliders"></i>
+                        Gestión
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="card-body">
-        
-        <div class="table-responsive">
-            <table class="styled-table table-sm">
-                <thead>
-                    <tr>
-                        <th>Hora</th>
-                        <th>Servicio(s)</th>
-                        <th>Empleado</th>
-                        <th>Datos</th>
-                        <th>Precio</th>
-                        <th>Finalizado</th>
+}
 
-                    </tr>
-                </thead>
-                <tbody>
+else if (esPeluqueroOBarbero != null && (esPeluqueroOBarbero.Equals("Peluquero") || esPeluqueroOBarbero.Equals("Barbero")))
+{
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <a>Citas <span>Hoy</span></a>
+                
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="styled-table table-sm">
+                    <thead>
                         <tr>
-
+                            <th>Hora</th>
+                            <th>Servicio(s)</th>
+                            <th>Empleado</th>
+                            <th>Datos</th>
+                            <th>Precio</th>
+                            <th>Finalizado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
                             <td> 10:00</td>
                             <td>Corte de pelo</td>
                             <td>Cristobal</td>
@@ -44,8 +107,12 @@
                                 </a>
                             </td>
                         </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+}
+
+
+
