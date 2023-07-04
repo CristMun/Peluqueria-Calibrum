@@ -5,8 +5,8 @@
         let timerInterval;
         Swal.fire({
             title: 'Cerrando sesión',
-            html: 'Espera, ¿¡QUE?! <br><b></b> segundos.',
-            timer: 2000,
+            html: '<b></b> segundos.',
+            timer: 1000,
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();

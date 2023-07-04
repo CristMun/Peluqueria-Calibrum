@@ -26,45 +26,7 @@ function validarNumero(input) {
     }
 }
 
-function alertaEnviado() {
-    
-    const form = document.getElementById('formCita');
-    const submitButton = document.getElementById('agendarCitaBtnModal');
 
-    form.addEventListener('submit', function (event) {
-        submitButton.disabled = true;
-        event.preventDefault();
-
-        let timerInterval
-        Swal.fire({
-            title: 'Excelente!',
-            html: 'Cita agendada con éxito<br>Redirigiendo al comprobante...',
-            icon: 'success',
-            showCancelButton: false,
-            showCloseButton: false,
-            confirmButtonText: 'Ver Comprobante',
-            reverseButtons: true,
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading()
-                const b = Swal.getHtmlContainer().querySelector('b')
-                timerInterval = setInterval(() => {
-                    b.textContent = Swal.getTimerLeft()
-                }, 100)
-            },
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        });
-        setTimeout(function () {
-            form.submit();
-        }, 1500);
-    });
-}
 
 
 function mostrarServiciosDisponibles(selectEmpleado) {

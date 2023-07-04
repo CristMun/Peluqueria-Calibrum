@@ -194,7 +194,7 @@
     </div>
 </section>
 <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<!-- Modal Agendar Hora-->
+<!-- Modal Agendar Hora -->
 <div class="modal fade" id="modalAgendar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -206,7 +206,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-label">Seleccione un empleado:</label>
-                        <select required class="form-select" name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarServiciosDisponibles(this)">
+                        <select required class="form-select" id="select-empleado" name="Id_Empleado" aria-label="Id_Empleado" onchange="mostrarServiciosDisponibles(this)">
                             <option value="" disabled selected>Seleccione</option>
                             @foreach (var empleado in Model.Empleados)
                             {
@@ -258,7 +258,7 @@
                     <h3 id="precioSeleccionado"></h3>
                 </div>
                 <div class="modal-footer">
-                    <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary">
+                    <button id="agendarCitaBtnModal" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalDatos">
                         Agendar cita
                     </button>
                 </div>
@@ -266,4 +266,82 @@
         </div>
     </div>
 </div>
+
+<div id="modalDatos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalDatosLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDatosLabel">Datos del formulario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalNombreCliente"></p>
+                <p id="modalTelefono"></p>
+                <p id="modalEmpleado"></p>
+                <p id="modalServicio"></p>
+                <p id="modalFecha"></p>
+                <p id="modalHora"></p>
+            </div>
+            <div class="modal-footer">
+                <a href="/Home" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('formCita').addEventListener('submit', function (e) {
+        e.preventDefault(); 
+
+        var nombreCliente = document.getElementById('nombre_cliente').value;
+        var telefono = document.getElementById('telefono').value;
+        var fecha = document.getElementById('dia').value;
+        var hora = document.getElementById('hora').value;
+        var empleadoSelect = document.getElementById('select-empleado');
+        var empleadoSeleccionado = empleadoSelect.options[empleadoSelect.selectedIndex].text;
+
+        var servicioSelect = document.getElementById('select-servicio');
+        var servicioSeleccionado = servicioSelect.options[servicioSelect.selectedIndex].text;
+
+        var horaSelect = document.getElementById('hora');
+        var horaSeleccionada = horaSelect.options[horaSelect.selectedIndex].text;
+
+
+        document.getElementById('modalNombreCliente').textContent = 'Nombre Cliente: ' + nombreCliente;
+        document.getElementById('modalTelefono').textContent = 'Teléfono: ' + telefono;
+        document.getElementById('modalFecha').textContent = 'Fecha: ' + fecha;
+        document.getElementById('modalEmpleado').textContent = 'Empleado: ' + empleadoSeleccionado;
+        document.getElementById('modalServicio').textContent = 'Servicio: ' + servicioSeleccionado;
+        document.getElementById('modalHora').textContent = 'Hora: ' + horaSeleccionada;
+
+
+        $('#modalDatos').modal('show');
+
+        Swal.fire({
+            title: '¡Cita agendada!',
+            text: '¿Deseas ver el comprobante?',
+            icon: 'success',
+            confirmButtonText: 'Ver comprobante',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#modalAgendar').modal('hide'); 
+                $('#modalComprobante').modal('show'); 
+            } else {
+                $('#modalAgendar').modal('hide'); 
+            }
+        });
+
+        $.ajax({
+            url: '/Home/InsertCitasInicio',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (response) {
+            },
+            error: function (xhr, status, error) {
+            }
+        });
+    });
+</script>
+
 <script src="js/home.js"></script>

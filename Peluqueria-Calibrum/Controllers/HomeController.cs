@@ -90,17 +90,16 @@ namespace PeluqueriaCalibrum.Controllers
         }
         /*FIN Union de EmpleadoModel con ServicioModel*/
 
-        /*Metodo para ingresar datos en la base de datos*/
         [HttpPost]
-        public IActionResult InsertCitasInicio(CitaModel model)
+        public void InsertCitasInicio(CitaModel model)
         {
             int result = 0;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = " INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio, Finalizado ) " +
-                          " SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id, 0 " +
-                          " FROM Servicio " +
-                          " WHERE Servicio.Id = @id_servicio";
+                var sql = "INSERT INTO Cita (Hora, Dia, Nombre_cliente, Telefono, Nombre_servicio, Id_Empleado, Id_Servicio, Finalizado) " +
+                          "SELECT @hora, @dia, @nombre_cliente, @telefono, Servicio.Nombre, @id_empleado, Servicio.Id, 0 " +
+                          "FROM Servicio " +
+                          "WHERE Servicio.Id = @id_servicio";
                 result = db.Execute(sql, new
                 {
                     model.Hora,
@@ -111,7 +110,6 @@ namespace PeluqueriaCalibrum.Controllers
                     model.Id_Servicio
                 });
             }
-            return View("Comprobante");
         }
 
         /*Método para mostrar los últimos datos en el comprobante*/

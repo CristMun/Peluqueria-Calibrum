@@ -32,10 +32,6 @@
                         <span>No</span>
                         
                     }
-
-
-                    
-                    
                 </td>
                 <td>
                     @if (cita.Finalizado == 1)
@@ -44,7 +40,6 @@
                             <i class="fa-solid fa-trash" onclick="eliminar(@cita.Id)"></i>
                         </a>
                     }
-
                     else if (cita.Finalizado == 0)
                     {
                         <a class="btn btn-success" data-bs-toggle="modal" onclick="confirmarFinalizarCita(@cita.Id)">
