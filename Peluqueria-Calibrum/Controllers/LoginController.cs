@@ -37,17 +37,17 @@ namespace Peluqueria_Calibrum.Controllers
                     if (cargo == "Administrador")
                     {
                         HttpContext.Session.SetString("EsAdministrador", "true");
-                        HttpContext.Session.Remove("EsPeluqueroOBarbero"); // Elimina el valor anterior si existe
+                        HttpContext.Session.Remove("EsPeluqueroOBarbero"); 
                     }
                     else if (cargo == "Peluquero" || cargo == "Barbero")
                     {
                         HttpContext.Session.SetString("EsPeluqueroOBarbero", cargo);
-                        HttpContext.Session.Remove("EsAdministrador"); // Elimina el valor anterior si existe
+                        HttpContext.Session.Remove("EsAdministrador"); 
                     }
                     else
                     {
-                        HttpContext.Session.Remove("EsAdministrador"); // Elimina el valor anterior si existe
-                        HttpContext.Session.Remove("EsPeluqueroOBarbero"); // Elimina el valor anterior si existe
+                        HttpContext.Session.Remove("EsAdministrador");
+                        HttpContext.Session.Remove("EsPeluqueroOBarbero");
                     }
 
                     return RedirectToAction("CitasHoy", "Inicio");
