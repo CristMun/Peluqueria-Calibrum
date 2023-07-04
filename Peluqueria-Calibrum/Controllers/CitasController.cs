@@ -28,8 +28,8 @@ namespace Peluqueria_Calibrum.Controllers
                 var sql = "SELECT Cita.*, CONCAT(Empleado.Nombre, ' ', Empleado.Apellido) AS Nombre_Empleado, Servicio.Precio AS Precio_Total " +
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
-                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id " +
-                          "WHERE Cita.Finalizado = '0'";
+                          "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id ";
+                          
                 lst = db.Query<Models.CitaModel>(sql);
             }
             return View(lst);
@@ -165,7 +165,7 @@ namespace Peluqueria_Calibrum.Controllers
             List<ServicioModel> listaServicios;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Servicio where Mostrar_Home=1";
+                var sql = "SELECT * FROM Servicio";
                 listaServicios = db.Query<ServicioModel>(sql).ToList();
             }
             return listaServicios;
