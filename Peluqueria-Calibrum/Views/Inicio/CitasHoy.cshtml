@@ -74,12 +74,13 @@ else if (esPeluqueroOBarbero != null && (esPeluqueroOBarbero.Equals("Peluquero")
     <div class="card">
         <div class="card-header">
             <div class="card-title">
-                <a>Citas <span>Hoy</span></a>
-                
+                <a>Bienvenido <span>@Context.Session.GetString("NombreEmpleado") </span></a>
+                <p> @fechaActual.ToString("D")</p>
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <p>Citas de <strong>Hoy</strong>:</p>
                 <table class="styled-table table-sm">
                     <thead>
                         <tr>
