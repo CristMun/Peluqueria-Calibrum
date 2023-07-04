@@ -180,7 +180,7 @@ namespace Peluqueria_Calibrum.Controllers
                           "FROM Cita " +
                           "JOIN Empleado ON Cita.Id_Empleado = Empleado.Id " +
                           "JOIN Servicio ON Cita.Id_Servicio = Servicio.Id " +
-                          "ORDER BY Cita.Finalizado = 0 DESC;";
+                          "ORDER BY Cita.Finalizado = 0  AND Cita.Dia DESC;";
                 listaCitas = db.Query<CitaModel>(sql).ToList();
             }
             return listaCitas;
