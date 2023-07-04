@@ -17,6 +17,7 @@ namespace PeluqueriaCalibrum.Controllers
         }
         public IActionResult Comprobante()
         {
+            GenerarComprobante();
             return View();
         }
 
@@ -61,7 +62,7 @@ namespace PeluqueriaCalibrum.Controllers
             List<ServicioModel> listaServicios;
             using (var db = new MySqlConnection(MyController.csCal))
             {
-                var sql = "SELECT * FROM Servicio where Mostrar_Home=1";
+                var sql = "SELECT * FROM Servicio";
                 listaServicios = db.Query<ServicioModel>(sql).ToList();
             }
             return listaServicios;
@@ -112,6 +113,21 @@ namespace PeluqueriaCalibrum.Controllers
             }
             return View("Comprobante");
         }
+
+        /*Método para mostrar los últimos datos en el comprobante*/
+        [HttpGet]
+        public IActionResult GenerarComprobante()
+        {
+            CitaModel lastInsertedCita;
+            using (var db = new MySqlConnection(MyController.csCal))
+            {
+                var sql = "SELECT * FROM Cita ORDER BY Id DESC LIMIT 1";
+                lastInsertedCita = db.QuerySingleOrDefault<CitaModel>(sql);
+            }
+
+            return View(lastInsertedCita);
+        }
+
 
 
 
